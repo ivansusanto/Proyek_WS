@@ -48,7 +48,7 @@ model order_items {
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model orders {
   order_id    String        @id @db.VarChar(5)
-  invoice     String?       @db.VarChar(15)
+  invoice     String        @db.VarChar(15)
   date        DateTime      @db.DateTime(0)
   total       Int
   status      Boolean
