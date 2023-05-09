@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,80 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model carts {
+  carts_id   String   @id @db.VarChar(5)
+  quantity   Int
+  user_id    String   @db.VarChar(5)
+  product_id String   @db.VarChar(5)
+  users      users    @relation(fields: [user_id], references: [user_id], onUpdate: Restrict, map: "carts_ibfk_1")
+  products   products @relation(fields: [product_id], references: [product_id], onUpdate: Restrict, map: "carts_ibfk_2")
+
+  @@index([product_id], map: "product_id")
+  @@index([user_id], map: "user_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model developers {
+  developer_id String     @id @db.VarChar(5)
+  username     String     @db.VarChar(255)
+  password     String     @db.VarChar(255)
+  email        String     @db.VarChar(255)
+  full_name    String     @db.VarChar(255)
+  display_name String     @db.VarChar(255)
+  api_key      String     @db.VarChar(50)
+  status       Boolean    @default(true)
+  products     products[]
+}
+
+model order_items {
+  id         Int      @id @default(autoincrement())
+  quantity   Int
+  order_id   String   @db.VarChar(5)
+  product_id String   @db.VarChar(5)
+  orders     orders   @relation(fields: [order_id], references: [order_id], onUpdate: Restrict, map: "order_items_ibfk_1")
+  products   products @relation(fields: [product_id], references: [product_id], onUpdate: Restrict, map: "order_items_ibfk_2")
+
+  @@index([order_id], map: "order_id")
+  @@index([product_id], map: "product_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model orders {
+  order_id    String        @id @db.VarChar(5)
+  invoice     String?       @db.VarChar(15)
+  date        DateTime      @db.DateTime(0)
+  total       Int
+  status      Boolean
+  user_id     String        @db.VarChar(5)
+  order_items order_items[]
+  users       users         @relation(fields: [user_id], references: [user_id], onUpdate: Restrict, map: "orders_ibfk_1")
+
+  @@index([user_id], map: "user_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model products {
+  product_id   String        @id @db.VarChar(5)
+  name         String        @db.VarChar(255)
+  description  String        @db.VarChar(255)
+  price        Int
+  stock        Int
+  status       Boolean
+  developer_id String        @db.VarChar(5)
+  carts        carts[]
+  order_items  order_items[]
+  developers   developers    @relation(fields: [developer_id], references: [developer_id], onUpdate: Restrict, map: "products_ibfk_1")
+
+  @@index([developer_id], map: "developer_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model users {
+  user_id String   @id @db.VarChar(5)
+  status  Boolean  @default(true)
+  carts   carts[]
+  orders  orders[]
 }
