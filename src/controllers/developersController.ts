@@ -15,9 +15,6 @@ export async function registerDeveloper(req : Request, res : Response) {
     const { username, password, email, full_name, display_name } = req.body;
     const dev_id = await generateDeveloperId();
     const api_key_dev = await generateApiKey();
-
-    console.log(SECRET_KEY);
-    
     const token = jwt.sign({ api_key: api_key_dev }, SECRET_KEY, { expiresIn: '1h' });
     
     await prisma.developers.create({
@@ -32,9 +29,7 @@ export async function registerDeveloper(req : Request, res : Response) {
         }
     });
 
-    return res.status(201).send({
-      token: token
-    });
+    return res.status(201).send({ token: token });
 }
 
 export async function loginDeveloper(req : Request, res : Response) {
