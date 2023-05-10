@@ -8,7 +8,7 @@ npm run start -> Menjalankan nodemon
 
 ====================================================================
 
-====BUAT MIGRATE FILES====
+====BUAT MIGRATE DATABASE====
 
 npx prisma db pull -> Mengubah db ke models
 npx prisma db push -> Mengubah models ke db
