@@ -18,9 +18,11 @@ export async function addProduct(req : Request, res : Response) {
             }
         }
     };
-    await prisma.products.create({
+    const result = await prisma.products.create({
         data: product
     });
+
+    return res.status(201).json(result);
 }
 
 export async function fetchProduct(req : Request, res : Response) {

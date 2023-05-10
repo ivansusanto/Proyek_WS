@@ -31,6 +31,7 @@ model developers {
   api_key      String     @db.VarChar(50)
   status       Int        @default(1)
   products     products[]
+  users        users[]
 }
 
 model order_items {
@@ -77,9 +78,13 @@ model products {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model users {
-  user_id     String   @id @db.VarChar(5)
-  customer_id String   @db.VarChar(255)
-  status      Int      @default(1)
-  carts       carts[]
-  orders      orders[]
+  user_id      String     @id @db.VarChar(5)
+  status       Int        @default(1)
+  customer_id  String     @db.VarChar(255)
+  developer_id String     @db.VarChar(5)
+  carts        carts[]
+  orders       orders[]
+  developers   developers @relation(fields: [developer_id], references: [developer_id], onUpdate: Restrict, map: "users_ibfk_1")
+
+  @@index([developer_id], map: "developer_id")
 }
