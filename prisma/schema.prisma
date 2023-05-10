@@ -29,7 +29,7 @@ model developers {
   full_name    String     @db.VarChar(255)
   display_name String     @db.VarChar(255)
   api_key      String     @db.VarChar(50)
-  status       Boolean    @default(true)
+  status       Int        @default(1)
   products     products[]
 }
 
@@ -51,7 +51,7 @@ model orders {
   invoice     String        @db.VarChar(15)
   date        DateTime      @db.DateTime(0)
   total       Int
-  status      Boolean
+  status      Int           @default(3)
   user_id     String        @db.VarChar(5)
   order_items order_items[]
   users       users         @relation(fields: [user_id], references: [user_id], onUpdate: Restrict, map: "orders_ibfk_1")
@@ -66,7 +66,7 @@ model products {
   description  String        @db.VarChar(255)
   price        Int
   stock        Int
-  status       Boolean
+  status       Int           @default(1)
   developer_id String        @db.VarChar(5)
   carts        carts[]
   order_items  order_items[]
@@ -79,7 +79,7 @@ model products {
 model users {
   user_id     String   @id @db.VarChar(5)
   customer_id String   @db.VarChar(255)
-  status      Boolean  @default(true)
+  status      Int      @default(1)
   carts       carts[]
   orders      orders[]
 }
