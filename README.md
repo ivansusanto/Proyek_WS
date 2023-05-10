@@ -4,6 +4,8 @@ npm i -> Install node modules
 // Minta .env
 npx prisma migrate reset -> Bikin db migrate database
 
+npm run start -> Menjalankan nodemon
+
 ====================================================================
 
 ====BUAT MIGRATE FILES====
