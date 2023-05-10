@@ -7,17 +7,16 @@ dotenv.config();
 
 const prisma = new PrismaClient();
 
+const SECRET_KEY: string = process.env.SECRET_KEY?.toString() ?? "";
+
 export async function registerDeveloper(req : Request, res : Response) {
     const { username, password, email, full_name, display_name } = req.body;
     const dev_id = await generateDeveloperId();
     const api_key_dev = await generateApiKey();
 
-    console.log(api_key_dev);
+    console.log(SECRET_KEY);
     
-    
-    console.log(process.env.SECRET_KEY);
-    
-    const token = jwt.sign({ api_key: api_key_dev }, "process.env.SECRET_KEY", { expiresIn: '1h' });
+    const token = jwt.sign({ api_key: api_key_dev }, SECRET_KEY, { expiresIn: '1h' });
     
     await prisma.developers.create({
         data: {
