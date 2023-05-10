@@ -30,7 +30,9 @@ export async function registerDeveloper(req : Request, res : Response) {
         }
     });
 
-    return res.status(201).send({token: token})
+    return res.status(201).send({
+      token: token
+    });
 }
 
 export async function loginDeveloper(req : Request, res : Response) {
