@@ -77,8 +77,9 @@ model products {
 
 /// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
 model users {
-  user_id String   @id @db.VarChar(5)
-  status  Boolean  @default(true)
-  carts   carts[]
-  orders  orders[]
+  user_id     String   @id @db.VarChar(5)
+  customer_id String   @db.VarChar(255)
+  status      Boolean  @default(true)
+  carts       carts[]
+  orders      orders[]
 }
