@@ -1,12 +1,14 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt'
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const prisma = new PrismaClient();
-
+const saltRounds = 10;
+const salt = bcrypt.genSaltSync(saltRounds);
 const SECRET_KEY: string = process.env.SECRET_KEY?.toString() ?? "";
 
 export async function registerDeveloper(req : Request, res : Response) {
@@ -22,7 +24,7 @@ export async function registerDeveloper(req : Request, res : Response) {
         data: {
             developer_id: dev_id,
             username: username,
-            password: password,
+            password: bcrypt.hashSync(password, salt),
             email: email,
             full_name: full_name,
             display_name: display_name,
