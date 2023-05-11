@@ -8,6 +8,8 @@ export async function addUser(req : Request, res : Response) {
         user_id : string
     } = req.body;
 
+    checkCustomerID("M0002", "D0001")
+
     const newID = await generateUserID();
 
     await prisma.users.create({
@@ -26,7 +28,7 @@ export async function updateStatus(req : Request, res : Response) {
     
 };
 
-async function generateUserID(){
+async function generateUserID() : Promise<string> {
     const latestUser = await prisma.users.findFirst({
         orderBy: {
             user_id: 'desc'
@@ -41,4 +43,16 @@ async function generateUserID(){
 
     return newID;
     
+};
+
+async function checkCustomerID(user_id : string, developer_id : string) : Promise<boolean>{
+    const checkID = await prisma.users.findMany({
+        where:{
+            customer_id: user_id,
+            developer_id: developer_id
+        }
+    })
+
+    console.log(checkID);
+    return true;
 };
