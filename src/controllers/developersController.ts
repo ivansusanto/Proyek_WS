@@ -1,27 +1,24 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt'
-import dotenv from 'dotenv';
-
-dotenv.config();
+import bcrypt from 'bcrypt';
+import env from '../config/env.config';
 
 const prisma = new PrismaClient();
-const saltRounds:number = 10;
+const saltRounds: number = 10;
 const salt: string | number = bcrypt.genSaltSync(saltRounds);
-const SECRET_KEY: string = process.env.SECRET_KEY?.toString() ?? "";
 
 export async function registerDeveloper(req : Request, res : Response) {
     const { username, password, email, full_name, display_name }: {
-      username: string,
-      password: string,
-      email: string,
-      full_name: string,
-      display_name: string
+		username: string,
+		password: string,
+		email: string,
+		full_name: string,
+		display_name: string
     } = req.body;
     const dev_id : string = await generateDeveloperId();
     const api_key_dev : string = await generateApiKey();
-    const token = jwt.sign({ api_key: api_key_dev }, SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ api_key: api_key_dev }, env('SECRET_KEY'), { expiresIn: '1h' });
     const hashedPassword: string = bcrypt.hashSync(password, salt);
     await prisma.developers.create({
         data: {
@@ -39,9 +36,9 @@ export async function registerDeveloper(req : Request, res : Response) {
 
 export async function loginDeveloper(req : Request, res : Response) {
     const {email, username, password}:{
-      username: string,
-      password: string,
-      email: string,
+		username: string,
+		password: string,
+		email: string,
     } = req.body
 
 }
@@ -54,7 +51,7 @@ async function generateDeveloperId(): Promise<string> {
     const newId = `D${zeroPadding}${newIdNumber}`;
   
     return newId;
-  }
+}
   
 
 async function generateApiKey(): Promise<string> {
@@ -77,5 +74,4 @@ async function generateApiKey(): Promise<string> {
     }
   
     return result;
-  }
-  
+}
