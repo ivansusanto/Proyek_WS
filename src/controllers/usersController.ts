@@ -4,9 +4,11 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export async function addUser(req : Request, res : Response) {
-    const { user_id } = req.body
+    const { user_id }:{
+        user_id : string
+    } = req.body;
 
-    const newID = await generateUserID()
+    const newID = await generateUserID();
 
     await prisma.users.create({
         data:{
@@ -15,14 +17,14 @@ export async function addUser(req : Request, res : Response) {
             customer_id: "M0002",
             developer_id: "D0001"
         }
-    })
+    });
 
     return res.status(200).json("Success");
-}   
+};
 
 export async function updateStatus(req : Request, res : Response) {
     
-}
+};
 
 async function generateUserID(){
     const latestUser = await prisma.users.findFirst({
@@ -31,12 +33,12 @@ async function generateUserID(){
         }
     });
 
-    const latestID: string | undefined = latestUser?.user_id
-    let numberID = parseInt(latestID?.substring(1, 5) ?? '0', 10)
+    const latestID: string | undefined = latestUser?.user_id;
+    let numberID = parseInt(latestID?.substring(1, 5) ?? '0', 10);
 
-    numberID++
-    const newID = "U" + numberID.toString().padStart(4, "0")
+    numberID++;
+    const newID = "U" + numberID.toString().padStart(4, "0");
 
-    return newID
+    return newID;
     
-}
+};
