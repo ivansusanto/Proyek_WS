@@ -65,7 +65,7 @@ async function checkPasswordByEmailOrUsername(
     email: string,
     username: string,
     password: string
-  ): Promise<boolean> {
+): Promise<boolean> {
     const user = await prisma.developers.findFirst({
       where: {
         OR: [
