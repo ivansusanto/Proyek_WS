@@ -56,7 +56,7 @@ export async function loginDeveloper(req : Request, res : Response) {
         } else {
           res.status(401).send({message:'Invalid password'});
         }
-      } catch (error: any) {
+    } catch (error: any) {
         if (error.message === 'User not found') {
           res.status(404).send({message:'User not found'});
         } else {
