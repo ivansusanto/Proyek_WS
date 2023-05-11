@@ -4,7 +4,7 @@ import env from "../config/env.config";
 const generateToken = (payload: any, duration: string): string => {
     return jwt.sign(
         { ...payload },
-        env("JWT_SECRET"),
+        env("SECRET_KEY"),
         { expiresIn: duration }
     );
 }
