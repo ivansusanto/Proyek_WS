@@ -17,7 +17,10 @@ export async function registerDeveloper(req : Request, res : Response) {
     } = req.body;
     const dev_id : string = await generateDeveloperId();
     
-    const token = generateToken({ username: username }, '1h');
+    const token = generateToken({ 
+        email: email || undefined,
+        username: username || undefined, 
+    }, '1h');
     const hashedPassword: string = generateHashedPassword(password);
     await prisma.developers.create({
         data: {
@@ -52,7 +55,7 @@ export async function loginDeveloper(req : Request, res : Response) {
         } else {
           res.status(401).send({message:'Invalid password'});
         }
-      } catch (error:any) {
+      } catch (error: any) {
         if (error.message === 'User not found') {
           res.status(404).send({message:'User not found'});
         } else {
