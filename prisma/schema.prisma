@@ -28,7 +28,6 @@ model developers {
   email        String     @db.VarChar(255)
   full_name    String     @db.VarChar(255)
   display_name String     @db.VarChar(255)
-  api_key      String     @db.VarChar(50)
   status       Int        @default(1)
   products     products[]
   users        users[]

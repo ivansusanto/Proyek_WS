@@ -1,12 +1,9 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-import env from '../config/env.config';
+import { generateToken } from '../utils/JWT';
+import { generateHashedPassword } from '../utils/Bcrypt';
 
 const prisma = new PrismaClient();
-const saltRounds: number = 10;
-const salt: string | number = bcrypt.genSaltSync(saltRounds);
 
 export async function registerDeveloper(req : Request, res : Response) {
     const { username, password, email, full_name, display_name }: {
@@ -17,21 +14,23 @@ export async function registerDeveloper(req : Request, res : Response) {
 		display_name: string
     } = req.body;
     const dev_id : string = await generateDeveloperId();
-    const api_key_dev : string = await generateApiKey();
-    const token = jwt.sign({ api_key: api_key_dev }, env('SECRET_KEY'), { expiresIn: '1h' });
-    const hashedPassword: string = bcrypt.hashSync(password, salt);
+    
+    const token = generateToken({ username: username }, '1h');
+    const hashedPassword: string = generateHashedPassword(password);
     await prisma.developers.create({
         data: {
             developer_id: dev_id,
             username: username,
-            password:hashedPassword,
+            password: hashedPassword,
             email: email,
             full_name: full_name,
-            display_name: display_name,
-            api_key: api_key_dev
+            display_name: display_name
         }
     });
-    return res.status(201).send({ token: token });
+
+    return res.status(201).send({
+        token: token
+    });
 }
 
 export async function loginDeveloper(req : Request, res : Response) {
@@ -51,27 +50,4 @@ async function generateDeveloperId(): Promise<string> {
     const newId = `D${zeroPadding}${newIdNumber}`;
   
     return newId;
-}
-  
-
-async function generateApiKey(): Promise<string> {
-    let result: string = '';
-    const characters: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  
-    for (let i = 0; i < 50; i++) {
-      result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-  
-    const existingDeveloper = await prisma.developers.findMany({
-      where: {
-        api_key: result,
-      },
-      take: 1,
-    });
-  
-    if (existingDeveloper.length > 0) {
-      return generateApiKey();
-    }
-  
-    return result;
 }
