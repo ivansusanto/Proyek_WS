@@ -3,7 +3,6 @@ import { PrismaClient } from '@prisma/client';
 import { generateToken } from '../utils/JWT';
 import { generateHashedPassword } from '../utils/Bcrypt';
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
@@ -51,7 +50,9 @@ export async function loginDeveloper(req : Request, res : Response) {
                 email: email || undefined,
                 username: username || undefined, 
             }, '1h');
-            res.status(200).send({token: token});
+            res.status(200).send({
+                token: token
+            });
         } else {
           res.status(401).send({message:'Invalid password'});
         }
@@ -78,9 +79,7 @@ async function checkPasswordByEmailOrUsername(
       },
     });
   
-    if (!user) {
-      throw new Error('User not found');
-    }
+    if (!user) throw new Error('User not found');
   
     const isPasswordValid = await bcrypt.compare(password, user.password);
     return isPasswordValid;
