@@ -8,18 +8,20 @@ export async function addUser(req : Request, res : Response) {
         user_id : string
     } = req.body;
 
-    checkCustomerID("M0002", "D0001")
+    getDeveloperID(req.body.data.username)
 
-    const newID = await generateUserID();
+    // checkCustomerID(user_id, "D0001")
 
-    await prisma.users.create({
-        data:{
-            user_id: newID,
-            status: 1,
-            customer_id: "M0002",
-            developer_id: "D0001"
-        }
-    });
+    // const newID = await generateUserID();
+
+    // await prisma.users.create({
+    //     data:{
+    //         user_id: newID,
+    //         status: 1,
+    //         customer_id: "M0002",
+    //         developer_id: "D0001"
+    //     }
+    // });
 
     return res.status(200).json("Success");
 };
@@ -27,6 +29,21 @@ export async function addUser(req : Request, res : Response) {
 export async function updateStatus(req : Request, res : Response) {
     
 };
+
+async function getDeveloperID(username : string) : Promise<string> {
+    const devID = await prisma.developers.findMany({
+        where:{
+            username: username
+        },
+        select:{
+            developer_id: true
+        }
+    })
+
+    console.log(devID)
+
+    return "asd"
+}
 
 async function generateUserID() : Promise<string> {
     const latestUser = await prisma.users.findFirst({

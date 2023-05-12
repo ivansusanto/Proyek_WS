@@ -12,7 +12,7 @@ export async function addProduct(req : Request, res : Response) {
         price: 10000,
         stock: 10,
         status: 1,
-        images: '',
+        image: '',
         developers: {
             connect: {
                 developer_id: "D0001"

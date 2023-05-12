@@ -17,3 +17,9 @@ npx prisma migrate dev --name <nama sesuai perubahan> -> Menambah versi migratio
 npx prisma migrate reset -> Mengupdate struktur db menjadi yang versi terbaru
 
 Database seeding with Prisma -> prisma db seed // Mending langsung pake npx prisma migrate reset -> otomatis seeding
+
+====================================================================
+
+====MIDDLEWARE====
+
+Kalo mau ambil data username developer yg login -> req.body.data.username
