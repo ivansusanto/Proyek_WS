@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node-ts ./src/main.ts"
+    "start": "npx nodemon ./src/main.ts"
   },
   "engines": {
     "node": "16.x"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seeder/seed.ts"
   },
   "keywords": [],
   "author": "",
