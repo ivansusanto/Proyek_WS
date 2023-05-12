@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon ./src/main.ts",
-    "prisma:generate": "npx prisma generate"
+    "start": "npx nodemon ./src/main.ts"
   },
   "keywords": [],
   "author": "",
