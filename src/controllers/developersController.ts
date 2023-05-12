@@ -55,8 +55,8 @@ export async function loginDeveloper(req : Request, res : Response) {
           res.status(401).send({message:'Invalid password'});
         }
     } catch (error: any) {
-        if (error.message === 'User not found') {
-          res.status(404).send({message:'User not found'});
+        if (error.message === 'Developer not found') {
+          res.status(404).send({message:'Developer not found'});
         } else {
           res.status(500).send({message:'Internal server error'});
         }
@@ -68,7 +68,7 @@ async function checkPasswordByEmailOrUsername(
     username: string,
     password: string
 ): Promise<boolean> {
-    const user = await prisma.developers.findFirst({
+    const developer = await prisma.developers.findFirst({
       where: {
         OR: [
           { email },
@@ -77,9 +77,9 @@ async function checkPasswordByEmailOrUsername(
       },
     });
   
-    if (!user) throw new Error('User not found');
+    if (!developer) throw new Error('Developer not found');
   
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, developer.password);
     return isPasswordValid;
 }
 
