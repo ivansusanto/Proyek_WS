@@ -1,0 +1,26 @@
+==DEVELOPERS==
+-	[POST] /api/developers/register
+-	[POST] /api/developers/login
+
+==USERS==
+-	[POST] /api/users
+-	[PUT] /api/users/:user_id
+
+==PRODUCTS==
+-	[POST] /api/products
+-	[GET] /api/products
+-	[GET] /api/products/:product_id
+-	[PUT] /api/products/:product_id
+
+==CARTS==
+-	[POST] /api/carts
+-	[GET] /api/carts/:user_id
+-	[PUT] /api/carts/:product_id -> GK ADA USER ID DPT CART PUNYANYA USER GIMANA -> /api/carts/:user_id/:product:id (???)
+-	[DELETE] /api/carts/:product_id -> SAMA -> /api/carts/:user_id/:product:id
+
+==ORDERS==
+-	[POST] /api/orders/checkout
+-	[POST] /api/orders/payment
+-	[GET] /api/orders
+-	[GET] /api/orders/:order_id
+-	[GET] /api/orders/:user_id
