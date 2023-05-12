@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { generateToken } from '../utils/JWT';
 import { generateHashedPassword } from '../utils/Bcrypt';
+import { generateId } from '../utils/GenerateId';
 import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient();
@@ -14,7 +15,7 @@ export async function registerDeveloper(req : Request, res : Response) {
 		full_name: string,
 		display_name: string
     } = req.body;
-    const dev_id : string = await generateDeveloperId();
+    const developer_id: string = generateId('D', await prisma.developers.count());
     const token = generateToken({ 
         email: email || undefined,
         username: username || undefined, 
@@ -22,7 +23,7 @@ export async function registerDeveloper(req : Request, res : Response) {
     const hashedPassword: string = generateHashedPassword(password);
     await prisma.developers.create({
         data: {
-            developer_id: dev_id,
+            developer_id: developer_id,
             username: username,
             password: hashedPassword,
             email: email,
@@ -69,12 +70,12 @@ async function checkPasswordByEmailOrUsername(
     password: string
 ): Promise<boolean> {
     const developer = await prisma.developers.findFirst({
-      where: {
-        OR: [
-          { email },
-          { username },
-        ],
-      },
+        where: {
+            OR: [
+                { email },
+                { username },
+            ],
+        },
     });
   
     if (!developer) throw new Error('Developer not found');
@@ -82,14 +83,3 @@ async function checkPasswordByEmailOrUsername(
     const isPasswordValid = await bcrypt.compare(password, developer.password);
     return isPasswordValid;
 }
-
-async function generateDeveloperId(): Promise<string> {
-    const developerCount = await prisma.developers.count();
-    const newIdNumber = (developerCount + 1).toString();
-    const paddingSize = 4 - newIdNumber.length;
-    const zeroPadding = '0'.repeat(paddingSize);
-    const newId = `D${zeroPadding}${newIdNumber}`;
-  
-    return newId;
-}
-
