@@ -11,7 +11,7 @@ import {
 
 router.post('/', addCart);
 router.get('/:user_id', fetchCart);
-router.put('/:product_id', updateCart);
-router.delete('/:product_id', deleteCart);
+router.put('/:user_id/:product_id', updateCart);
+router.delete('/:user_id/:product_id', deleteCart);
 
 export default router;
