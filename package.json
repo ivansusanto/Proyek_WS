@@ -6,6 +6,9 @@
   "scripts": {
     "start": "npx nodemon ./src/main.ts"
   },
+  "engines": {
+    "node": "16.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
