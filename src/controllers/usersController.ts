@@ -8,18 +8,18 @@ export async function addUser(req : Request, res : Response) {
         user_id : string
     } = req.body;
 
-    getDeveloperID(req.body.data.username)
+    const dev_id : string = await getDeveloperID(req.body.data.username)
 
-    // checkCustomerID(user_id, "D0001")
+    checkCustomerID(user_id, dev_id)
 
-    // const newID = await generateUserID();
+    const newID = await generateUserID();
 
     // await prisma.users.create({
     //     data:{
     //         user_id: newID,
     //         status: 1,
-    //         customer_id: "M0002",
-    //         developer_id: "D0001"
+    //         customer_id: user_id,
+    //         developer_id: dev_id
     //     }
     // });
 
@@ -31,7 +31,7 @@ export async function updateStatus(req : Request, res : Response) {
 };
 
 async function getDeveloperID(username : string) : Promise<string> {
-    const devID = await prisma.developers.findMany({
+    const devID = await prisma.developers.findFirst({
         where:{
             username: username
         },
@@ -40,9 +40,11 @@ async function getDeveloperID(username : string) : Promise<string> {
         }
     })
 
-    console.log(devID)
-
-    return "asd"
+    if (devID){
+        return devID.developer_id
+    }
+    
+    return ''
 }
 
 async function generateUserID() : Promise<string> {
@@ -63,13 +65,14 @@ async function generateUserID() : Promise<string> {
 };
 
 async function checkCustomerID(user_id : string, developer_id : string) : Promise<boolean>{
-    const checkID = await prisma.users.findMany({
+    const checkID = await prisma.users.findFirst({
         where:{
             customer_id: user_id,
             developer_id: developer_id
         }
     })
 
+    //BLM DIBUAT PENGECEKAN
     console.log(checkID);
     return true;
 };
