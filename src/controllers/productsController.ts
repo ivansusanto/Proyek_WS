@@ -1,43 +1,27 @@
 import { Request, Response } from 'express';
-import { PrismaClient, Prisma } from '@prisma/client';
 import validator from '../validations/Validator';
-import { generateId } from '../utils/GenerateId';
-
-const prisma = new PrismaClient();
+import Product from '../models/Product';
+import Developer from '../models/Developer';
+import Joi from 'joi';
 
 const addProductSchema = {
-
+    name: Joi.string().required(),
+    description: Joi.string().required(),
+    price: Joi.number().required().min(1),
+    stock: Joi.number().min(1),
+    image: Joi.string().required()
 }
 
 export async function addProduct(req : Request, res : Response) {
-    const product_id: string = generateId('P', await prisma.products.count());
-    // return res.json(req.body)
+    const data = req.body;
 
-    await validator(addProductSchema, req.body);
+    const validation = await validator(addProductSchema, data);
 
-    const {
-        
-    } = req.body;
-    let product: Prisma.productsCreateInput;
-    product = {
-        product_id: "P0001",
-        name: "Barang",
-        description: "Ini barang",
-        price: 10000,
-        stock: 10,
-        status: 1,
-        image: '',
-        developers: {
-            connect: {
-                developer_id: "D0001"
-            }
-        }
-    };
-    const result = await prisma.products.create({
-        data: product
-    });
+    if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
+    
+    const newProduct = await Product.create(req.body, await Developer.fetchByUsername(data.developer.username));
 
-    return res.status(201).json(result);
+    return res.status(201).json(newProduct);
 }
 
 export async function fetchProduct(req : Request, res : Response) {

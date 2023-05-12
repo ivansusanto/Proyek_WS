@@ -22,7 +22,7 @@ Database seeding with Prisma -> prisma db seed // Mending langsung pake npx pris
 
 ====MIDDLEWARE====
 
-Kalo mau ambil data username developer yg login -> req.body.data.username
+Kalo mau ambil data username developer yg login -> req.body.developer.username
 
 Kalai mau kasih token di postman -> Masuk di Authorization terus OAuth2 -> Masukkan token, pilih prefix Bearer
 

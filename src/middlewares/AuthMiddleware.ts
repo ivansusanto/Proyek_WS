@@ -30,7 +30,7 @@ export const AuthMiddleware = async (req: Request, res: Response, next: NextFunc
         });
 
         if (developer) {
-            req.body.data = {
+            req.body.developer = {
                 username: developer.username
             };
             next();
