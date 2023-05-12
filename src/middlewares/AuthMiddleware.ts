@@ -1,23 +1,41 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import { PrismaClient, developers } from '@prisma/client';
+import env from "../config/env.config";
 
-const SECRET_KEY: string = process.env.SECRET_KEY?.toString() ?? "";
+const prisma = new PrismaClient();
 
 interface Users {
-    username: string
+    username: string,
+    email: string
 }
 
-export const AuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
+export const AuthMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) {
         return res.status(401).json({ message: 'Unauthorized' });
     }
     try {
-        const decodedToken = jwt.verify(token, SECRET_KEY) as Users;
-        req.body.data = {
-            username: decodedToken.username
-        };
-        next();
+        const decodedToken = jwt.verify(token, env('SECRET_KEY')) as Users;
+        const username = decodedToken.username;
+        const email = decodedToken.email;
+
+        const developer = await prisma.developers.findFirst({
+            where: {
+              OR: [
+                { email },
+                { username },
+              ]
+            }
+          });
+
+        if (developer) {
+            req.body.data = {
+                username: developer.username
+            };
+            next();
+        }
+        return res.status(404).json({ message: 'Developer Not Found' });
     } catch (err) {
         return res.status(401).json({ message: 'Invalid Token' });
     }
