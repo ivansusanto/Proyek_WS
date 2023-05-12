@@ -63,8 +63,28 @@
 					"request": {
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "username",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "default"
+								}
+							]
+						},
 						"url": {
-							"raw": "localhost:3000/api/developers/login?username&email&password",
+							"raw": "localhost:3000/api/developers/login",
 							"host": [
 								"localhost"
 							],
@@ -73,20 +93,6 @@
 								"api",
 								"developers",
 								"login"
-							],
-							"query": [
-								{
-									"key": "username",
-									"value": null
-								},
-								{
-									"key": "email",
-									"value": null
-								},
-								{
-									"key": "password",
-									"value": null
-								}
 							]
 						}
 					},
