@@ -10,7 +10,8 @@ const addProductSchema = {
 }
 
 export async function addProduct(req : Request, res : Response) {
-    const product_id = generateId('P', await prisma.products.count());
+    const product_id: string = generateId('P', await prisma.products.count());
+    // return res.json(req.body)
 
     await validator(addProductSchema, req.body);
 

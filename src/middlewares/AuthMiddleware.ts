@@ -22,12 +22,12 @@ export const AuthMiddleware = async (req: Request, res: Response, next: NextFunc
 
         const developer = await prisma.developers.findFirst({
             where: {
-              OR: [
-                { email },
-                { username },
-              ]
+                OR: [
+                    { email },
+                    { username },
+                ]
             }
-          });
+        });
 
         if (developer) {
             req.body.data = {

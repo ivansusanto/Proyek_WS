@@ -24,9 +24,13 @@ Database seeding with Prisma -> prisma db seed // Mending langsung pake npx pris
 
 Kalo mau ambil data username developer yg login -> req.body.data.username
 
+Kalai mau kasih token di postman -> Masuk di Authorization terus OAuth2 -> Masukkan token, pilih prefix Bearer
+
 ====================================================================
 
 ====UTILS FUNCTION====
 JWT untuk membuat token baru, parameter -> isi data: object, duration expired: string
+
 Bcrypt untuk hash password, parameter -> password: string
+
 GenerateId untuk membuat id baru, parameter -> huruf depan id: string, jumlah data tabel tersebut: number
