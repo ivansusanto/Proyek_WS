@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { generateHashedPassword } from '../../src/utils/Bcrypt'
 const prisma = new PrismaClient()
 
 async function main() {
@@ -7,8 +8,8 @@ async function main() {
     update: {},
     create: {
         developer_id: "D0001",
-        username: "febrianjelek",
-        password: "123",
+        username: "feb",
+        password: generateHashedPassword("123"),
         email: "febrian@gmail.com",
         full_name: "Febrian Alexandro",
         display_name: "Febrian",
@@ -21,7 +22,7 @@ async function main() {
     create: {
         developer_id: "D0002",
         username: "flp",
-        password: "123",
+        password: generateHashedPassword("123"),
         email: "felicia@gmail.com",
         full_name: "Felicia Pangestu",
         display_name: "Felicia",
@@ -34,7 +35,7 @@ async function main() {
     create: {
         developer_id: "D0003",
         username: "van",
-        password: "123",
+        password: generateHashedPassword("123"),
         email: "ivan@gmail.com",
         full_name: "Ivan Susanto",
         display_name: "Ivan",
