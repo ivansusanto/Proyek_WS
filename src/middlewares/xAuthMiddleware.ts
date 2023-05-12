@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 const SECRET_KEY: string = process.env.SECRET_KEY?.toString() ?? "";
 
 interface Users {
-    api_key: string
+    username: string
 }
 
 export const AuthMiddleware = (req: Request, res: Response, next: NextFunction) => {
@@ -14,7 +14,9 @@ export const AuthMiddleware = (req: Request, res: Response, next: NextFunction) 
     }
     try {
         const decodedToken = jwt.verify(token, SECRET_KEY) as Users;
-        req.body.api_key = decodedToken.api_key;
+        req.body.data = {
+            username: decodedToken.username
+        };
         next();
     } catch (err) {
         return res.status(401).json({ message: 'Invalid Token' });

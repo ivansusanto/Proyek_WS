@@ -4,7 +4,7 @@ import developersRouter from './router.developers';
 import ordersRouter from './router.orders';
 import productsRouter from './router.products';
 import usersRouter from './router.users';
-import { AuthMiddleware } from '../middlewares/AuthMiddleware';
+import { AuthMiddleware } from '../middlewares/xAuthMiddleware';
 
 const apiRouter = express.Router();
 
