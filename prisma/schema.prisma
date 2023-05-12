@@ -68,6 +68,7 @@ model products {
   stock        Int
   status       Int           @default(1)
   developer_id String        @db.VarChar(5)
+  image        String        @db.VarChar(255)
   carts        carts[]
   order_items  order_items[]
   developers   developers    @relation(fields: [developer_id], references: [developer_id], onUpdate: Restrict, map: "products_ibfk_1")

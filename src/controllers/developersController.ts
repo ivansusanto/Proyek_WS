@@ -15,7 +15,6 @@ export async function registerDeveloper(req : Request, res : Response) {
 		display_name: string
     } = req.body;
     const dev_id : string = await generateDeveloperId();
-    
     const token = generateToken({ 
         email: email || undefined,
         username: username || undefined, 
@@ -31,7 +30,6 @@ export async function registerDeveloper(req : Request, res : Response) {
             display_name: display_name
         }
     });
-
     return res.status(201).send({
         token: token
     });
