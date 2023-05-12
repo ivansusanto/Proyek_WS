@@ -1,9 +1,22 @@
 import { Request, Response } from 'express';
 import { PrismaClient, Prisma } from '@prisma/client';
+import validator from '../validations/Validator';
+import { generateId } from '../utils/GenerateId';
 
 const prisma = new PrismaClient();
 
+const addProductSchema = {
+
+}
+
 export async function addProduct(req : Request, res : Response) {
+    const product_id = generateId('P', await prisma.products.count());
+
+    await validator(addProductSchema, req.body);
+
+    const {
+        
+    } = req.body;
     let product: Prisma.productsCreateInput;
     product = {
         product_id: "P0001",

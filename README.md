@@ -23,3 +23,10 @@ Database seeding with Prisma -> prisma db seed // Mending langsung pake npx pris
 ====MIDDLEWARE====
 
 Kalo mau ambil data username developer yg login -> req.body.data.username
+
+====================================================================
+
+====UTILS FUNCTION====
+JWT untuk membuat token baru, parameter -> isi data: object, duration expired: string
+Bcrypt untuk hash password, parameter -> password: string
+GenerateId untuk membuat id baru, parameter -> huruf depan id: string, jumlah data tabel tersebut: number
