@@ -4,6 +4,7 @@ import { generateToken } from '../utils/JWT';
 import { generateHashedPassword } from '../utils/Bcrypt';
 import { generateId } from '../utils/GenerateId';
 import bcrypt from 'bcrypt'
+import Developer from '../models/Developer';
 
 const prisma = new PrismaClient();
 

@@ -4,25 +4,19 @@ import { generateId } from '../utils/GenerateId';
 const prisma = new PrismaClient();
 
 export default new (class Developer {
-    // async create(product: Prisma.productsCreateInput, developer_id: string) {
-    //     const product_id: string = generateId('P', await prisma.products.count());
-    //     return await prisma.products.create({
-    //         data: {
-    //             product_id: product_id,
-    //             name: product.name,
-    //             description: product.description,
-    //             price: product.price,
-    //             stock: product.stock,
-    //             status: product.status,
-    //             image: product.image,
-    //             developers: {
-    //                 connect: {
-    //                     developer_id: developer_id
-    //                 }
-    //             }
-    //         }
-    //     });
-    // }
+    async create(developer: Prisma.developersCreateInput) {
+        const developer_id: string = generateId('D', await prisma.developers.count());
+        return await prisma.developers.create({
+            data: {
+                developer_id: developer_id,
+                username: developer.username,
+                password: developer.password,
+                email: developer.email,
+                full_name: developer.full_name,
+                display_name: developer.display_name,
+            }
+        });
+    }
 
     async fetchByUsername(username: string): Promise<string>{
             const developer = await prisma.developers.findFirst({
