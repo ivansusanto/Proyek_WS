@@ -21,13 +21,13 @@ export default new (class Developer {
     }
 
     async fetchByUsername(username: string): Promise<string>{
-            const developer = await prisma.developers.findFirst({
-                where: {
-                    username: username
-                }
-            });
+        const developer = await prisma.developers.findFirst({
+            where: {
+                username: username
+            }
+        });
 
-            if (developer) return developer.developer_id;
-            return '';
-        }
+        if (developer) return developer.developer_id;
+        return '';
+    }
 })();

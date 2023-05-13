@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { generateToken } from '../utils/JWT';
-import { generateId } from '../utils/GenerateId';
 import bcrypt from 'bcrypt'
 import Developer from '../models/Developer';
 
