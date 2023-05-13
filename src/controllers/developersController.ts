@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { generateToken } from '../utils/JWT';
-import { generateHashedPassword } from '../utils/Bcrypt';
 import { generateId } from '../utils/GenerateId';
 import bcrypt from 'bcrypt'
 import Developer from '../models/Developer';
@@ -9,29 +8,12 @@ import Developer from '../models/Developer';
 const prisma = new PrismaClient();
 
 export async function registerDeveloper(req : Request, res : Response) {
-    const { username, password, email, full_name, display_name }: {
-		username: string,
-		password: string,
-		email: string,
-		full_name: string,
-		display_name: string
-    } = req.body;
-    const developer_id: string = generateId('D', await prisma.developers.count());
+    const data = req.body;
     const token = generateToken({ 
-        email: email || undefined,
-        username: username || undefined, 
+        email: data.email || undefined,
+        username: data.username || undefined, 
     }, '1h');
-    const hashedPassword: string = generateHashedPassword(password);
-    await prisma.developers.create({
-        data: {
-            developer_id: developer_id,
-            username: username,
-            password: hashedPassword,
-            email: email,
-            full_name: full_name,
-            display_name: display_name
-        }
-    });
+    await Developer.create(data)
     return res.status(201).send({
         token: token
     });
