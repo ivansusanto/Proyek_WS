@@ -30,9 +30,7 @@ export const AuthMiddleware = async (req: Request, res: Response, next: NextFunc
         });
 
         if (developer) {
-            req.body.developer = {
-                username: developer.username
-            };
+            req.body.developer = developer.username;
             next();
         } else {
             return res.status(404).json({ message: 'Developer Not Found' });

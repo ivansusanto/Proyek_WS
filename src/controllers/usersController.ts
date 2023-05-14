@@ -9,7 +9,7 @@ export async function addUser(req : Request, res : Response) {
     const user_id : string = req.body.user_id;
 
     try {
-        const developer_id : string = await Developer.fetchByUsername(req.body.developer.username)
+        const developer_id : string = await Developer.fetchByUsername(req.body.developer)
 
         if(developer_id == ""){
             return res.status(500).json({
@@ -42,7 +42,7 @@ export async function updateStatus(req : Request, res : Response) {
     const status : any = req.body.status;
 
     try {
-        const developer_id : string = await Developer.fetchByUsername(req.body.developer.username)
+        const developer_id : string = await Developer.fetchByUsername(req.body.developer)
 
         if(developer_id == ""){
             return res.status(500).json({

@@ -56,7 +56,7 @@ async function main() {
             stock: 28,
             status: 1,
             developer_id: "D0001",
-            image: "fotosepatuadidaspod1923"
+            image: "1684061868483-165153553.png"
         },
     })
     await prisma.products.upsert({
@@ -70,7 +70,7 @@ async function main() {
             stock: 35,
             status: 1,
             developer_id: "D0001",
-            image: "fotosepatunikeairforce1"
+            image: "1684061872403-279811629.png"
         },
     })
     await prisma.products.upsert({
@@ -84,7 +84,7 @@ async function main() {
             stock: 12,
             status: 1,
             developer_id: "D0002",
-            image: "fotoipong14promag"
+            image: "1684061876135-860218727.png"
         },
     })
     await prisma.products.upsert({
@@ -98,7 +98,7 @@ async function main() {
             stock: 14,
             status: 1,
             developer_id: "D0002",
-            image: "fotohpsamsungS23mini"
+            image: "1684061879720-183346356.png"
         },
     })
     await prisma.products.upsert({
@@ -112,7 +112,7 @@ async function main() {
             stock: 11,
             status: 1,
             developer_id: "D0003",
-            image: "fotolaptopvivoairbook5"
+            image: "1684061882963-319971757.png"
         },
     })
     await prisma.products.upsert({
@@ -126,7 +126,7 @@ async function main() {
             stock: 9,
             status: 1,
             developer_id: "D0003",
-            image: "fotorogstrixstufgaming"
+            image: "1684061886348-571905485.png"
         },
     })
     await prisma.products.upsert({
@@ -140,7 +140,7 @@ async function main() {
             stock: 22,
             status: 1,
             developer_id: "D0003",
-            image: "fotolaptopmsikatana"
+            image: "1684061890178-96883161.png"
         },
     })
     await prisma.products.upsert({
@@ -154,7 +154,7 @@ async function main() {
             stock: 31,
             status: 1,
             developer_id: "D0003",
-            image: "fotoapplemacbookmahal"
+            image: "1684061894223-14073555.png"
         },
     })
 
