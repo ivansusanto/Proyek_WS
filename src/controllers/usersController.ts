@@ -10,6 +10,12 @@ export async function addUser(req : Request, res : Response) {
 
     try {
         const developer_id : string = await Developer.fetchByUsername(req.body.developer.username)
+
+        if(developer_id == ""){
+            return res.status(500).json({
+                message: "Internal Server Error"
+            });
+        }
     
         if(await User.checkCustomerID(user_id, developer_id)){
             return res.status(400).json({
@@ -37,6 +43,12 @@ export async function updateStatus(req : Request, res : Response) {
 
     try {
         const developer_id : string = await Developer.fetchByUsername(req.body.developer.username)
+
+        if(developer_id == ""){
+            return res.status(500).json({
+                message: "Internal Server Error"
+            });
+        }
     
         if(!await User.checkCustomerID(user_id, developer_id)){
             return res.status(400).json({
