@@ -34,3 +34,8 @@ JWT untuk membuat token baru, parameter -> isi data: object, duration expired: s
 Bcrypt untuk hash password, parameter -> password: string
 
 GenerateId untuk membuat id baru, parameter -> huruf depan id: string, jumlah data tabel tersebut: number
+
+====================================================================
+
+====UPLOADS====
+Kalo mau coba upload jangan dipush jg gambarnya ke git :v
