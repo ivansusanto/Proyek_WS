@@ -3,6 +3,7 @@ import validator from '../validations/Validator';
 import Product from '../models/Product';
 import Developer from '../models/Developer';
 import Joi from 'joi';
+import fs from 'fs';
 
 const addProductSchema = {
     name: Joi.string().required(),
@@ -42,9 +43,9 @@ export async function fetchProduct(req : Request, res : Response) {
 }
 
 export async function fetchProductById(req : Request, res : Response) {
-    const fetchById = await Product.fetchById(req.body.developer, req.params.product_id);
+    const productResult = await Product.fetchById(req.body.developer, req.params.product_id);
 
-    if (fetchById.length !== 0) return res.status(200).json(fetchById);
+    if (productResult) return res.status(200).json(productResult);
     return res.status(403).json({ message: 'Forbidden' });
 }
 
@@ -61,6 +62,9 @@ export async function updateProduct(req : Request, res : Response) {
     if (data.price) req.body.price = parseInt(data.price);
     if (data.stock) req.body.stock = parseInt(data.stock);
     if (data.status) req.body.status = parseInt(data.status);
+
+    const tempProduct = await Product.fetchById(data.developer, data.product_id);
+    if (tempProduct) fs.unlinkSync('./uploads/' + tempProduct.image);
 
     const newProduct = await Product.update(req.body, data.developer, data.product_id);
     if (!newProduct) return res.status(403).json({ message: 'Forbidden' });

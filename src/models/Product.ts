@@ -39,7 +39,7 @@ export default new (class Product {
                     username: username
                 }
             }
-        });
+        }) || [];
     }
 
     async update(product: Prisma.productsUpdateInput, username: string, product_id: string) {
@@ -74,7 +74,7 @@ export default new (class Product {
     }
 
     async fetchById(username: string, product_id: string) {
-        return await prisma.products.findMany({
+        return await prisma.products.findFirst({
             select: {
                 product_id: true,
                 name: true,
