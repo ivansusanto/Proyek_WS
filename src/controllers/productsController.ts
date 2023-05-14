@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import validator from '../validations/Validator';
 import Product from '../models/Product';
 import Developer from '../models/Developer';
+import env from '../config/env.config';
 import Joi from 'joi';
 import fs from 'fs';
 
@@ -30,23 +31,36 @@ export async function addProduct(req : Request, res : Response) {
     if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
     
     const newProduct = await Product.create(data, await Developer.fetchByUsername(data.developer));
+    newProduct.image = env('PREFIX_URL') + '/api/assets/' + newProduct.image;
 
     return res.status(201).json({
         message: 'Success add product',
-        status_code: '201',
         data: newProduct
     });
 }
 
 export async function fetchProduct(req : Request, res : Response) {
-    return res.status(200).json(await Product.get(req.body.developer));
+    const productResult = await Product.get(req.body.developer)
+    for (let i = 0; i < productResult.length; i++) {
+        productResult[i].image = env('PREFIX_URL') + '/api/assets/' + productResult[i].image;
+    }
+
+    return res.status(200).json({
+        message: 'OK',
+        data: productResult
+    });
 }
 
 export async function fetchProductById(req : Request, res : Response) {
     const productResult = await Product.fetchById(req.body.developer, req.params.product_id);
 
-    if (productResult) return res.status(200).json(productResult);
-    return res.status(403).json({ message: 'Forbidden' });
+    if (!productResult) return res.status(403).json({ message: 'Forbidden' });
+
+    productResult.image = env('PREFIX_URL') + '/api/assets/' + productResult.image;
+    return res.status(200).json({
+        message: 'OK',
+        data: productResult
+    });
 }
 
 export async function updateProduct(req : Request, res : Response) {
@@ -66,11 +80,12 @@ export async function updateProduct(req : Request, res : Response) {
     const tempProduct = await Product.fetchById(data.developer, data.product_id);
     if (tempProduct) fs.unlinkSync('./uploads/' + tempProduct.image);
 
-    const newProduct = await Product.update(req.body, data.developer, data.product_id);
-    if (!newProduct) return res.status(403).json({ message: 'Forbidden' });
+    const updatedProduct = await Product.update(req.body, data.developer, data.product_id);
+    if (!updatedProduct) return res.status(403).json({ message: 'Forbidden' });
+
+    updatedProduct.image = env('PREFIX_URL') + '/api/assets/' + updatedProduct.image;
     return res.status(200).json({
         message: 'Success update product',
-        status: '200',
-        data: newProduct
+        data: updatedProduct
     });
 }

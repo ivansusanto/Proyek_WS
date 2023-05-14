@@ -8,6 +8,7 @@ import { AuthMiddleware } from '../middlewares/AuthMiddleware';
 
 const apiRouter = express.Router();
 
+apiRouter.use('/assets', express.static('./uploads'));
 apiRouter.use('/developers', developersRouter);
 
 apiRouter.use(AuthMiddleware);
