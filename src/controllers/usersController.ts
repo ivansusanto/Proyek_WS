@@ -1,70 +1,69 @@
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
+import User from '../models/User';
+import Developer from '../models/Developer';
 
 const prisma = new PrismaClient();
 
 export async function addUser(req : Request, res : Response) {
     const user_id : string = req.body.user_id;
 
-    const developer_id : string = await getDeveloperID(req.body.data.username)
-
-    if(await checkCustomerID(user_id, developer_id)){
-        return res.status(400).json({
-            message: "user_id already registered"
-        });
-    }
-
-    const newID = await generateUserID();
-
-    await prisma.users.create({
-        data:{
-            user_id: newID,
-            status: 1,
-            customer_id: user_id,
-            developer_id: developer_id
+    try {
+        const developer_id : string = await Developer.fetchByUsername(req.body.developer.username)
+    
+        if(await User.checkCustomerID(user_id, developer_id)){
+            return res.status(400).json({
+                message: "user_id already registered"
+            });
         }
-    });
-
-    return res.status(200).json({
-        customer_id: user_id,
-        status: 1
-    });
+    
+        User.create(user_id, developer_id)
+    
+        return res.status(201).json({
+            customer_id: user_id,
+            status: 1
+        });
+        
+    } catch (error : any) {
+        return res.status(500).json({
+            message: "Internal server error: " + error.message
+        })
+    }
 };
 
 export async function updateStatus(req : Request, res : Response) {
     const user_id : string = req.params.user_id;
     const status : any = req.body.status;
 
-    const developer_id : string = await getDeveloperID(req.body.data.username)
-
-    if(!await checkCustomerID(user_id, developer_id)){
-        return res.status(400).json({
-            message: "User id is not registered"
-        });
-    }
-
-    if(isNaN(status)){
-        return res.status(400).json({
-            message: "Status must be a number"
-        });
-    }
-
-    const stat : number = parseInt(status)
-
-    const update = await prisma.users.updateMany({
-        where:{
-            customer_id: user_id,
-            developer_id: developer_id
-        },
-        data: {
-            status: stat
+    try {
+        const developer_id : string = await Developer.fetchByUsername(req.body.developer.username)
+    
+        if(!await User.checkCustomerID(user_id, developer_id)){
+            return res.status(400).json({
+                message: "User id is not registered"
+            });
         }
-    })
+    
+        if(isNaN(status)){
+            return res.status(400).json({
+                message: "Status must be a number"
+            });
+        }
+    
+        const stat : number = parseInt(status)
 
-    return res.status(400).json({
-        user_id,
-        status: stat
-    });
+        await User.update(user_id, developer_id, stat)
+    
+        return res.status(201).json({
+            user_id,
+            status: stat
+        });
+        
+    } catch (error: any) {
+        return res.status(500).json({
+            message: "Internal server error: " + error.message
+        })
+    }
 
 };
 
