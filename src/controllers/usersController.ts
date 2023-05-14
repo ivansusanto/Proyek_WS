@@ -1,12 +1,22 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '@prisma/client';
 import User from '../models/User';
 import Developer from '../models/Developer';
+import Joi from 'joi';
+import validator from '../validations/Validator';
 
-const prisma = new PrismaClient();
+const addUserSchema = {
+    user_id: Joi.string().required()
+}
+
+const updateUserSchema = {
+    status: Joi.number().required()
+}
 
 export async function addUser(req : Request, res : Response) {
-    const user_id : string = req.body.user_id;
+    const data : any = req.body;
+
+    const validation = await validator(addUserSchema, data);
+    if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
 
     try {
         const developer_id : string = await Developer.fetchByUsername(req.body.developer)
@@ -17,29 +27,29 @@ export async function addUser(req : Request, res : Response) {
             });
         }
     
-        if(await User.checkCustomerID(user_id, developer_id)){
+        if(await User.checkCustomerID(data.user_id, developer_id)){
             return res.status(400).json({
                 message: "user_id already registered"
             });
         }
     
-        User.create(user_id, developer_id)
+        User.create(data.user_id, developer_id)
     
         return res.status(201).json({
-            customer_id: user_id,
+            customer_id: data.user_id,
             status: 1
         });
         
     } catch (error : any) {
         return res.status(500).json({
-            message: "Internal server error: " + error.message
+            message: "Internal server error: "
         })
     }
 };
 
 export async function updateStatus(req : Request, res : Response) {
     const user_id : string = req.params.user_id;
-    const status : any = req.body.status;
+    const data : any = req.body;
 
     try {
         const developer_id : string = await Developer.fetchByUsername(req.body.developer)
@@ -56,74 +66,28 @@ export async function updateStatus(req : Request, res : Response) {
             });
         }
     
-        if(isNaN(status)){
-            return res.status(400).json({
-                message: "Status must be a number"
-            });
-        }
+        // if(isNaN(status)){
+        //     return res.status(400).json({
+        //         message: "Status must be a number"
+        //     });
+        // }
     
-        const stat : number = parseInt(status)
-
-        await User.update(user_id, developer_id, stat)
+        const validation = await validator(updateUserSchema, data);
+        if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
+        
+        const status : number = parseInt(data.status)
+        
+        await User.update(user_id, developer_id, status)
     
         return res.status(201).json({
             user_id,
-            status: stat
+            status: status
         });
         
     } catch (error: any) {
         return res.status(500).json({
-            message: "Internal server error: " + error.message
+            message: "Internal server error: "
         })
     }
 
-};
-
-
-//Function
-async function getDeveloperID(username : string) : Promise<string> {
-    const devID = await prisma.developers.findFirst({
-        where:{
-            username: username
-        },
-        select:{
-            developer_id: true
-        }
-    })
-
-    if (devID){
-        return devID.developer_id
-    }
-    
-    return ''
-}
-
-async function generateUserID() : Promise<string> {
-    const latestUser = await prisma.users.findFirst({
-        orderBy: {
-            user_id: 'desc'
-        }
-    });
-
-    const latestID: string | undefined = latestUser?.user_id;
-    let numberID = parseInt(latestID?.substring(1, 5) ?? '0', 10);
-
-    numberID++;
-    const newID = "U" + numberID.toString().padStart(4, "0");
-
-    return newID;
-    
-};
-
-async function checkCustomerID(user_id : string, developer_id : string) : Promise<boolean>{
-    const checkID = await prisma.users.findFirst({
-        where:{
-            customer_id: user_id,
-            developer_id: developer_id
-        }
-    })
-
-    if(checkID) return true;
-
-    return false;
 };
