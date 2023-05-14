@@ -5,7 +5,7 @@ const MIDTRANS_TOKEN = process.env.MIDTRANS_TOKEN;
 const MidtransClient = axios.create({
     baseURL: "midtrans",
     headers: {
-      token: MIDTRANS_TOKEN,
+        token: MIDTRANS_TOKEN,
     },
 });
 
