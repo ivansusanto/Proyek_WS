@@ -20,14 +20,16 @@ export default new (class Developer {
         });
     }
 
-    async fetchByUsername(username: string): Promise<string>{
+    async fetchByUsernameOrEmail(username: string, email: string): Promise<any>{
         const developer = await prisma.developers.findFirst({
             where: {
-                username: username
-            }
+                OR: [
+                    { email: email },
+                    { username: username },
+                ],
+            },
         });
-
-        if (developer) return developer.developer_id;
-        return '';
+        if (developer) return developer;
+        else return ' ';
     }
 })();
