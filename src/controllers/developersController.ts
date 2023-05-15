@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import validator from '../validations/Validator';
 import { generateToken } from '../utils/JWT';
-import Developer from '../models/Developer';
+import Developer, { IDeveloper } from '../models/Developer';
 import bcrypt from 'bcrypt'
 import Joi from 'joi';
+import { StatusCode } from '../helpers/statusCode';
 
 const addDeveloperSchema = {
     username: Joi.string().min(2).max(255).required(),
@@ -14,16 +15,16 @@ const addDeveloperSchema = {
 }
 
 export async function registerDeveloper(req : Request, res : Response) {
-    const data = req.body;
+    const data:IDeveloper = req.body;
     const validation = await validator(addDeveloperSchema, data)
-    if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
+    if (validation.message) return res.status(StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") });
     
     const token = generateToken({ 
         email: data.email || undefined,
         username: data.username || undefined, 
     }, '1h');
     await Developer.create(data)
-    res.status(201).send({ token: token });
+    res.status(StatusCode.CREATED).send({ token: token });
 }
 
 export async function loginDeveloper(req : Request, res : Response) {
@@ -39,15 +40,15 @@ export async function loginDeveloper(req : Request, res : Response) {
                 email: email || undefined,
                 username: username || undefined, 
             }, '1h');
-            res.status(200).send({ token: token });
+            res.status(StatusCode.OK).send({ token: token });
         } else {
-            res.status(401).send({message:'Invalid password'});
+            res.status(StatusCode.UNAUTHORIZED).send({message:'Invalid password'});
         }
     } catch (error: any) {
         if (error.message === 'Developer not found') {
-            res.status(404).send({message:'Developer not found'});
+            res.status(StatusCode.BAD_REQUEST).send({message:'Developer not found'});
         } else {
-            res.status(500).send({message:'Internal server error'});
+            res.status(StatusCode.INTERNAL_SERVER).send({message:'Internal server error'});
         }
     }
 }
@@ -58,7 +59,7 @@ async function checkPasswordByEmailOrUsername(
     password: string
 ): Promise<boolean> {
     const developer = await Developer.fetchByUsernameOrEmail(username, email)
-    if (developer===' ') throw new Error('Developer not found');
+    if (!developer) throw new Error('Developer not found');
     const isPasswordValid = await bcrypt.compare(password, developer.password);
     return isPasswordValid;
 }

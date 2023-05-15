@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 import User from '../models/User';
-import Developer from '../models/Developer';
+import Developer, { IDeveloper } from '../models/Developer';
 import Joi from 'joi';
 import validator from '../validations/Validator';
+import { developers } from '@prisma/client';
+import { StatusCode } from '../helpers/statusCode';
 
 const addUserSchema = {
     customer_id: Joi.string().required()
@@ -19,21 +21,21 @@ export async function addUser(req : Request, res : Response) {
     if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
 
     try {
-        const developer_id : string = await Developer.fetchByUsername(req.body.developer)
+        const developer:IDeveloper = await Developer.fetchByUsername(req.body.developer) as IDeveloper
 
-        if(developer_id == ""){
-            return res.status(500).json({
+        if(!developer){
+            return res.status(StatusCode.INTERNAL_SERVER).json({
                 message: "Internal Server Error"
             });
         }
     
-        if(await User.checkCustomerID(data.user_id, developer_id) != ""){
+        if(await User.checkCustomerID(data.user_id, developer.developer_id) != ""){
             return res.status(400).json({
                 message: "customer_id already registered"
             });
         }
     
-        User.create(data.customer_id, developer_id)
+        User.create(data.customer_id, developer.developer_id)
     
         return res.status(201).json({
             customer_id: data.customer_id,
@@ -41,7 +43,7 @@ export async function addUser(req : Request, res : Response) {
         });
         
     } catch (error : any) {
-        return res.status(500).json({
+        return res.status(StatusCode.INTERNAL_SERVER).json({
             message: "Internal server error: "
         })
     }
@@ -52,26 +54,26 @@ export async function updateStatus(req : Request, res : Response) {
     const data : any = req.body;
 
     try {
-        const developer_id : string = await Developer.fetchByUsername(req.body.developer)
+        const developer:IDeveloper = await Developer.fetchByUsername(req.body.developer) as developers
 
-        if(developer_id == ""){
-            return res.status(500).json({
+        if(!developer){
+            return res.status(StatusCode.INTERNAL_SERVER).json({
                 message: "Internal Server Error"
             });
         }
     
-        if(await User.checkCustomerID(customer_id, developer_id) == ""){
+        if(await User.checkCustomerID(customer_id, developer.developer_id) == ""){
             return res.status(400).json({
                 message: "User id is not registered"
             });
         }
-    
+          
         const validation = await validator(updateUserSchema, data);
         if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
         
         const status : number = parseInt(data.status)
         
-        await User.update(customer_id, developer_id, status)
+        await User.update(customer_id, developer.developer_id, status)
     
         return res.status(201).json({
             customer_id,
@@ -79,7 +81,7 @@ export async function updateStatus(req : Request, res : Response) {
         });
         
     } catch (error: any) {
-        return res.status(500).json({
+        return res.status(StatusCode.INTERNAL_SERVER).json({
             message: "Internal server error: "
         })
     }

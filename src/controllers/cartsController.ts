@@ -4,8 +4,11 @@ import Cart from '../models/Cart';
 import User from '../models/User';
 import Product from '../models/Product';
 import Joi from 'joi';
+import { StatusCode } from '../helpers/statusCode';
 
 const addCartSchema = {
+    customer_id: Joi.string().required(),
+    product_id: Joi.string().required(),
     quantity: Joi.number().min(1).required()
 }
 
@@ -13,15 +16,29 @@ export async function addCart(req : Request, res : Response) {
     const data = req.body;
     const validation = await validator(addCartSchema, data)
     if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
-    const developer = req.body.developer;
+    
+    const developer = req.body.developer
     const user = await User.checkCustomerID(data.customer_id, developer.developer_id);
-    const newCart = await Cart.create(data, user.user_id, data.product_id)
-    const productName = await Product.fetchById(developer.username, data.product_id)
-    res.status(201).send({
-        cart_id: newCart.cart_id,
-        product_name: productName,
-        quantity: data.quantity
-    });
+    if (user===' ')  res.status(StatusCode.NOT_FOUND).send({message:'User not found'});
+
+    const check = await Cart.checkDuplicateEntry(user.user_id, data.product_id)
+    const product = await Product.fetchById(developer.username, data.product_id)
+    if(check){ //sudah ada di dalam cart
+        const newQuantity:number = check.quantity + parseInt(data.quantity);
+        const updateCart = await Cart.update(user.user_id, data.product_id, newQuantity)
+        res.status(StatusCode.OK).send({
+            cart_id: updateCart.cart_id,
+            product_name: product?.name,
+            quantity: newQuantity
+        });
+    } else { //belum ada di dalam cart
+        const newCart = await Cart.create(data, user.user_id, data.product_id)
+        res.status(StatusCode.CREATED).send({
+            cart_id: newCart.cart_id,
+            product_name: product?.name,
+            quantity: data.quantity
+        });
+    }
 }   
 
 export async function fetchCart(req : Request, res : Response) {

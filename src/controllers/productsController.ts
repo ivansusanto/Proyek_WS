@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import validator from '../validations/Validator';
 import Product from '../models/Product';
-import Developer from '../models/Developer';
+import Developer, { IDeveloper } from '../models/Developer';
 import env from '../config/env.config';
 import Joi from 'joi';
 import fs from 'fs';
@@ -30,7 +30,8 @@ export async function addProduct(req : Request, res : Response) {
     const validation = await validator(addProductSchema, data);
     if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
     
-    const newProduct = await Product.create(data, await Developer.fetchByUsername(data.developer));
+    const developer:IDeveloper = await Developer.fetchByUsername(data.developer) as IDeveloper
+    const newProduct = await Product.create(data, developer.developer_id);
     newProduct.image = env('PREFIX_URL') + '/api/assets/' + newProduct.image;
 
     return res.status(201).json({

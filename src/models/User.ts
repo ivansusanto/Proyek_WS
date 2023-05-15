@@ -25,8 +25,7 @@ export default new (class User {
         })
     
         if(checkID) return checkID;
-    
-        return "";
+        return " ";
     }
 
     async update(customer_id: string, developer_id: string, status: number){
