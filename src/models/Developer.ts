@@ -20,6 +20,16 @@ export default new (class Developer {
         });
     }
 
+    async fetchByUsername(username: string): Promise<any>{
+        const developer = await prisma.developers.findFirst({
+            where: {
+                username: username
+            }
+        });
+        if (developer) return developer;
+        else return '';
+    }
+
     async fetchByUsernameOrEmail(username: string, email: string): Promise<any>{
         const developer = await prisma.developers.findFirst({
             where: {

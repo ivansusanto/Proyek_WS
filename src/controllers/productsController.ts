@@ -41,8 +41,8 @@ export async function addProduct(req : Request, res : Response) {
 
 export async function fetchProduct(req : Request, res : Response) {
     const productResult = await Product.get(req.body.developer)
-    for (let i = 0; i < productResult.length; i++) {
-        productResult[i].image = env('PREFIX_URL') + '/api/assets/' + productResult[i].image;
+    for (const element of productResult) {
+        element.image = env('PREFIX_URL') + '/api/assets/' + element.image;
     }
 
     return res.status(200).json({

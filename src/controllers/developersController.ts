@@ -23,7 +23,7 @@ export async function registerDeveloper(req : Request, res : Response) {
         username: data.username || undefined, 
     }, '1h');
     await Developer.create(data)
-    res.status(201).send({token: token});
+    res.status(201).send({ token: token });
 }
 
 export async function loginDeveloper(req : Request, res : Response) {
@@ -39,7 +39,7 @@ export async function loginDeveloper(req : Request, res : Response) {
                 email: email || undefined,
                 username: username || undefined, 
             }, '1h');
-            res.status(200).send({token: token});
+            res.status(200).send({ token: token });
         } else {
             res.status(401).send({message:'Invalid password'});
         }
