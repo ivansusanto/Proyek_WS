@@ -243,160 +243,160 @@ async function main() {
 
     //CART
     await prisma.carts.upsert({
-        where: { carts_id: 'C0001' },
+        where: { cart_id: 'C0001' },
         update: {},
         create: {
-            carts_id: 'C0001',
+            cart_id: 'C0001',
             quantity: 2,
             user_id: "U0001",
             product_id: "P0001"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0002' },
+        where: { cart_id: 'C0002' },
         update: {},
         create: {
-            carts_id: 'C0002',
+            cart_id: 'C0002',
             quantity: 5,
             user_id: "U0001",
             product_id: "P0003"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0003' },
+        where: { cart_id: 'C0003' },
         update: {},
         create: {
-            carts_id: 'C0003',
+            cart_id: 'C0003',
             quantity: 1,
             user_id: "U0002",
             product_id: "P0007"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0004' },
+        where: { cart_id: 'C0004' },
         update: {},
         create: {
-            carts_id: 'C0004',
+            cart_id: 'C0004',
             quantity: 4,
             user_id: "U0003",
             product_id: "P0002"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0005' },
+        where: { cart_id: 'C0005' },
         update: {},
         create: {
-            carts_id: 'C0005',
+            cart_id: 'C0005',
             quantity: 5,
             user_id: "U0003",
             product_id: "P0004"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0006' },
+        where: { cart_id: 'C0006' },
         update: {},
         create: {
-            carts_id: 'C0006',
+            cart_id: 'C0006',
             quantity: 2,
             user_id: "U0003",
             product_id: "P0001"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0007' },
+        where: { cart_id: 'C0007' },
         update: {},
         create: {
-            carts_id: 'C0007',
+            cart_id: 'C0007',
             quantity: 1,
             user_id: "U0004",
             product_id: "P0003"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0008' },
+        where: { cart_id: 'C0008' },
         update: {},
         create: {
-            carts_id: 'C0008',
+            cart_id: 'C0008',
             quantity: 3,
             user_id: "U0005",
             product_id: "P0008"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0009' },
+        where: { cart_id: 'C0009' },
         update: {},
         create: {
-            carts_id: 'C0009',
+            cart_id: 'C0009',
             quantity: 6,
             user_id: "U0005",
             product_id: "P0005"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0010' },
+        where: { cart_id: 'C0010' },
         update: {},
         create: {
-            carts_id: 'C0010',
+            cart_id: 'C0010',
             quantity: 1,
             user_id: "U0006",
             product_id: "P0003"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0011' },
+        where: { cart_id: 'C0011' },
         update: {},
         create: {
-            carts_id: 'C0011',
+            cart_id: 'C0011',
             quantity: 3,
             user_id: "U0006",
             product_id: "P0006"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0012' },
+        where: { cart_id: 'C0012' },
         update: {},
         create: {
-            carts_id: 'C0012',
+            cart_id: 'C0012',
             quantity: 8,
             user_id: "U0006",
             product_id: "P0002"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0013' },
+        where: { cart_id: 'C0013' },
         update: {},
         create: {
-            carts_id: 'C0013',
+            cart_id: 'C0013',
             quantity: 2,
             user_id: "U0006",
             product_id: "P0007"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0014' },
+        where: { cart_id: 'C0014' },
         update: {},
         create: {
-            carts_id: 'C0014',
+            cart_id: 'C0014',
             quantity: 4,
             user_id: "U0007",
             product_id: "P0007"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0015' },
+        where: { cart_id: 'C0015' },
         update: {},
         create: {
-            carts_id: 'C0015',
+            cart_id: 'C0015',
             quantity: 1,
             user_id: "U0007",
             product_id: "P0008"
         },
     })
     await prisma.carts.upsert({
-        where: { carts_id: 'C0016' },
+        where: { cart_id: 'C0016' },
         update: {},
         create: {
-            carts_id: 'C0016',
+            cart_id: 'C0016',
             quantity: 4,
             user_id: "U0008",
             product_id: "P0001"

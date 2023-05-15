@@ -4,19 +4,24 @@ import { generateId } from '../utils/GenerateId';
 const prisma = new PrismaClient();
 
 export default new (class Cart {
-    async create(cart: Prisma.cartsCreateInput) {
+    async create(cart: Prisma.cartsCreateInput, user_id:string, product_id: string) {
         const cart_id: string = generateId('C', await prisma.carts.count());
-        // return await prisma.carts.create({
-        //     data: {
-                // cart_id: cart_id,
-                // quantity: cart.quantity,
-                // developers: {
-                //     connect: {
-                //         developer_id: developer_id
-                //     }
-                // }
-            // }
-        // });
+        return await prisma.carts.create({
+            data: {
+                cart_id: cart_id,
+                quantity: +cart.quantity,
+                users: {
+                    connect: {
+                        user_id: user_id
+                    }
+                },
+                products: {
+                    connect: {
+                        product_id: product_id
+                    }
+                }
+            }
+        });
     }
 
     // async get(username: string) {
