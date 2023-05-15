@@ -27,9 +27,9 @@ export async function addUser(req : Request, res : Response) {
             });
         }
     
-        if(await User.checkCustomerID(data.user_id, developer_id)){
+        if(await User.checkCustomerID(data.user_id, developer_id) != ""){
             return res.status(400).json({
-                message: "user_id already registered"
+                message: "customer_id already registered"
             });
         }
     
@@ -60,7 +60,7 @@ export async function updateStatus(req : Request, res : Response) {
             });
         }
     
-        if(!await User.checkCustomerID(customer_id, developer_id)){
+        if(await User.checkCustomerID(customer_id, developer_id) == ""){
             return res.status(400).json({
                 message: "User id is not registered"
             });
