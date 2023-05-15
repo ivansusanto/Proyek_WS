@@ -14,6 +14,6 @@ router.post('/checkout', checkoutOrder);
 router.post('/payment', paymentOrder);
 router.get('/', fetchOrders);
 router.get('/:order_id', fetchOrderById);
-router.get('/:user_id', fetchUserOrder);
+router.get('/:customer_id', fetchUserOrder);
 
 export default router;

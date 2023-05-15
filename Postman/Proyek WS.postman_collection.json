@@ -73,12 +73,12 @@
 								},
 								{
 									"key": "username",
-									"value": "",
+									"value": "feb",
 									"type": "default"
 								},
 								{
 									"key": "password",
-									"value": "",
+									"value": "123",
 									"type": "default"
 								}
 							]
@@ -128,7 +128,7 @@
 							"urlencoded": [
 								{
 									"key": "user_id",
-									"value": "",
+									"value": "C0003",
 									"type": "default"
 								}
 							]
@@ -172,13 +172,13 @@
 							"urlencoded": [
 								{
 									"key": "status",
-									"value": "",
+									"value": "2",
 									"type": "default"
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:3000/api/users/:user_id",
+							"raw": "localhost:3000/api/users/:customer_id",
 							"host": [
 								"localhost"
 							],
@@ -186,11 +186,11 @@
 							"path": [
 								"api",
 								"users",
-								":user_id"
+								":customer_id"
 							],
 							"variable": [
 								{
-									"key": "user_id",
+									"key": "customer_id",
 									"value": ""
 								}
 							]
@@ -442,7 +442,7 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "user_id",
+									"key": "customer_id",
 									"value": "",
 									"type": "default"
 								},
@@ -497,7 +497,7 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "localhost:3000/api/carts/:user_id",
+							"raw": "localhost:3000/api/carts/:customer_id",
 							"host": [
 								"localhost"
 							],
@@ -505,11 +505,11 @@
 							"path": [
 								"api",
 								"carts",
-								":user_id"
+								":customer_id"
 							],
 							"variable": [
 								{
-									"key": "user_id",
+									"key": "customer_id",
 									"value": ""
 								}
 							]
@@ -548,7 +548,7 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:3000/api/carts/:user_id/:product:id",
+							"raw": "localhost:3000/api/carts/:customer_id/:product:id",
 							"host": [
 								"localhost"
 							],
@@ -556,12 +556,12 @@
 							"path": [
 								"api",
 								"carts",
-								":user_id",
+								":customer_id",
 								":product:id"
 							],
 							"variable": [
 								{
-									"key": "user_id",
+									"key": "customer_id",
 									"value": ""
 								},
 								{
@@ -598,7 +598,7 @@
 							"urlencoded": []
 						},
 						"url": {
-							"raw": "localhost:3000/api/carts/:user_id/:product:id",
+							"raw": "localhost:3000/api/carts/:customer_id/:product:id",
 							"host": [
 								"localhost"
 							],
@@ -606,12 +606,12 @@
 							"path": [
 								"api",
 								"carts",
-								":user_id",
+								":customer_id",
 								":product:id"
 							],
 							"variable": [
 								{
-									"key": "user_id",
+									"key": "customer_id",
 									"value": ""
 								},
 								{
@@ -650,7 +650,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"user_id\": \"\",\r\n    \"product_id\": [\r\n        \"\",\r\n        \"\"\r\n    ]\r\n}",
+							"raw": "{\r\n    \"customer_id\": \"\",\r\n    \"product_id\": [\r\n        \"\",\r\n        \"\"\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -788,7 +788,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/orders/:user_id",
+							"raw": "localhost:3000/api/orders/:customer_id",
 							"host": [
 								"localhost"
 							],
@@ -796,11 +796,11 @@
 							"path": [
 								"api",
 								"orders",
-								":user_id"
+								":customer_id"
 							],
 							"variable": [
 								{
-									"key": "user_id",
+									"key": "customer_id",
 									"value": ""
 								}
 							]

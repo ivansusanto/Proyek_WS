@@ -5,7 +5,7 @@ import Joi from 'joi';
 import validator from '../validations/Validator';
 
 const addUserSchema = {
-    user_id: Joi.string().required()
+    customer_id: Joi.string().required()
 }
 
 const updateUserSchema = {
@@ -33,10 +33,10 @@ export async function addUser(req : Request, res : Response) {
             });
         }
     
-        User.create(data.user_id, developer_id)
+        User.create(data.customer_id, developer_id)
     
         return res.status(201).json({
-            customer_id: data.user_id,
+            customer_id: data.customer_id,
             status: 1
         });
         
@@ -48,7 +48,7 @@ export async function addUser(req : Request, res : Response) {
 };
 
 export async function updateStatus(req : Request, res : Response) {
-    const user_id : string = req.params.user_id;
+    const customer_id : string = req.params.customer_id;
     const data : any = req.body;
 
     try {
@@ -60,7 +60,7 @@ export async function updateStatus(req : Request, res : Response) {
             });
         }
     
-        if(!await User.checkCustomerID(user_id, developer_id)){
+        if(!await User.checkCustomerID(customer_id, developer_id)){
             return res.status(400).json({
                 message: "User id is not registered"
             });
@@ -77,10 +77,10 @@ export async function updateStatus(req : Request, res : Response) {
         
         const status : number = parseInt(data.status)
         
-        await User.update(user_id, developer_id, status)
+        await User.update(customer_id, developer_id, status)
     
         return res.status(201).json({
-            user_id,
+            customer_id,
             status: status
         });
         

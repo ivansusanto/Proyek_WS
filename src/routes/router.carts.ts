@@ -10,8 +10,8 @@ import {
 } from '../controllers/cartsController';
 
 router.post('/', addCart);
-router.get('/:user_id', fetchCart);
-router.put('/:user_id/:product_id', updateCart);
-router.delete('/:user_id/:product_id', deleteCart);
+router.get('/:customer_id', fetchCart);
+router.put('/:customer_id/:product_id', updateCart);
+router.delete('/:customer_id/:product_id', deleteCart);
 
 export default router;

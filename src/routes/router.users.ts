@@ -8,6 +8,6 @@ import {
 } from '../controllers/usersController';
 
 router.post('/', addUser);
-router.put('/:user_id', updateStatus);
+router.put('/:customer_id', updateStatus);
 
 export default router;
