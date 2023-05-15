@@ -4,7 +4,8 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export async function addCart(req : Request, res : Response) {
-    
+    const data = req.body;
+    // const token = 
 }
 
 export async function fetchCart(req : Request, res : Response) {

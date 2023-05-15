@@ -1,16 +1,29 @@
 import { Request, Response } from 'express';
 import { generateToken } from '../utils/JWT';
-import bcrypt from 'bcrypt'
+import validator from '../validations/Validator';
 import Developer from '../models/Developer';
+import bcrypt from 'bcrypt'
+import Joi from 'joi';
+
+const addDeveloperSchema = {
+    username: Joi.string().min(2).max(255).required(),
+    password: Joi.string().required(),
+    email: Joi.string().email().required(),
+    full_name: Joi.string().required(),
+    display_name: Joi.string().required()
+}
 
 export async function registerDeveloper(req : Request, res : Response) {
     const data = req.body;
+    const validation = await validator(addDeveloperSchema, data)
+    if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
+    
     const token = generateToken({ 
         email: data.email || undefined,
         username: data.username || undefined, 
     }, '1h');
     await Developer.create(data)
-    res.status(201).send({ token: token });
+    res.status(201).send({token: token});
 }
 
 export async function loginDeveloper(req : Request, res : Response) {
@@ -26,7 +39,7 @@ export async function loginDeveloper(req : Request, res : Response) {
                 email: email || undefined,
                 username: username || undefined, 
             }, '1h');
-            res.status(200).send({ token: token });
+            res.status(200).send({token: token});
         } else {
             res.status(401).send({message:'Invalid password'});
         }
