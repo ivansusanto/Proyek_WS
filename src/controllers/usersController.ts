@@ -15,7 +15,7 @@ const updateUserSchema = {
 }
 
 export async function addUser(req : Request, res : Response) {
-    const data : any = req.body;
+    const data:any = req.body;
 
     const validation = await validator(addUserSchema, data);
     if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
@@ -37,7 +37,7 @@ export async function addUser(req : Request, res : Response) {
     
         User.create(data.customer_id, developer.developer_id)
     
-        return res.status(201).json({
+        return res.status(StatusCode.CREATED).json({
             customer_id: data.customer_id,
             status: 1
         });
@@ -63,7 +63,7 @@ export async function updateStatus(req : Request, res : Response) {
         }
     
         if(await User.checkCustomerID(customer_id, developer.developer_id) == ""){
-            return res.status(400).json({
+            return res.status(StatusCode.BAD_REQUEST).json({
                 message: "User id is not registered"
             });
         }
@@ -75,7 +75,7 @@ export async function updateStatus(req : Request, res : Response) {
         
         await User.update(customer_id, developer.developer_id, status)
     
-        return res.status(201).json({
+        return res.status(StatusCode.CREATED).json({
             customer_id,
             status: status
         });
