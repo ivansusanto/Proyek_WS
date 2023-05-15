@@ -16,20 +16,7 @@ export default new (class User {
         });
     }
 
-    async checkCustomerID(customer_id: string, developer_id: string) : Promise<boolean>{
-        const checkID = await prisma.users.findFirst({
-            where:{
-                customer_id: customer_id,
-                developer_id: developer_id
-            }
-        })
-    
-        if(checkID) return true;
-    
-        return false;
-    }
-
-    async returnUserIdByCustomerId(customer_id: string, developer_id: string) : Promise<any>{
+    async checkCustomerID(customer_id: string, developer_id: string) : Promise<any>{
         const checkID = await prisma.users.findFirst({
             where:{
                 customer_id: customer_id,
@@ -38,7 +25,8 @@ export default new (class User {
         })
     
         if(checkID) return checkID;
-        else return ' ';
+    
+        return "";
     }
 
     async update(customer_id: string, developer_id: string, status: number){

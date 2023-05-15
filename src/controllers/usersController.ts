@@ -66,12 +66,6 @@ export async function updateStatus(req : Request, res : Response) {
             });
         }
     
-        // if(isNaN(status)){
-        //     return res.status(400).json({
-        //         message: "Status must be a number"
-        //     });
-        // }
-    
         const validation = await validator(updateUserSchema, data);
         if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
         

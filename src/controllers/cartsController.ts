@@ -14,7 +14,7 @@ export async function addCart(req : Request, res : Response) {
     const validation = await validator(addCartSchema, data)
     if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
     const developer = req.body.developer;
-    const user = await User.returnUserIdByCustomerId(data.customer_id, developer.developer_id);
+    const user = await User.checkCustomerID(data.customer_id, developer.developer_id);
     const newCart = await Cart.create(data, user.user_id, data.product_id)
     const productName = await Product.fetchById(developer.username, data.product_id)
     res.status(201).send({
