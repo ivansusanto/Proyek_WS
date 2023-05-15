@@ -1,6 +1,5 @@
 import { PrismaClient, Prisma } from '@prisma/client';
 import { generateId } from '../utils/GenerateId';
-import { generateHashedPassword } from '../utils/Bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -28,6 +27,18 @@ export default new (class User {
         if(checkID) return true;
     
         return false;
+    }
+
+    async returnUserIdByCustomerId(customer_id: string, developer_id: string) : Promise<any>{
+        const checkID = await prisma.users.findFirst({
+            where:{
+                customer_id: customer_id,
+                developer_id: developer_id
+            }
+        })
+    
+        if(checkID) return checkID;
+        else return ' ';
     }
 
     async update(customer_id: string, developer_id: string, status: number){

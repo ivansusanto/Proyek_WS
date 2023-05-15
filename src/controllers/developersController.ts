@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { generateToken } from '../utils/JWT';
 import validator from '../validations/Validator';
+import { generateToken } from '../utils/JWT';
 import Developer from '../models/Developer';
 import bcrypt from 'bcrypt'
 import Joi from 'joi';
