@@ -2,32 +2,47 @@ import { PrismaClient, Prisma } from '@prisma/client';
 import { generateId } from '../utils/GenerateId';
 
 const prisma = new PrismaClient();
+export interface ICart {
+    cart_id: string;
+    quantity: number;
+    users: {
+        connect: {
+            user_id: string;
+        }
+    },
+    products: {
+        connect: {
+            product_id: string;
+        }
+    }
+}
 
 export default new (class Cart {
     async create(cart: Prisma.cartsCreateInput, user_id:string, product_id: string) {
         const cart_id: string = generateId('K', await prisma.carts.count());
-        return await prisma.carts.create({
-            data: {
-                cart_id: cart_id,
-                quantity: +cart.quantity,
-                users: {
-                    connect: {
-                        user_id: user_id
-                    }
-                },
-                products: {
-                    connect: {
-                        product_id: product_id
-                    }
+        const data:ICart = {
+            cart_id: cart_id,
+            quantity: +cart.quantity,
+            users: {
+                connect: {
+                    user_id: user_id
+                }
+            },
+            products: {
+                connect: {
+                    product_id: product_id
                 }
             }
-        });
+        }
+        return await prisma.carts.create({ data });
     }
 
-    async checkDuplicateEntry(user_id: string, product_id: string) {
+    async checkDuplicateEntry(user_id: string, product_id: string){
         return await prisma.carts.findFirst({
             where: {
-                user_id: user_id,
+                users: {
+                    user_id: user_id
+                },
                 products: {
                     product_id: product_id
                 }
