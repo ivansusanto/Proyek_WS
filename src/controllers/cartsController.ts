@@ -5,6 +5,7 @@ import User from '../models/User';
 import Product from '../models/Product';
 import Joi from 'joi';
 import { StatusCode } from '../helpers/statusCode';
+import Developer, { IDeveloper } from '../models/Developer';
 
 const addCartSchema = {
     customer_id: Joi.string().required(),
@@ -15,9 +16,10 @@ const addCartSchema = {
 export async function addCart(req : Request, res : Response) {
     const data = req.body;
     const validation = await validator(addCartSchema, data)
-    if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
+    if (validation.message) return res.status(StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") });
     
-    const developer = req.body.developer
+    const tempDeveloper = req.body.developer
+    const developer:IDeveloper = await Developer.fetchByUsername(tempDeveloper) as IDeveloper
     const user = await User.checkCustomerID(data.customer_id, developer.developer_id);
     if (user===' ')  res.status(StatusCode.NOT_FOUND).send({message:'User not found'});
 
@@ -47,8 +49,10 @@ export async function addCart(req : Request, res : Response) {
 }   
 
 export async function fetchCart(req : Request, res : Response) {
-    const user_id = req.params.user_id;
-    const user_cart = await Cart.get(user_id);
+    const customer_id = req.params.customer_id;
+    const developer = req.body.developer
+    const user_cart = await Cart.getUserCart(customer_id, developer.developer_id);
+
     res.status(StatusCode.OK).send({ user_cart })
 }
 

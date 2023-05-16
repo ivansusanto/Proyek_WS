@@ -1,5 +1,7 @@
 import { PrismaClient, Prisma } from '@prisma/client';
 import { generateId } from '../utils/GenerateId';
+import User from './User';
+import Developer, { IDeveloper } from './Developer';
 
 const prisma = new PrismaClient();
 export interface ICart {
@@ -73,7 +75,9 @@ export default new (class Cart {
         });
     }
 
-    async get(user_id: string) {
+    async getUserCart(customer_id: string, developer_username: string) {
+        const developer:IDeveloper = await Developer.fetchByUsername(developer_username) as IDeveloper
+        const user = await User.checkCustomerID(customer_id, developer.developer_id)
         return await prisma.carts.findMany({
             select: {
                 product_id: true,
@@ -86,10 +90,12 @@ export default new (class Cart {
             },
             where: {
                 users: {
-                    user_id: user_id
-                }
+                    user_id: user.user_id
+                },
             }
         });
     }
+
+
 
 })();
