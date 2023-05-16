@@ -92,4 +92,32 @@ export default new (class Product {
             }
         });
     }
+
+    async fetchByProductId(product_id: string){
+        return await prisma.products.findFirst({
+            where:{
+                product_id: product_id
+            }
+        })
+    }
+
+    async updateProductStockByProductId(product_id: string, stock: number){
+        await prisma.products.update({
+            where:{
+                product_id: product_id
+            },
+            data:{
+                stock: stock
+            }
+        })
+    }
+
+    async subtractStock(product_id: string, subtractor: number){
+        const product = await this.fetchByProductId(product_id)
+
+        if(product) {
+            const updatedStock = product.stock - subtractor
+            this.updateProductStockByProductId(product_id, updatedStock)
+        }
+    }
 })();

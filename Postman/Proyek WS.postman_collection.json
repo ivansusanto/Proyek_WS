@@ -696,8 +696,8 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "checkout_id",
-									"value": "",
+									"key": "invoice",
+									"value": "INV170520230005",
 									"type": "default"
 								},
 								{
@@ -762,7 +762,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/orders/:order_id",
+							"raw": "localhost:3000/api/orders/:invoice",
 							"host": [
 								"localhost"
 							],
@@ -770,11 +770,11 @@
 							"path": [
 								"api",
 								"orders",
-								":order_id"
+								":invoice"
 							],
 							"variable": [
 								{
-									"key": "order_id",
+									"key": "invoice",
 									"value": ""
 								}
 							]

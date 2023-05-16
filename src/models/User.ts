@@ -39,4 +39,15 @@ export default new (class User {
             }
         })
     }
+
+    async getDeveloperIdByUserId(user_id: string) : Promise<string>{
+        const user = await prisma.users.findFirst({
+            where:{
+                user_id: user_id
+            }
+        })
+
+        if(user) return user.developer_id
+        return " "
+    }
 })();

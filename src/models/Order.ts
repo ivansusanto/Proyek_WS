@@ -4,11 +4,20 @@ import User from './User';
 
 const prisma = new PrismaClient();
 
+export interface IOrder {
+    order_id: string;
+    invoice: string;
+    date: Date;
+    total: number;
+    status: number;
+    user_id: string;
+}
+
 export default new(class Order{
     async create(user_id: string, total: number, product_id: string[], qty: number[]) : Promise<string>{
         const order_id: string = generateId('O', await prisma.orders.count());
 
-        const Invoice = await this.getInvoice()
+        const Invoice = await this.createInvoice()
         
         await prisma.orders.create({
             data:{
@@ -59,7 +68,7 @@ export default new(class Order{
         return Invoice
     }
 
-    async getInvoice(): Promise<string>{
+    async createInvoice(): Promise<string>{
         const date: Date = new Date()
         
         const dateString: string = date.getDate().toString().padStart(2, "0") + (date.getMonth() + 1).toString().padStart(2, "0") + date.getFullYear().toString()
@@ -81,5 +90,58 @@ export default new(class Order{
         const Invoice: string = "INV" + dateString + count.toString().padStart(4, "0")
 
         return Invoice
+    }
+
+    async getDeveloperIdByInvoice(Invoice: string): Promise<string> {
+        const order: IOrder|null = await this.getOrderByInvoice(Invoice)
+        if(order){
+            return await User.getDeveloperIdByUserId(order.user_id)
+        }
+        
+        return ""
+    }
+
+    async getOrderByInvoice(Invoice: string): Promise<IOrder|null>{
+        const order = await prisma.orders.findFirst({
+            where: {
+                invoice: Invoice
+            }
+        })
+
+        if(order) return order
+
+        return null
+    }
+
+    async changeStatusOrder(Invoice: string){
+        await prisma.orders.updateMany({
+            where: {
+                invoice: Invoice
+            },
+            data: {
+                status: 1
+            }
+        })
+    }
+
+    async fetchOrderByDeveloperId(developer_id: string){
+        return await prisma.orders.findMany({
+            where:{
+                users:{
+                    developer_id: developer_id
+                }
+            },
+            select: {
+                invoice: true,
+                date: true,
+                total: true,
+                status: true,
+                users:{
+                    select:{
+                        customer_id: true
+                    }
+                }
+            }
+        })
     }
 })

@@ -100,14 +100,11 @@ export default new (class Cart {
     }
 
     async delete(user_id: string, product_id: string) {
-        // const cart = await this.checkDuplicateEntry(user_id, product_id);
-        // return await prisma.carts.update({
-        //     where: {
-        //         cart_id: cart?.cart_id
-        //     },
-        //     data: {
-        //         quantity: quantity
-        //     }
-        // });
+        const cart = await this.checkDuplicateEntry(user_id, product_id);
+        await prisma.carts.delete({
+            where: {
+                cart_id: cart?.cart_id
+            }
+        });
     }
 })();

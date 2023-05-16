@@ -13,7 +13,7 @@ import {
 router.post('/checkout', checkoutOrder);
 router.post('/payment', paymentOrder);
 router.get('/', fetchOrders);
-router.get('/:order_id', fetchOrderById);
+router.get('/:invoice', fetchOrderById);
 router.get('/:customer_id', fetchUserOrder);
 
 export default router;
