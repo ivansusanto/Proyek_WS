@@ -79,14 +79,8 @@ export default new (class Cart {
         const developer:IDeveloper = await Developer.fetchByUsername(developer_username) as IDeveloper
         const user = await User.checkCustomerID(customer_id, developer.developer_id)
         return await prisma.carts.findMany({
-            select: {
-                product_id: true,
-                // name: true,
-                // description: true,
-                // price: true,
-                // stock: true,
-                // status: true,
-                // image: true
+            include:{
+                products: true
             },
             where: {
                 users: {
@@ -96,6 +90,15 @@ export default new (class Cart {
         });
     }
 
-
-
+    async delete(user_id: string, product_id: string) {
+        // const cart = await this.checkDuplicateEntry(user_id, product_id);
+        // return await prisma.carts.update({
+        //     where: {
+        //         cart_id: cart?.cart_id
+        //     },
+        //     data: {
+        //         quantity: quantity
+        //     }
+        // });
+    }
 })();
