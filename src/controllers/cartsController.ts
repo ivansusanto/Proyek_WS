@@ -23,21 +23,26 @@ export async function addCart(req : Request, res : Response) {
 
     const check = await Cart.checkDuplicateEntry(user.user_id, data.product_id)
     const product = await Product.fetchById(developer.username, data.product_id)
-    if(check){ //sudah ada di dalam cart
-        const newQuantity:number = check.quantity + parseInt(data.quantity);
-        const updateCart = await Cart.update(user.user_id, data.product_id, newQuantity)
-        res.status(StatusCode.OK).send({
-            cart_id: updateCart.cart_id,
-            product_name: product?.name,
-            quantity: newQuantity
-        });
-    } else { //belum ada di dalam cart
-        const newCart = await Cart.create(data, user.user_id, data.product_id)
-        res.status(StatusCode.CREATED).send({
-            cart_id: newCart.cart_id,
-            product_name: product?.name,
-            quantity: data.quantity
-        });
+    const checkOwner = await Cart.checkBefore(data.product_id, developer.developer_id)
+    if(checkOwner){
+        if(check){ //sudah ada di dalam cart
+            const newQuantity:number = check.quantity + parseInt(data.quantity);
+            const updateCart = await Cart.update(user.user_id, data.product_id, newQuantity)
+            res.status(StatusCode.OK).send({
+                cart_id: updateCart.cart_id,
+                product_name: product?.name,
+                quantity: newQuantity
+            });
+        } else { //belum ada di dalam cart
+            const newCart = await Cart.create(data, user.user_id, data.product_id)
+            res.status(StatusCode.CREATED).send({
+                cart_id: newCart.cart_id,
+                product_name: product?.name,
+                quantity: data.quantity
+            });
+        }
+    } else {
+        res.status(StatusCode.BAD_REQUEST).send({ message: "Product not registered"})
     }
 }   
 

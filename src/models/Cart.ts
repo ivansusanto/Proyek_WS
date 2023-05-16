@@ -49,6 +49,17 @@ export default new (class Cart {
             }
         });
     }
+
+    async checkBefore(product_id: string, developer_id: string){
+        return await prisma.products.findFirst({
+            where: {
+                product_id: product_id,
+                developers:{
+                    developer_id: developer_id
+                }
+            }
+        });
+    }
     
     async update(user_id: string, product_id: string, quantity: number) {
         const cart = await this.checkDuplicateEntry(user_id, product_id);
