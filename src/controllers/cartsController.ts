@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import validator from '../validations/Validator';
-import Cart from '../models/Cart';
+import Cart, { ICart } from '../models/Cart';
 import User from '../models/User';
 import Product from '../models/Product';
 import Joi from 'joi';
@@ -42,6 +42,7 @@ export async function addCart(req : Request, res : Response) {
 }   
 
 export async function fetchCart(req : Request, res : Response) {
+    const user_id = req.params.user_id;
     
 }
 

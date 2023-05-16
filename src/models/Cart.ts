@@ -62,23 +62,23 @@ export default new (class Cart {
         });
     }
 
-    // async get(username: string) {
-    //     return await prisma.products.findMany({
-    //         select: {
-    //             product_id: true,
-    //             name: true,
-    //             description: true,
-    //             price: true,
-    //             stock: true,
-    //             status: true,
-    //             image: true
-    //         },
-    //         where: {
-    //             developers: {
-    //                 username: username
-    //             }
-    //         }
-    //     });
-    // }
+    async get(user_id: string) {
+        return await prisma.carts.findMany({
+            select: {
+                product_id: true,
+                // name: true,
+                // description: true,
+                // price: true,
+                // stock: true,
+                // status: true,
+                // image: true
+            },
+            where: {
+                users: {
+                    user_id: user_id
+                }
+            }
+        });
+    }
 
 })();

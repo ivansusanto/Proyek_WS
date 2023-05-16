@@ -86,7 +86,7 @@ export async function updateProduct(req : Request, res : Response) {
     if (!updatedProduct) return res.status(StatusCode.FORBIDDEN).json({ message: 'Forbidden' });
 
     updatedProduct.image = env('PREFIX_URL') + '/api/assets/' + updatedProduct.image;
-    return res.status(200).json({
+    return res.status(StatusCode.OK).json({
         message: 'Success update product',
         data: updatedProduct
     });
