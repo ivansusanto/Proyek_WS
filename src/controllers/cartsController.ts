@@ -42,7 +42,9 @@ export async function addCart(req : Request, res : Response) {
 }   
 
 export async function fetchCart(req : Request, res : Response) {
-    
+    const user_id = req.params.user_id;
+    const user_cart = await Cart.get(user_id);
+    res.status(StatusCode.OK).send({ user_cart })
 }
 
 export async function updateCart(req : Request, res : Response) {

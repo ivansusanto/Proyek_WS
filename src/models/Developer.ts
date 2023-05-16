@@ -26,11 +26,11 @@ export default new (class Developer {
             full_name: developer.full_name,
             display_name: developer.display_name,
         }
-        return await prisma.developers.create({data});
+        return await prisma.developers.create({ data });
     }
 
     async fetchByUsername(username: string): Promise<IDeveloper|null>{
-        const developer = await prisma.developers.findFirst({
+        const developer:IDeveloper|null = await prisma.developers.findFirst({
             where: {
                 username: username
             }
@@ -40,7 +40,7 @@ export default new (class Developer {
     }
 
     async fetchByUsernameOrEmail(username: string, email: string): Promise<IDeveloper|null>{
-        const developer = await prisma.developers.findFirst({
+        const developer:IDeveloper|null = await prisma.developers.findFirst({
             where: {
                 OR: [
                     { email: email },
