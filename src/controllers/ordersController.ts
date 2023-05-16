@@ -52,13 +52,19 @@ export async function checkoutOrder(req : Request, res : Response) {
 
             qty.push(cart.quantity)
 
-            //SUBTRACT STOCK
-            await Product.subtractStock(data.products_id[i], cart.quantity)
-
-            //DELETE CART
-            await Cart.delete(user.user_id, data.products_id[i])
-
+            
             total += cart.quantity*product.price
+        }
+        for(let i = 0; i < data.products_id.length; i++){
+            const cart = await Cart.checkDuplicateEntry(user.user_id, data.products_id[i])
+
+            if(cart){
+                // SUBTRACT STOCK
+                await Product.subtractStock(data.products_id[i], cart.quantity)
+        
+                //DELETE CART
+                await Cart.delete(user.user_id, data.products_id[i])
+            }
         }
     
         const Invoice = await Order.create(user.user_id, total, data.products_id, qty)
