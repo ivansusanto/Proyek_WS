@@ -79,8 +79,17 @@ export default new (class Cart {
         const developer:IDeveloper = await Developer.fetchByUsername(developer_username) as IDeveloper
         const user = await User.checkCustomerID(customer_id, developer.developer_id)
         return await prisma.carts.findMany({
-            include:{
-                products: true
+            select:{
+                quantity: true,
+                products: {
+                    select:{
+                        name: true,
+                        price: true,
+                        description: true,
+                        image: true,
+                        stock: true
+                    }
+                }
             },
             where: {
                 users: {
