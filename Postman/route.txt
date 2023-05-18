@@ -22,5 +22,5 @@
 -	[POST] /api/orders/checkout
 -	[POST] /api/orders/payment
 -	[GET] /api/orders
--	[GET] /api/orders/:order_id
+-	[GET] /api/orders/:order_id -> ENDPOINT NABRAK -> /api/orders/:order_id/details
 -	[GET] /api/orders/:customer_id

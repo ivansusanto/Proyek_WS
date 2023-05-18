@@ -650,7 +650,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"customer_id\": \"\",\r\n    \"product_id\": [\r\n        \"\",\r\n        \"\"\r\n    ]\r\n}",
+							"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -697,13 +697,14 @@
 							"urlencoded": [
 								{
 									"key": "invoice",
-									"value": "INV170520230005",
+									"value": "INV180520230001",
 									"type": "default"
 								},
 								{
 									"key": "payment",
 									"value": "",
-									"type": "default"
+									"type": "default",
+									"disabled": true
 								}
 							]
 						},
@@ -759,10 +760,25 @@
 				{
 					"name": "Get Detail Order",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:3000/api/orders/:invoice",
+							"raw": "localhost:3000/api/orders/:invoice/details",
 							"host": [
 								"localhost"
 							],
@@ -770,12 +786,13 @@
 							"path": [
 								"api",
 								"orders",
-								":invoice"
+								":invoice",
+								"details"
 							],
 							"variable": [
 								{
 									"key": "invoice",
-									"value": ""
+									"value": "INV180520230001"
 								}
 							]
 						}
@@ -785,6 +802,21 @@
 				{
 					"name": "Get All Order User",
 					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -801,7 +833,7 @@
 							"variable": [
 								{
 									"key": "customer_id",
-									"value": ""
+									"value": "C0001"
 								}
 							]
 						}

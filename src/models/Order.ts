@@ -4,6 +4,10 @@ import User from './User';
 
 const prisma = new PrismaClient();
 
+//ORDER STATUS
+//0 = blm dibayar
+//1 = berhasil dibayar
+
 export interface IOrder {
     order_id: string;
     invoice: string;
@@ -14,7 +18,7 @@ export interface IOrder {
 }
 
 export default new(class Order{
-    async create(user_id: string, total: number, product_id: string[], qty: number[]) : Promise<string>{
+    async create(user_id: string, total: number, product_id: string[], qty: number[], bank: string) : Promise<string>{
         const order_id: string = generateId('O', await prisma.orders.count());
 
         const Invoice = await this.createInvoice()
@@ -25,12 +29,13 @@ export default new(class Order{
                 invoice: Invoice,
                 date: new Date(),
                 total: total,
-                status: 0,
+                status: 1,
                 users: {
                     connect: {
                         user_id: user_id
                     }
-                }
+                },
+                bank: bank
             }
         })
         
@@ -68,6 +73,17 @@ export default new(class Order{
         return Invoice
     }
 
+    async setVANumber(Invoice: string, va_number: string){
+        await prisma.orders.updateMany({
+            where: {
+                invoice: Invoice
+            },
+            data: {
+                va_number: va_number
+            }
+        })
+    }
+
     async createInvoice(): Promise<string>{
         const date: Date = new Date()
         
@@ -92,14 +108,14 @@ export default new(class Order{
         return Invoice
     }
 
-    async getDeveloperIdByInvoice(Invoice: string): Promise<string> {
-        const order: IOrder|null = await this.getOrderByInvoice(Invoice)
-        if(order){
-            return await User.getDeveloperIdByUserId(order.user_id)
-        }
+    // async getDeveloperIdByInvoice(Invoice: string): Promise<string> {
+    //     const order: IOrder|null = await this.getOrderByInvoice(Invoice)
+    //     if(order){
+    //         return await User.getDeveloperIdByUserId(order.user_id)
+    //     }
         
-        return ""
-    }
+    //     return ""
+    // }
 
     async getOrderByInvoice(Invoice: string): Promise<IOrder|null>{
         const order = await prisma.orders.findFirst({
@@ -124,7 +140,7 @@ export default new(class Order{
         })
     }
 
-    async fetchOrderByDeveloperId(developer_id: string){
+    async fetchAllOrderByDeveloperId(developer_id: string){
         return await prisma.orders.findMany({
             where:{
                 users:{
@@ -141,6 +157,84 @@ export default new(class Order{
                         customer_id: true
                     }
                 }
+            }
+        })
+    }
+
+    async fetchOrderByDeveloperIdInvoice(developer_id: string, invoice: string){
+        return await prisma.orders.findMany({
+            where:{
+                users:{
+                    developer_id: developer_id
+                },
+                invoice: invoice
+            },
+            select: {
+                invoice: true,
+                date: true,
+                total: true,
+                status: true,
+                bank: true,
+                va_number: true,
+                users:{
+                    select:{
+                        customer_id: true
+                    }
+                }
+            }
+        })
+    }
+
+    async fetchDetailOrder(developer_id: string, invoice: string){
+        return await prisma.orders.findMany({
+            where:{
+                users:{
+                    developer_id: developer_id
+                },
+                invoice: invoice
+            },
+            select: {
+                invoice: true,
+                date: true,
+                total: true,
+                status: true,
+                bank: true,
+                va_number: true,
+                users:{
+                    select:{
+                        customer_id: true
+                    }
+                },
+                order_items:{
+                    select:{
+                        products:{
+                            select:{
+                                name: true,
+                                price: true
+                            }
+                        },
+                        quantity: true
+                    }
+                }
+            }
+        })
+    }
+
+    async fetchOrderByCustomer(developer_id: string, customer_id: string){
+        return await prisma.orders.findMany({
+            where:{
+                users:{
+                    developer_id: developer_id,
+                    customer_id: customer_id
+                }
+            },
+            select:{
+                invoice: true,
+                date: true,
+                total: true,
+                status: true,
+                bank: true,
+                va_number: true,
             }
         })
     }

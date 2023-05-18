@@ -20,8 +20,21 @@ export interface ICart {
 }
 
 export default new (class Cart {
+    async generateCartId(): Promise<string> {
+        const latestOrder = await prisma.carts.findFirst({
+            orderBy:{
+                cart_id: "desc"
+            }
+        })
+
+        let latestIdNumber: number = parseInt(latestOrder?.cart_id.substring(1) ?? "0")
+        let newestId: string = "K" + (latestIdNumber+1).toString().padStart(4, "0")
+        return newestId
+    }
+
     async create(cart: Prisma.cartsCreateInput, user_id:string, product_id: string) {
-        const cart_id: string = generateId('K', await prisma.carts.count());
+        // const cart_id: string = generateId('K', await prisma.carts.count());
+        const cart_id = await this.generateCartId()
         const data:ICart = {
             cart_id: cart_id,
             quantity: +cart.quantity,
