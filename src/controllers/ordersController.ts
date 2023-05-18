@@ -95,7 +95,7 @@ export async function checkoutOrder(req : Request, res : Response) {
             data: {
                 payment_type: 'bank_transfer',
                 transaction_details: {
-                    order_id: "Invoice005",
+                    order_id: Invoice,
                     gross_amount: order?.total
                 },
                 bank_transfer: {bank: data.bank},
