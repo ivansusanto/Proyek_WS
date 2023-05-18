@@ -42,7 +42,7 @@ export async function checkoutOrder(req : Request, res : Response) {
             const cart = await Cart.checkDuplicateEntry(user.user_id, data.products_id[i])
             if(!cart) return res.status(StatusCode.BAD_REQUEST).json({ message: `${product.name} is not in user's cart`})
     
-            if(cart.quantity > product.stock) return res.status(StatusCode.BAD_REQUEST).json({ message: `Insufficient Stock on product ${product.name}`})
+            if(cart.quantity > product.stock) return res.status(StatusCode.BAD_REQUEST).json({ message: `Insufficient Stock on product ${product.name}. Checkout cancelled`})
             
             listCheckout[i] = {
                 name: product.name,
@@ -158,10 +158,10 @@ export async function paymentOrder(req : Request, res : Response) {
                 },
                 bank_transfer: {bank: 'bca'},
                 customer_details: {
-                    first_name: "Johny",
-                    last_name: "Kane",
-                    email: "testmidtrans@mailnesia.com",
-                    phone: "08111222333"
+                    first_name: developer.full_name,
+                    last_name: "",
+                    email: developer.email,
+                    phone: ""
                 }
             }
         };
@@ -194,9 +194,6 @@ export async function paymentOrder(req : Request, res : Response) {
             axios.request(pay).then(response2 => {
                 //CHANGE STATUS ORDER PAYMENT SUCCESSFUL
                 Order.changeStatusOrder(data.invoice)
-
-
-    
                 return res.status(StatusCode.OK).json({
                     Invoice: data.invoice,
                     message: "Payment successful"
