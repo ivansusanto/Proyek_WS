@@ -41,7 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthMiddleware = void 0;
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-var prisma_client_1 = require("../../prisma/prisma-client");
+var prisma_client_1 = require("../../build/prisma/prisma-client");
 var env_config_1 = __importDefault(require("../config/env.config"));
 var statusCode_1 = require("../helpers/statusCode");
 var prisma = new prisma_client_1.PrismaClient();

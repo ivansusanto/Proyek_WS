@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var prisma_client_1 = require("../../prisma/prisma-client");
+var prisma_client_1 = require("../../build/prisma/prisma-client");
 var GenerateId_1 = require("../utils/GenerateId");
 var prisma = new prisma_client_1.PrismaClient();
 exports.default = new (/** @class */ (function () {

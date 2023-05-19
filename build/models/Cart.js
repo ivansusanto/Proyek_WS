@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var prisma_client_1 = require("../../prisma/prisma-client");
+var prisma_client_1 = require("../../build/prisma/prisma-client");
 var User_1 = __importDefault(require("./User"));
 var Developer_1 = __importDefault(require("./Developer"));
 var prisma = new prisma_client_1.PrismaClient();
