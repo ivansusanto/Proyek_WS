@@ -3,7 +3,7 @@ import User from '../models/User';
 import Developer, { IDeveloper } from '../models/Developer';
 import Joi from 'joi';
 import validator from '../validations/Validator';
-import { developers } from '@prisma/client';
+import { developers } from '../../prisma/prisma-client';
 import { StatusCode } from '../helpers/statusCode';
 
 const addUserSchema = {

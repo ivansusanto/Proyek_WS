@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client-js"
+  output = "prisma-client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model carts {
+  quantity   Int
+  user_id    String   @db.VarChar(5)
+  product_id String   @db.VarChar(5)
+  cart_id    String   @id @db.VarChar(5)
+  users      users    @relation(fields: [user_id], references: [user_id], onUpdate: Restrict, map: "carts_ibfk_1")
+  products   products @relation(fields: [product_id], references: [product_id], onUpdate: Restrict, map: "carts_ibfk_2")
+
+  @@index([product_id], map: "product_id")
+  @@index([user_id], map: "user_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model developers {
+  developer_id String     @id @db.VarChar(5)
+  username     String     @db.VarChar(255)
+  password     String     @db.VarChar(255)
+  email        String     @db.VarChar(255)
+  full_name    String     @db.VarChar(255)
+  display_name String     @db.VarChar(255)
+  status       Int        @default(1)
+  balance      Int        @default(0)
+  products     products[]
+  users        users[]
+}
+
+model order_items {
+  id         Int      @id @default(autoincrement())
+  quantity   Int
+  order_id   String   @db.VarChar(5)
+  product_id String   @db.VarChar(5)
+  orders     orders   @relation(fields: [order_id], references: [order_id], onUpdate: Restrict, map: "order_items_ibfk_1")
+  products   products @relation(fields: [product_id], references: [product_id], onUpdate: Restrict, map: "order_items_ibfk_2")
+
+  @@index([order_id], map: "order_id")
+  @@index([product_id], map: "product_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model orders {
+  order_id    String        @id @db.VarChar(5)
+  invoice     String        @db.VarChar(15)
+  date        DateTime      @db.DateTime(0)
+  total       Int
+  status      Int           @default(3)
+  user_id     String        @db.VarChar(5)
+  bank        String
+  va_number   String?
+  order_items order_items[]
+  users       users         @relation(fields: [user_id], references: [user_id], onUpdate: Restrict, map: "orders_ibfk_1")
+
+  @@index([user_id], map: "user_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model products {
+  product_id   String        @id @db.VarChar(5)
+  name         String        @db.VarChar(255)
+  description  String        @db.VarChar(255)
+  price        Int
+  stock        Int
+  status       Int           @default(1)
+  developer_id String        @db.VarChar(5)
+  image        String        @db.VarChar(255)
+  carts        carts[]
+  order_items  order_items[]
+  developers   developers    @relation(fields: [developer_id], references: [developer_id], onUpdate: Restrict, map: "products_ibfk_1")
+
+  @@index([developer_id], map: "developer_id")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+model users {
+  user_id      String     @id @db.VarChar(5)
+  status       Int        @default(1)
+  customer_id  String     @db.VarChar(255)
+  developer_id String     @db.VarChar(5)
+  carts        carts[]
+  orders       orders[]
+  developers   developers @relation(fields: [developer_id], references: [developer_id], onUpdate: Restrict, map: "users_ibfk_1")
+
+  @@index([developer_id], map: "developer_id")
+}
