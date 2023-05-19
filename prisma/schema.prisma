@@ -29,6 +29,7 @@ model developers {
   full_name    String     @db.VarChar(255)
   display_name String     @db.VarChar(255)
   status       Int        @default(1)
+  balance      Int        @default(0)
   products     products[]
   users        users[]
 }

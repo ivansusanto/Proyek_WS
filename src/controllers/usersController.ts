@@ -29,7 +29,7 @@ export async function addUser(req : Request, res : Response) {
             });
         }
     
-        if(await User.checkCustomerID(data.user_id, developer.developer_id) != " "){
+        if(await User.checkCustomerID(data.customer_id, developer.developer_id) != " "){
             return res.status(StatusCode.BAD_REQUEST).json({
                 message: "customer_id already registered"
             });

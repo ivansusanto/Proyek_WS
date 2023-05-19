@@ -91,25 +91,29 @@ export default new (class Cart {
     async getUserCart(customer_id: string, developer_username: string) {
         const developer:IDeveloper = await Developer.fetchByUsername(developer_username) as IDeveloper
         const user = await User.checkCustomerID(customer_id, developer.developer_id)
-        return await prisma.carts.findMany({
-            select:{
-                quantity: true,
-                products: {
-                    select:{
-                        name: true,
-                        price: true,
-                        description: true,
-                        image: true,
-                        stock: true
+        if (user !== ' ') {
+            return await prisma.carts.findMany({
+                select:{
+                    quantity: true,
+                    products: {
+                        select:{
+                            name: true,
+                            price: true,
+                            description: true,
+                            image: true,
+                            stock: true
+                        }
                     }
-                }
-            },
-            where: {
-                users: {
-                    user_id: user.user_id
                 },
-            }
-        });
+                where: {
+                    users: {
+                        user_id: user.user_id
+                    },
+                }
+            });
+        } else {
+            return ' '
+        }
     }
 
     async delete(user_id: string, product_id: string) {

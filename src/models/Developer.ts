@@ -51,4 +51,17 @@ export default new (class Developer {
         if (developer) return developer;
         else return null;
     }
+
+    async updateBalance(developer_id: string, order_balance: number) {
+        await prisma.developers.updateMany({
+            where: {
+                developer_id: developer_id
+            },
+            data: {
+                balance: {
+                    increment: order_balance * 0.9
+                }
+            }
+        })
+    }
 })();

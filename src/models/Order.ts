@@ -29,7 +29,6 @@ export default new(class Order{
                 invoice: Invoice,
                 date: new Date(),
                 total: total,
-                status: 1,
                 users: {
                     connect: {
                         user_id: user_id
@@ -51,24 +50,6 @@ export default new(class Order{
         await prisma.order_items.createMany({
             data: order_items
         })
-
-        // for(let i = 0; i < product_id.length; i++){
-        //     await prisma.order_items.create({
-        //         data:{
-        //             quantity: qty[i],
-        //             orders:{
-        //                 connect:{
-        //                     order_id: order_id,
-        //                 }
-        //             },
-        //             products:{
-        //                 connect:{
-        //                     product_id: product_id[i]
-        //                 }
-        //             }
-        //         }
-        //     })
-        // }
 
         return Invoice
     }
@@ -108,15 +89,6 @@ export default new(class Order{
         return Invoice
     }
 
-    // async getDeveloperIdByInvoice(Invoice: string): Promise<string> {
-    //     const order: IOrder|null = await this.getOrderByInvoice(Invoice)
-    //     if(order){
-    //         return await User.getDeveloperIdByUserId(order.user_id)
-    //     }
-        
-    //     return ""
-    // }
-
     async getOrderByInvoice(Invoice: string): Promise<IOrder|null>{
         const order = await prisma.orders.findFirst({
             where: {
@@ -129,10 +101,10 @@ export default new(class Order{
         return null
     }
 
-    async changeStatusOrder(Invoice: string){
+    async changeStatusOrder(invoice_number: string){
         await prisma.orders.updateMany({
             where: {
-                invoice: Invoice
+                invoice: invoice_number
             },
             data: {
                 status: 1
