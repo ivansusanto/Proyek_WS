@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { PrismaClient } from '../../prisma/prisma-client';
+import { PrismaClient } from '../../build/prisma/prisma-client';
 import env from "../config/env.config";
 import { StatusCode } from '../helpers/statusCode';
 import { IDeveloper } from '../models/Developer';

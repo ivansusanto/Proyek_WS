@@ -161,7 +161,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\xxlau\\Documents\\iSTTS\\Semester 4\\5 - Jumat\\2 - Web Service\\Proyek_WS\\prisma\\prisma-client",
+      "value": "C:\\Users\\xxlau\\Documents\\iSTTS\\Semester 4\\5 - Jumat\\2 - Web Service\\Proyek_WS\\build\\prisma\\prisma-client",
       "fromEnvVar": null
     },
     "config": {
@@ -172,10 +172,10 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "..\\..\\.env",
-    "schemaEnvPath": "..\\..\\.env"
+    "rootEnvPath": "..\\..\\..\\.env",
+    "schemaEnvPath": "..\\..\\..\\.env"
   },
-  "relativePath": "..",
+  "relativePath": "..\\..\\..\\prisma",
   "clientVersion": "4.14.0",
   "engineVersion": "d9a4c5988f480fa576d43970d5a23641aa77bc9c",
   "datasourceNames": [
@@ -193,7 +193,7 @@ if (!fs.existsSync(path.join(__dirname, 'schema.prisma'))) {
   warnOnce('bundled-warning-1', 'Your generated Prisma Client could not immediately find its `schema.prisma`, falling back to finding it via the current working directory.')
   warnOnce('bundled-warning-2', 'We are interested in learning about your project setup. We\'d appreciate if you could take the time to share some information with us.')
   warnOnce('bundled-warning-3', 'Please help us by answering a few questions: https://pris.ly/bundler-investigation')
-  config.dirname = path.join(process.cwd(), "prisma\\prisma-client")
+  config.dirname = path.join(process.cwd(), "build\\prisma\\prisma-client")
   config.isBundled = true
 }
 
@@ -217,6 +217,6 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 path.join(__dirname, "query_engine-windows.dll.node");
-path.join(process.cwd(), "prisma\\prisma-client\\query_engine-windows.dll.node")
+path.join(process.cwd(), "build\\prisma\\prisma-client\\query_engine-windows.dll.node")
 path.join(__dirname, "schema.prisma");
-path.join(process.cwd(), "prisma\\prisma-client\\schema.prisma")
+path.join(process.cwd(), "build\\prisma\\prisma-client\\schema.prisma")

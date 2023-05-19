@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma } from '../../prisma/prisma-client';
+import { PrismaClient, Prisma } from '../../build/prisma/prisma-client';
 import { generateId } from '../utils/GenerateId';
 import { generateHashedPassword } from '../utils/Bcrypt';
 

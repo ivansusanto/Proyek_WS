@@ -41,10 +41,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthMiddleware = void 0;
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-var client_1 = require("@prisma/client");
+var prisma_client_1 = require("../../prisma/prisma-client");
 var env_config_1 = __importDefault(require("../config/env.config"));
 var statusCode_1 = require("../helpers/statusCode");
-var prisma = new client_1.PrismaClient();
+var prisma = new prisma_client_1.PrismaClient();
 var AuthMiddleware = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var token, decodedToken, username, email, developer, err_1;
     var _a;
