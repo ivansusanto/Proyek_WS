@@ -10,10 +10,10 @@ const apiRouter = express.Router();
 
 apiRouter.use('/assets', express.static('./uploads'));
 apiRouter.use('/developers', developersRouter);
+apiRouter.use('/orders', ordersRouter);
 
 apiRouter.use(AuthMiddleware);
 apiRouter.use('/carts', cartsRouter);
-apiRouter.use('/orders', ordersRouter);
 apiRouter.use('/products', productsRouter);
 apiRouter.use('/users', usersRouter);
 
