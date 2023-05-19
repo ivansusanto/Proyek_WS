@@ -166,7 +166,7 @@ export async function paymentOrder(req : Request, res : Response) {
         axios.request(options).then(async response => {
             if (response.data.transaction_status === 'settlement' && order[0].status == 3) {
                 await Order.changeStatusOrder(data.invoice);
-                await Developer.updateBalance(developer.developer_id, order[0].total); // Sudah dipotong 10% bussiness model
+                await Developer.updateBalance(developer.developer_id, order[0].total * 0.9); // Sudah dipotong 10% bussiness model
             }
             return res.status(StatusCode.OK).json({
                 invoice: data.invoice,
@@ -213,4 +213,9 @@ export async function fetchUserOrder(req : Request, res : Response) {
     if (user === ' ')  return res.status(StatusCode.NOT_FOUND).send({message:'User not found!'});
 
     return res.status(StatusCode.OK).json(await Order.fetchOrderByCustomer(developer.developer_id, customer_id))
+}
+
+export async function syncOrderStatus(req : Request, res : Response) {
+    console.log(req.body);
+    return res.status(200).send("OK");
 }

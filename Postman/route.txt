@@ -1,6 +1,7 @@
 ==DEVELOPERS==
 -	[POST] /api/developers/register
 -	[POST] /api/developers/login
+-	[POST] /api/developers/withdrawal
 
 ==USERS==
 -	[POST] /api/users

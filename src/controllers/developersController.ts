@@ -14,6 +14,11 @@ const addDeveloperSchema = {
     display_name: Joi.string().required()
 }
 
+const withdrawalSchema = {
+    amount: Joi.number().min(1).required(),
+    account_number: Joi.string().required()
+}
+
 export async function registerDeveloper(req : Request, res : Response) {
     const data:IDeveloper = req.body;
     const validation = await validator(addDeveloperSchema, data)
@@ -51,6 +56,22 @@ export async function loginDeveloper(req : Request, res : Response) {
             res.status(StatusCode.INTERNAL_SERVER).send({message:'Internal server error'});
         }
     }
+}
+
+export async function withdrawalDeveloper(req : Request, res : Response) {
+    const data = req.body;
+
+    const validation = await validator(withdrawalSchema, data);
+    if (validation.message) return res.status(StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") });
+
+    const developer: IDeveloper = await Developer.fetchByUsername(data.developer) as IDeveloper
+    const newDeveloper = await Developer.updateBalance(developer.developer_id, -data.amount);
+    if (!newDeveloper) return res.status(StatusCode.BAD_REQUEST).json({ message: `Insufficient balance`});
+
+    return res.status(StatusCode.OK).json({
+        message: `The balance ${data.amount} will be disbursed at ${data.account_number}, wait for verification`,
+        ...newDeveloper
+    });
 }
 
 async function checkPasswordByEmailOrUsername(

@@ -52,16 +52,36 @@ export default new (class Developer {
         else return null;
     }
 
-    async updateBalance(developer_id: string, order_balance: number) {
+    async updateBalance(developer_id: string, balance: number) {
+        const developer = await prisma.developers.findFirst({
+            where:{
+                developer_id: developer_id
+            }
+        });
+
+        if (developer && (balance * -1) > developer.balance) return null;
+
         await prisma.developers.updateMany({
             where: {
                 developer_id: developer_id
             },
             data: {
                 balance: {
-                    increment: order_balance * 0.9
+                    increment: balance
                 }
             }
         })
+
+        return await prisma.developers.findFirst({
+            where:{
+                developer_id: developer_id
+            },
+            select: {
+                full_name: true,
+                username: true,
+                email: true,
+                balance: true
+            }
+        });
     }
 })();
