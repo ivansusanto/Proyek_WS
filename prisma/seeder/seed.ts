@@ -259,7 +259,7 @@ async function main() {
             cart_id: 'K0002',
             quantity: 5,
             user_id: "U0001",
-            product_id: "P0003"
+            product_id: "P0002"
         },
     })
     await prisma.carts.upsert({
@@ -269,7 +269,7 @@ async function main() {
             cart_id: 'K0003',
             quantity: 1,
             user_id: "U0002",
-            product_id: "P0007"
+            product_id: "P0001"
         },
     })
     await prisma.carts.upsert({
@@ -279,7 +279,7 @@ async function main() {
             cart_id: 'K0004',
             quantity: 4,
             user_id: "U0003",
-            product_id: "P0002"
+            product_id: "P0003"
         },
     })
     await prisma.carts.upsert({
@@ -298,8 +298,8 @@ async function main() {
         create: {
             cart_id: 'K0006',
             quantity: 2,
-            user_id: "U0003",
-            product_id: "P0001"
+            user_id: "U0004",
+            product_id: "P0003"
         },
     })
     await prisma.carts.upsert({
@@ -309,7 +309,7 @@ async function main() {
             cart_id: 'K0007',
             quantity: 1,
             user_id: "U0004",
-            product_id: "P0003"
+            product_id: "P0004"
         },
     })
     await prisma.carts.upsert({
@@ -319,7 +319,7 @@ async function main() {
             cart_id: 'K0008',
             quantity: 3,
             user_id: "U0005",
-            product_id: "P0008"
+            product_id: "P0004"
         },
     })
     await prisma.carts.upsert({
@@ -329,7 +329,7 @@ async function main() {
             cart_id: 'K0009',
             quantity: 6,
             user_id: "U0005",
-            product_id: "P0005"
+            product_id: "P0003"
         },
     })
     await prisma.carts.upsert({
@@ -349,7 +349,7 @@ async function main() {
             cart_id: 'K0011',
             quantity: 3,
             user_id: "U0006",
-            product_id: "P0006"
+            product_id: "P0004"
         },
     })
     await prisma.carts.upsert({
@@ -358,8 +358,8 @@ async function main() {
         create: {
             cart_id: 'K0012',
             quantity: 8,
-            user_id: "U0006",
-            product_id: "P0002"
+            user_id: "U0007",
+            product_id: "P0005"
         },
     })
     await prisma.carts.upsert({
@@ -368,7 +368,7 @@ async function main() {
         create: {
             cart_id: 'K0013',
             quantity: 2,
-            user_id: "U0006",
+            user_id: "U0007",
             product_id: "P0007"
         },
     })
@@ -379,7 +379,7 @@ async function main() {
             cart_id: 'K0014',
             quantity: 4,
             user_id: "U0007",
-            product_id: "P0007"
+            product_id: "P0006"
         },
     })
     await prisma.carts.upsert({
@@ -399,7 +399,7 @@ async function main() {
             cart_id: 'K0016',
             quantity: 4,
             user_id: "U0008",
-            product_id: "P0001"
+            product_id: "P0008"
         },
     })
 
