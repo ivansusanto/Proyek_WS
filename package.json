@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon ./src/main.ts"
+    "dev": "npx nodemon ./src/main.ts",
+    "start": "node ./build/src/main.js",
+    "build": "tsc -p ."
   },
   "engines": {
     "node": "16.x"
