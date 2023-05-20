@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { PrismaClient } from '../../build/prisma/prisma-client';
 import env from "../config/env.config";
-import { StatusCode } from '../utils/statusCode';
+import { StatusCode } from '../utils/xStatusCode';
 import { IDeveloper } from '../models/Developer';
 
 const prisma = new PrismaClient();

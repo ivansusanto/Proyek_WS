@@ -4,7 +4,7 @@ import Developer, { IDeveloper } from '../models/Developer';
 import Joi from 'joi';
 import validator from '../validations/Validator';
 import { developers } from '../../build/prisma/prisma-client';
-import { StatusCode } from '../utils/statusCode';
+import { StatusCode } from '../utils/xStatusCode';
 
 const addUserSchema = {
     customer_id: Joi.string().required()
