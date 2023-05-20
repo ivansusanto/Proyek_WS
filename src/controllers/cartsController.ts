@@ -4,7 +4,7 @@ import Cart from '../models/Cart';
 import User from '../models/User';
 import Product from '../models/Product';
 import Joi from 'joi';
-import { StatusCode } from '../utils/xStatusCode';
+import { StatusCode } from '../utils/StatusCode';
 import Developer, { IDeveloper } from '../models/Developer';
 
 const addCartSchema = {

@@ -4,7 +4,7 @@ import { generateToken } from '../utils/JWT';
 import Developer, { IDeveloper } from '../models/Developer';
 import bcrypt from 'bcrypt'
 import Joi from 'joi';
-import { StatusCode } from '../utils/xStatusCode';
+import { StatusCode } from '../utils/StatusCode';
 
 const addDeveloperSchema = {
     username: Joi.string().min(2).max(255).required(),
