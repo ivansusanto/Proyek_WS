@@ -42,7 +42,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.syncOrderStatus = exports.fetchUserOrder = exports.fetchOrderById = exports.fetchOrders = exports.paymentOrder = exports.checkoutOrder = void 0;
 var joi_1 = __importDefault(require("joi"));
 var Validator_1 = __importDefault(require("../validations/Validator"));
-var statusCode_1 = require("../helpers/statusCode");
+var StatusCode_1 = require("../utils/StatusCode");
 var User_1 = __importDefault(require("../models/User"));
 var Product_1 = __importDefault(require("../models/Product"));
 var Cart_1 = __importDefault(require("../models/Cart"));
@@ -70,7 +70,7 @@ var paymentSchema = {
 var SERVER_KEY = (0, env_config_1.default)('MIDTRANS_SERVER_KEY');
 function checkoutOrder(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, validation, developer, user, listCheckout, qty, total, i, product, cart, i, cart, Invoice_1, order, options, error_1;
+        var data, validation, developer, user, listCheckout, qty, total, i, product, cart, Invoice, order, options, i, cart;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -80,45 +80,42 @@ function checkoutOrder(req, res) {
                 case 1:
                     validation = _a.sent();
                     if (validation.message)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
                     data.bank = data.bank.toLowerCase();
                     if (data.bank != "permata" && data.bank != "bca" && data.bank != "bni" && data.bank != "bri") {
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({
                                 message: "Invalid bank name",
                             })];
                     }
                     return [4 /*yield*/, Developer_1.default.fetchByUsername(data.developer)];
                 case 2:
                     developer = _a.sent();
-                    _a.label = 3;
-                case 3:
-                    _a.trys.push([3, 18, , 19]);
                     return [4 /*yield*/, User_1.default.checkCustomerID(data.customer_id, developer.developer_id)];
-                case 4:
+                case 3:
                     user = _a.sent();
                     if (user == " ")
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: "User id is not registered" })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: "User id is not registered" })];
                     listCheckout = [];
                     qty = [];
                     total = 0;
                     i = 0;
-                    _a.label = 5;
-                case 5:
-                    if (!(i < data.products_id.length)) return [3 /*break*/, 9];
+                    _a.label = 4;
+                case 4:
+                    if (!(i < data.products_id.length)) return [3 /*break*/, 8];
                     return [4 /*yield*/, Product_1.default.fetchById(req.body.developer, data.products_id[i])];
-                case 6:
+                case 5:
                     product = _a.sent();
                     if (!product)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: "".concat(data.products_id[i], " is not registered") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: "".concat(data.products_id[i], " is not registered") })];
                     if (product.status == 0)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: "".concat(product.name, " is not available") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: "".concat(product.name, " is not available") })];
                     return [4 /*yield*/, Cart_1.default.checkDuplicateEntry(user.user_id, data.products_id[i])];
-                case 7:
+                case 6:
                     cart = _a.sent();
                     if (!cart)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: "".concat(product.name, " is not in user's cart") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: "".concat(product.name, " is not in user's cart") })];
                     if (cart.quantity > product.stock)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: "Insufficient Stock on product ".concat(product.name, ". Checkout cancelled") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: "Insufficient Stock on product ".concat(product.name, ". Checkout cancelled") })];
                     listCheckout[i] = {
                         name: product.name,
                         quantity: cart.quantity,
@@ -126,40 +123,15 @@ function checkoutOrder(req, res) {
                     };
                     qty.push(cart.quantity);
                     total += cart.quantity * product.price;
-                    _a.label = 8;
-                case 8:
+                    _a.label = 7;
+                case 7:
                     i++;
-                    return [3 /*break*/, 5];
+                    return [3 /*break*/, 4];
+                case 8: return [4 /*yield*/, Order_1.default.create(user.user_id, total, data.products_id, qty, data.bank)];
                 case 9:
-                    i = 0;
-                    _a.label = 10;
+                    Invoice = _a.sent();
+                    return [4 /*yield*/, Order_1.default.getOrderByInvoice(Invoice)];
                 case 10:
-                    if (!(i < data.products_id.length)) return [3 /*break*/, 15];
-                    return [4 /*yield*/, Cart_1.default.checkDuplicateEntry(user.user_id, data.products_id[i])];
-                case 11:
-                    cart = _a.sent();
-                    if (!cart) return [3 /*break*/, 14];
-                    // SUBTRACT STOCK
-                    return [4 /*yield*/, Product_1.default.subtractStock(data.products_id[i], cart.quantity)
-                        //DELETE CART
-                    ];
-                case 12:
-                    // SUBTRACT STOCK
-                    _a.sent();
-                    //DELETE CART
-                    return [4 /*yield*/, Cart_1.default.delete(user.user_id, data.products_id[i])];
-                case 13:
-                    //DELETE CART
-                    _a.sent();
-                    _a.label = 14;
-                case 14:
-                    i++;
-                    return [3 /*break*/, 10];
-                case 15: return [4 /*yield*/, Order_1.default.create(user.user_id, total, data.products_id, qty, data.bank)];
-                case 16:
-                    Invoice_1 = _a.sent();
-                    return [4 /*yield*/, Order_1.default.getOrderByInvoice(Invoice_1)];
-                case 17:
                     order = _a.sent();
                     options = {
                         method: 'POST',
@@ -172,7 +144,7 @@ function checkoutOrder(req, res) {
                         data: {
                             payment_type: 'bank_transfer',
                             transaction_details: {
-                                order_id: Invoice_1,
+                                order_id: Invoice,
                                 gross_amount: order === null || order === void 0 ? void 0 : order.total
                             },
                             bank_transfer: { bank: data.bank },
@@ -195,27 +167,52 @@ function checkoutOrder(req, res) {
                                     else {
                                         va_number = response.data.va_numbers[0].va_number;
                                     }
-                                    return [4 /*yield*/, Order_1.default.setVANumber(Invoice_1, va_number)];
+                                    return [4 /*yield*/, Order_1.default.setVANumber(Invoice, va_number)];
                                 case 1:
                                     _a.sent();
-                                    return [2 /*return*/, res.status(statusCode_1.StatusCode.CREATED).json({
-                                            invoice: Invoice_1,
+                                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.CREATED).json({
+                                            invoice: Invoice,
                                             bank: data.bank,
                                             va_number: va_number,
                                             transaction_status: "pending"
                                         })];
                             }
                         });
-                    }); }).catch(function (err) {
-                        return res.status(statusCode_1.StatusCode.INTERNAL_SERVER).json(err.message);
-                    });
-                    return [3 /*break*/, 19];
-                case 18:
-                    error_1 = _a.sent();
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.INTERNAL_SERVER).json({
-                            message: "Internal server error"
-                        })];
-                case 19: return [2 /*return*/];
+                    }); }).catch(function (err) { return __awaiter(_this, void 0, void 0, function () {
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0: return [4 /*yield*/, Order_1.default.delete(Invoice)];
+                                case 1:
+                                    _a.sent();
+                                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.INTERNAL_SERVER).json(err.message)];
+                            }
+                        });
+                    }); });
+                    i = 0;
+                    _a.label = 11;
+                case 11:
+                    if (!(i < data.products_id.length)) return [3 /*break*/, 16];
+                    return [4 /*yield*/, Cart_1.default.checkDuplicateEntry(user.user_id, data.products_id[i])];
+                case 12:
+                    cart = _a.sent();
+                    if (!cart) return [3 /*break*/, 15];
+                    // SUBTRACT STOCK
+                    return [4 /*yield*/, Product_1.default.subtractStock(data.products_id[i], cart.quantity)
+                        //DELETE CART
+                    ];
+                case 13:
+                    // SUBTRACT STOCK
+                    _a.sent();
+                    //DELETE CART
+                    return [4 /*yield*/, Cart_1.default.delete(user.user_id, data.products_id[i])];
+                case 14:
+                    //DELETE CART
+                    _a.sent();
+                    _a.label = 15;
+                case 15:
+                    i++;
+                    return [3 /*break*/, 11];
+                case 16: return [2 /*return*/];
             }
         });
     });
@@ -223,7 +220,7 @@ function checkoutOrder(req, res) {
 exports.checkoutOrder = checkoutOrder;
 function paymentOrder(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, validation, developer_1, order_1, options, error_2;
+        var data, validation, developer, order, options, error_1;
         var _this = this;
         return __generator(this, function (_a) {
             switch (_a.label) {
@@ -233,18 +230,18 @@ function paymentOrder(req, res) {
                 case 1:
                     validation = _a.sent();
                     if (validation.message)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
                     _a.label = 2;
                 case 2:
                     _a.trys.push([2, 5, , 6]);
                     return [4 /*yield*/, Developer_1.default.fetchByUsername(data.developer)];
                 case 3:
-                    developer_1 = _a.sent();
-                    return [4 /*yield*/, Order_1.default.fetchOrderByDeveloperIdInvoice(developer_1.developer_id, data.invoice)];
+                    developer = _a.sent();
+                    return [4 /*yield*/, Order_1.default.fetchOrderByDeveloperIdInvoice(developer.developer_id, data.invoice)];
                 case 4:
-                    order_1 = _a.sent();
-                    if (order_1.length == 0) {
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.NOT_FOUND).json({ message: "Invalid invoice number" })];
+                    order = _a.sent();
+                    if (order.length == 0) {
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).json({ message: "Invalid invoice number" })];
                     }
                     options = {
                         method: 'GET',
@@ -257,29 +254,18 @@ function paymentOrder(req, res) {
                     };
                     axios_1.default.request(options).then(function (response) { return __awaiter(_this, void 0, void 0, function () {
                         return __generator(this, function (_a) {
-                            switch (_a.label) {
-                                case 0:
-                                    if (!(response.data.transaction_status === 'settlement' && order_1[0].status == 3)) return [3 /*break*/, 3];
-                                    return [4 /*yield*/, Order_1.default.changeStatusOrder(data.invoice)];
-                                case 1:
-                                    _a.sent();
-                                    return [4 /*yield*/, Developer_1.default.updateBalance(developer_1.developer_id, order_1[0].total * 0.9)];
-                                case 2:
-                                    _a.sent(); // Sudah dipotong 10% bussiness model
-                                    _a.label = 3;
-                                case 3: return [2 /*return*/, res.status(statusCode_1.StatusCode.OK).json({
-                                        invoice: data.invoice,
-                                        transaction_status: response.data.transaction_status
-                                    })];
-                            }
+                            return [2 /*return*/, res.status(StatusCode_1.StatusCode.OK).json({
+                                    invoice: data.invoice,
+                                    transaction_status: response.data.transaction_status
+                                })];
                         });
                     }); }).catch(function (err) {
-                        return res.status(statusCode_1.StatusCode.INTERNAL_SERVER).json(err.message);
+                        return res.status(StatusCode_1.StatusCode.INTERNAL_SERVER).json(err.message);
                     });
                     return [3 /*break*/, 6];
                 case 5:
-                    error_2 = _a.sent();
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.INTERNAL_SERVER).json({
+                    error_1 = _a.sent();
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.INTERNAL_SERVER).json({
                             message: "Internal Server Error"
                         })];
                 case 6: return [2 /*return*/];
@@ -301,7 +287,7 @@ function fetchOrders(req, res) {
                     return [4 /*yield*/, Order_1.default.fetchAllOrderByDeveloperId(developer.developer_id)];
                 case 2:
                     order = _a.sent();
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.OK).json(order)];
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.OK).json(order)];
             }
         });
     });
@@ -322,8 +308,8 @@ function fetchOrderById(req, res) {
                 case 2:
                     detailOrder = _a.sent();
                     if (detailOrder.length == 0)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.NOT_FOUND).json({ message: "Invalid invoice number" })];
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.OK).json(detailOrder)];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).json({ message: "Invalid invoice number" })];
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.OK).json(detailOrder)];
             }
         });
     });
@@ -344,8 +330,8 @@ function fetchUserOrder(req, res) {
                 case 2:
                     user = _c.sent();
                     if (user === ' ')
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.NOT_FOUND).send({ message: 'User not found!' })];
-                    _b = (_a = res.status(statusCode_1.StatusCode.OK)).json;
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).send({ message: 'User not found!' })];
+                    _b = (_a = res.status(StatusCode_1.StatusCode.OK)).json;
                     return [4 /*yield*/, Order_1.default.fetchOrderByCustomer(developer.developer_id, customer_id)];
                 case 3: return [2 /*return*/, _b.apply(_a, [_c.sent()])];
             }
@@ -355,10 +341,38 @@ function fetchUserOrder(req, res) {
 exports.fetchUserOrder = fetchUserOrder;
 function syncOrderStatus(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            console.log(req.body);
-            return [2 /*return*/, res.status(200).send("OK")];
+        var _a, transaction_status, order_id, status, order, developer;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _a = req.body, transaction_status = _a.transaction_status, order_id = _a.order_id;
+                    if (!transaction_status || !order_id)
+                        return [2 /*return*/, res.status(403).json({ message: "Forbidden" })];
+                    status = transaction_status === 'settlement' ? 1 : transaction_status === 'pending' ? 3 : 2;
+                    return [4 /*yield*/, Order_1.default.getOrderByInvoice(order_id)];
+                case 1:
+                    order = _b.sent();
+                    if (!(order.status === 3 && status === 1)) return [3 /*break*/, 4];
+                    return [4 /*yield*/, Developer_1.default.fetchByUsername(req.body.developer)];
+                case 2:
+                    developer = _b.sent();
+                    return [4 /*yield*/, Developer_1.default.updateBalance(developer.developer_id, order.total * 0.9)];
+                case 3:
+                    _b.sent(); // bussiness moidel 10% tax
+                    status = 0;
+                    _b.label = 4;
+                case 4: return [4 /*yield*/, Order_1.default.changeStatusOrder(order_id, status)];
+                case 5:
+                    _b.sent();
+                    return [2 /*return*/, res.status(200).json({ message: "Ok" })];
+            }
         });
     });
 }
 exports.syncOrderStatus = syncOrderStatus;
+/*
+    {
+        transaction_status: 'settlement',
+        order_id: 'INV190520230004'
+    }
+*/ 

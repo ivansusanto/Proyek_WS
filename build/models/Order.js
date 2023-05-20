@@ -160,7 +160,7 @@ exports.default = new (/** @class */ (function () {
             });
         });
     };
-    Order.prototype.changeStatusOrder = function (invoice_number) {
+    Order.prototype.changeStatusOrder = function (invoice_number, status) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -169,7 +169,7 @@ exports.default = new (/** @class */ (function () {
                                 invoice: invoice_number
                             },
                             data: {
-                                status: 1
+                                status: status
                             }
                         })];
                     case 1:
@@ -298,6 +298,26 @@ exports.default = new (/** @class */ (function () {
                             }
                         })];
                     case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    Order.prototype.delete = function (invoice) {
+        return __awaiter(this, void 0, void 0, function () {
+            var order;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getOrderByInvoice(invoice)];
+                    case 1:
+                        order = _a.sent();
+                        return [4 /*yield*/, prisma.orders.delete({
+                                where: {
+                                    order_id: order.order_id
+                                }
+                            })];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
                 }
             });
         });

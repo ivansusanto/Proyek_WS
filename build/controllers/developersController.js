@@ -56,7 +56,7 @@ var JWT_1 = require("../utils/JWT");
 var Developer_1 = __importDefault(require("../models/Developer"));
 var bcrypt_1 = __importDefault(require("bcrypt"));
 var joi_1 = __importDefault(require("joi"));
-var statusCode_1 = require("../helpers/statusCode");
+var StatusCode_1 = require("../utils/StatusCode");
 var addDeveloperSchema = {
     username: joi_1.default.string().min(2).max(255).required(),
     password: joi_1.default.string().required(),
@@ -79,7 +79,7 @@ function registerDeveloper(req, res) {
                 case 1:
                     validation = _a.sent();
                     if (validation.message)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
                     token = (0, JWT_1.generateToken)({
                         email: data.email || undefined,
                         username: data.username || undefined,
@@ -87,7 +87,7 @@ function registerDeveloper(req, res) {
                     return [4 /*yield*/, Developer_1.default.create(data)];
                 case 2:
                     _a.sent();
-                    res.status(statusCode_1.StatusCode.CREATED).send({ token: token });
+                    res.status(StatusCode_1.StatusCode.CREATED).send({ token: token });
                     return [2 /*return*/];
             }
         });
@@ -112,19 +112,19 @@ function loginDeveloper(req, res) {
                             email: email || undefined,
                             username: username || undefined,
                         }, '1h');
-                        res.status(statusCode_1.StatusCode.OK).send({ token: token });
+                        res.status(StatusCode_1.StatusCode.OK).send({ token: token });
                     }
                     else {
-                        res.status(statusCode_1.StatusCode.UNAUTHORIZED).send({ message: 'Invalid password' });
+                        res.status(StatusCode_1.StatusCode.UNAUTHORIZED).send({ message: 'Invalid password' });
                     }
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _b.sent();
                     if (error_1.message === 'Developer not found') {
-                        res.status(statusCode_1.StatusCode.BAD_REQUEST).send({ message: 'Developer not found' });
+                        res.status(StatusCode_1.StatusCode.BAD_REQUEST).send({ message: 'Developer not found' });
                     }
                     else {
-                        res.status(statusCode_1.StatusCode.INTERNAL_SERVER).send({ message: 'Internal server error' });
+                        res.status(StatusCode_1.StatusCode.INTERNAL_SERVER).send({ message: 'Internal server error' });
                     }
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
@@ -144,7 +144,7 @@ function withdrawalDeveloper(req, res) {
                 case 1:
                     validation = _a.sent();
                     if (validation.message)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
                     return [4 /*yield*/, Developer_1.default.fetchByUsername(data.developer)];
                 case 2:
                     developer = _a.sent();
@@ -152,8 +152,8 @@ function withdrawalDeveloper(req, res) {
                 case 3:
                     newDeveloper = _a.sent();
                     if (!newDeveloper)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: "Insufficient balance" })];
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.OK).json(__assign({ message: "The balance ".concat(data.amount, " will be disbursed at ").concat(data.account_number, ", wait for verification") }, newDeveloper))];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: "Insufficient balance" })];
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.OK).json(__assign({ message: "The balance ".concat(data.amount, " will be disbursed at ").concat(data.account_number, ", wait for verification") }, newDeveloper))];
             }
         });
     });

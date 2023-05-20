@@ -56,7 +56,7 @@ var Cart_1 = __importDefault(require("../models/Cart"));
 var User_1 = __importDefault(require("../models/User"));
 var Product_1 = __importDefault(require("../models/Product"));
 var joi_1 = __importDefault(require("joi"));
-var statusCode_1 = require("../helpers/statusCode");
+var StatusCode_1 = require("../utils/StatusCode");
 var Developer_1 = __importDefault(require("../models/Developer"));
 var addCartSchema = {
     customer_id: joi_1.default.string().required(),
@@ -83,7 +83,7 @@ function addCart(req, res) {
                 case 1:
                     validation = _a.sent();
                     if (validation.message)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
                     tempDeveloper = req.body.developer;
                     return [4 /*yield*/, Developer_1.default.fetchByUsername(tempDeveloper)];
                 case 2:
@@ -92,7 +92,7 @@ function addCart(req, res) {
                 case 3:
                     user = _a.sent();
                     if (user === ' ')
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.NOT_FOUND).send({ message: "User not found!" })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).send({ message: "User not found!" })];
                     return [4 /*yield*/, Cart_1.default.checkDuplicateEntry(user.user_id, data.product_id)];
                 case 4:
                     check = _a.sent();
@@ -108,7 +108,7 @@ function addCart(req, res) {
                     return [4 /*yield*/, Cart_1.default.update(user.user_id, data.product_id, newQuantity)];
                 case 7:
                     updateCart_1 = _a.sent();
-                    res.status(statusCode_1.StatusCode.OK).send({
+                    res.status(StatusCode_1.StatusCode.OK).send({
                         cart_id: updateCart_1.cart_id,
                         product_name: product === null || product === void 0 ? void 0 : product.name,
                         quantity: newQuantity
@@ -117,7 +117,7 @@ function addCart(req, res) {
                 case 8: return [4 /*yield*/, Cart_1.default.create(data, user.user_id, data.product_id)];
                 case 9:
                     newCart = _a.sent();
-                    res.status(statusCode_1.StatusCode.CREATED).send({
+                    res.status(StatusCode_1.StatusCode.CREATED).send({
                         cart_id: newCart.cart_id,
                         product_name: product === null || product === void 0 ? void 0 : product.name,
                         quantity: data.quantity
@@ -125,7 +125,7 @@ function addCart(req, res) {
                     _a.label = 10;
                 case 10: return [3 /*break*/, 12];
                 case 11:
-                    res.status(statusCode_1.StatusCode.FORBIDDEN).send({ message: "".concat(data.product_id, " is not your product!") });
+                    res.status(StatusCode_1.StatusCode.FORBIDDEN).send({ message: "".concat(data.product_id, " is not your product!") });
                     _a.label = 12;
                 case 12: return [2 /*return*/];
             }
@@ -145,8 +145,8 @@ function fetchCart(req, res) {
                 case 1:
                     user_cart = _a.sent();
                     if (user_cart === ' ')
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.NOT_FOUND).send({ message: "Cart not found" })];
-                    res.status(statusCode_1.StatusCode.OK).send(user_cart);
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).send({ message: "Cart not found" })];
+                    res.status(StatusCode_1.StatusCode.OK).send(user_cart);
                     return [2 /*return*/];
             }
         });
@@ -164,7 +164,7 @@ function updateCart(req, res) {
                 case 1:
                     validation = _a.sent();
                     if (validation.message)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
                     tempDeveloper = req.body.developer;
                     return [4 /*yield*/, Developer_1.default.fetchByUsername(tempDeveloper)];
                 case 2:
@@ -173,7 +173,7 @@ function updateCart(req, res) {
                 case 3:
                     user = _a.sent();
                     if (user === ' ')
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.NOT_FOUND).send({ message: 'User not found!' })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).send({ message: 'User not found!' })];
                     return [4 /*yield*/, Cart_1.default.checkDuplicateEntry(user.user_id, data.product_id)];
                 case 4:
                     check = _a.sent();
@@ -189,15 +189,15 @@ function updateCart(req, res) {
                     return [4 /*yield*/, Cart_1.default.update(user.user_id, data.product_id, newQuantity)];
                 case 7:
                     updateCart_2 = _a.sent();
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.OK).send({
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.OK).send({
                             cart_id: updateCart_2.cart_id,
                             product_name: product === null || product === void 0 ? void 0 : product.name,
                             quantity: newQuantity
                         })];
-                case 8: return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).send({ message: "".concat(product === null || product === void 0 ? void 0 : product.name, " is not in user's cart!") })];
+                case 8: return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).send({ message: "".concat(product === null || product === void 0 ? void 0 : product.name, " is not in user's cart!") })];
                 case 9: return [3 /*break*/, 11];
                 case 10:
-                    res.status(statusCode_1.StatusCode.FORBIDDEN).send({ message: "".concat(data.product_id, " is not your product!") });
+                    res.status(StatusCode_1.StatusCode.FORBIDDEN).send({ message: "".concat(data.product_id, " is not your product!") });
                     _a.label = 11;
                 case 11: return [2 /*return*/];
             }
@@ -217,7 +217,7 @@ function deleteCart(req, res) {
                 case 1:
                     validation = _b.sent();
                     if (validation.message)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
                     tempDeveloper = req.body.developer;
                     return [4 /*yield*/, Developer_1.default.fetchByUsername(tempDeveloper)];
                 case 2:
@@ -226,7 +226,7 @@ function deleteCart(req, res) {
                 case 3:
                     user = _b.sent();
                     if (user === ' ')
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.NOT_FOUND).send({ message: 'User not found!' })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).send({ message: 'User not found!' })];
                     return [4 /*yield*/, Cart_1.default.checkDuplicateEntry(user.user_id, product_id)];
                 case 4:
                     check = _b.sent();
@@ -241,15 +241,15 @@ function deleteCart(req, res) {
                     return [4 /*yield*/, Cart_1.default.delete(user.user_id, product_id)];
                 case 7:
                     _b.sent();
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.OK).send({
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.OK).send({
                             cart_id: check.cart_id,
                             product_name: product === null || product === void 0 ? void 0 : product.name,
                             message: "Product has been removed from cart"
                         })];
-                case 8: return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).send({ message: "".concat(product === null || product === void 0 ? void 0 : product.name, " is not in user's cart!") })];
+                case 8: return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).send({ message: "".concat(product === null || product === void 0 ? void 0 : product.name, " is not in user's cart!") })];
                 case 9: return [3 /*break*/, 11];
                 case 10:
-                    res.status(statusCode_1.StatusCode.FORBIDDEN).send({ message: "".concat(data.product_id, " is not your product!") });
+                    res.status(StatusCode_1.StatusCode.FORBIDDEN).send({ message: "".concat(data.product_id, " is not your product!") });
                     _b.label = 11;
                 case 11: return [2 /*return*/];
             }

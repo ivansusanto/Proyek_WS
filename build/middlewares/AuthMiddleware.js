@@ -43,7 +43,7 @@ exports.AuthMiddleware = void 0;
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var prisma_client_1 = require("../../build/prisma/prisma-client");
 var env_config_1 = __importDefault(require("../config/env.config"));
-var statusCode_1 = require("../helpers/statusCode");
+var StatusCode_1 = require("../utils/StatusCode");
 var prisma = new prisma_client_1.PrismaClient();
 var AuthMiddleware = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
     var token, decodedToken, username, email, developer, err_1;
@@ -53,7 +53,7 @@ var AuthMiddleware = function (req, res, next) { return __awaiter(void 0, void 0
             case 0:
                 token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(' ')[1];
                 if (!token) {
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.UNAUTHORIZED).json({ message: 'Unauthorized' })];
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.UNAUTHORIZED).json({ message: 'Unauthorized' })];
                 }
                 _b.label = 1;
             case 1:
@@ -76,12 +76,12 @@ var AuthMiddleware = function (req, res, next) { return __awaiter(void 0, void 0
                     next();
                 }
                 else {
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.NOT_FOUND).json({ message: 'Developer Not Found' })];
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).json({ message: 'Developer Not Found' })];
                 }
                 return [3 /*break*/, 4];
             case 3:
                 err_1 = _b.sent();
-                return [2 /*return*/, res.status(statusCode_1.StatusCode.UNAUTHORIZED).json({ message: 'Invalid Token' })];
+                return [2 /*return*/, res.status(StatusCode_1.StatusCode.UNAUTHORIZED).json({ message: 'Invalid Token' })];
             case 4: return [2 /*return*/];
         }
     });

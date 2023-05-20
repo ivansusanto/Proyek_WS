@@ -57,7 +57,7 @@ var Developer_1 = __importDefault(require("../models/Developer"));
 var env_config_1 = __importDefault(require("../config/env.config"));
 var joi_1 = __importDefault(require("joi"));
 var fs_1 = __importDefault(require("fs"));
-var statusCode_1 = require("../helpers/statusCode");
+var StatusCode_1 = require("../utils/StatusCode");
 var addProductSchema = {
     name: joi_1.default.string().required(),
     description: joi_1.default.string().required(),
@@ -93,7 +93,7 @@ function addProduct(req, res) {
                 case 3:
                     newProduct = _a.sent();
                     newProduct.image = (0, env_config_1.default)('PREFIX_URL') + '/api/assets/' + newProduct.image;
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.CREATED).json({
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.CREATED).json({
                             message: 'Success add product',
                             data: newProduct
                         })];
@@ -114,7 +114,7 @@ function fetchProduct(req, res) {
                         element = productResult_1[_i];
                         element.image = (0, env_config_1.default)('PREFIX_URL') + '/api/assets/' + element.image;
                     }
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.OK).json({
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.OK).json({
                             message: 'OK',
                             data: productResult
                         })];
@@ -132,9 +132,9 @@ function fetchProductById(req, res) {
                 case 1:
                     productResult = _a.sent();
                     if (!productResult)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.FORBIDDEN).json({ message: 'Forbidden' })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.FORBIDDEN).json({ message: 'Forbidden' })];
                     productResult.image = (0, env_config_1.default)('PREFIX_URL') + '/api/assets/' + productResult.image;
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.OK).json({
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.OK).json({
                             message: 'OK',
                             data: productResult
                         })];
@@ -154,7 +154,7 @@ function updateProduct(req, res) {
                 case 1:
                     validation = _a.sent();
                     if (validation.message)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
                     delete req.body.developer;
                     if (data.price)
                         req.body.price = parseInt(data.price);
@@ -171,9 +171,9 @@ function updateProduct(req, res) {
                 case 3:
                     updatedProduct = _a.sent();
                     if (!updatedProduct)
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.FORBIDDEN).json({ message: 'Forbidden' })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.FORBIDDEN).json({ message: 'Forbidden' })];
                     updatedProduct.image = (0, env_config_1.default)('PREFIX_URL') + '/api/assets/' + updatedProduct.image;
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.OK).json({
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.OK).json({
                             message: 'Success update product',
                             data: updatedProduct
                         })];

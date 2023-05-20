@@ -44,7 +44,7 @@ var User_1 = __importDefault(require("../models/User"));
 var Developer_1 = __importDefault(require("../models/Developer"));
 var joi_1 = __importDefault(require("joi"));
 var Validator_1 = __importDefault(require("../validations/Validator"));
-var statusCode_1 = require("../helpers/statusCode");
+var StatusCode_1 = require("../utils/StatusCode");
 var addUserSchema = {
     customer_id: joi_1.default.string().required()
 };
@@ -70,25 +70,25 @@ function addUser(req, res) {
                 case 3:
                     developer = _a.sent();
                     if (!developer) {
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.INTERNAL_SERVER).json({
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.INTERNAL_SERVER).json({
                                 message: "Internal Server Error"
                             })];
                     }
                     return [4 /*yield*/, User_1.default.checkCustomerID(data.customer_id, developer.developer_id)];
                 case 4:
                     if ((_a.sent()) != " ") {
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({
                                 message: "customer_id already registered"
                             })];
                     }
                     User_1.default.create(data.customer_id, developer.developer_id);
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.CREATED).json({
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.CREATED).json({
                             customer_id: data.customer_id,
                             status: 1
                         })];
                 case 5:
                     error_1 = _a.sent();
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.INTERNAL_SERVER).json({
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.INTERNAL_SERVER).json({
                             message: "Internal server error: "
                         })];
                 case 6: return [2 /*return*/];
@@ -113,14 +113,14 @@ function updateStatus(req, res) {
                 case 2:
                     developer = _a.sent();
                     if (!developer) {
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.INTERNAL_SERVER).json({
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.INTERNAL_SERVER).json({
                                 message: "Internal Server Error"
                             })];
                     }
                     return [4 /*yield*/, User_1.default.checkCustomerID(customer_id, developer.developer_id)];
                 case 3:
                     if ((_a.sent()) == " ") {
-                        return [2 /*return*/, res.status(statusCode_1.StatusCode.BAD_REQUEST).json({
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({
                                 message: "User id is not registered"
                             })];
                     }
@@ -133,13 +133,13 @@ function updateStatus(req, res) {
                     return [4 /*yield*/, User_1.default.update(customer_id, developer.developer_id, status_1)];
                 case 5:
                     _a.sent();
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.CREATED).json({
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.CREATED).json({
                             customer_id: customer_id,
                             status: status_1
                         })];
                 case 6:
                     error_2 = _a.sent();
-                    return [2 /*return*/, res.status(statusCode_1.StatusCode.INTERNAL_SERVER).json({
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.INTERNAL_SERVER).json({
                             message: "Internal server error: "
                         })];
                 case 7: return [2 /*return*/];
