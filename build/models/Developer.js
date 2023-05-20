@@ -76,7 +76,8 @@ exports.default = new (/** @class */ (function () {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, prisma.developers.findFirst({
                             where: {
-                                username: username
+                                username: username,
+                                status: 1
                             }
                         })];
                     case 1:
@@ -101,6 +102,7 @@ exports.default = new (/** @class */ (function () {
                                     { email: email },
                                     { username: username },
                                 ],
+                                status: 1
                             },
                         })];
                     case 1:

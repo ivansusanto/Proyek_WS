@@ -64,9 +64,10 @@ var AuthMiddleware = function (req, res, next) { return __awaiter(void 0, void 0
                 return [4 /*yield*/, prisma.developers.findFirst({
                         where: {
                             OR: [
-                                { email: email },
                                 { username: username },
-                            ]
+                                { email: email }
+                            ],
+                            status: 1
                         }
                     })];
             case 2:

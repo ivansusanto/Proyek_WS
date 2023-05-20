@@ -17,6 +17,7 @@ export interface IOrder {
     total: number;
     status: number;
     user_id: string;
+    va_number?: string;
 }
 
 export default new(class Order{
@@ -85,7 +86,7 @@ export default new(class Order{
             if(dateString == orderDate) count = parseInt(order.invoice.substring(11)) + 1
             else count = 1
         }
-
+        
         const Invoice: string = "INV" + dateString + count.toString().padStart(4, "0")
 
         return Invoice
@@ -215,6 +216,11 @@ export default new(class Order{
 
     async delete(invoice: string) {
         const order = await this.getOrderByInvoice(invoice);
+        await prisma.order_items.deleteMany({
+            where: {
+                order_id: order.order_id
+            }
+        });
         await prisma.orders.delete({
             where: {
                 order_id: order.order_id

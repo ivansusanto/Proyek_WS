@@ -70,7 +70,7 @@ var withdrawalSchema = {
 };
 function registerDeveloper(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var data, validation, token;
+        var data, validation, developer, token;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -80,12 +80,17 @@ function registerDeveloper(req, res) {
                     validation = _a.sent();
                     if (validation.message)
                         return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
+                    return [4 /*yield*/, Developer_1.default.fetchByUsernameOrEmail(data.username, data.email)];
+                case 2:
+                    developer = _a.sent();
+                    if (developer)
+                        return [2 /*return*/, res.status(400).json({ message: "User is already registered" })];
                     token = (0, JWT_1.generateToken)({
                         email: data.email || undefined,
                         username: data.username || undefined,
                     }, '1h');
                     return [4 /*yield*/, Developer_1.default.create(data)];
-                case 2:
+                case 3:
                     _a.sent();
                     res.status(StatusCode_1.StatusCode.CREATED).send({ token: token });
                     return [2 /*return*/];

@@ -110,7 +110,7 @@ export default new (class Cart {
                 }
             });
         } else {
-            return ' '
+            return 'x'
         }
     }
 

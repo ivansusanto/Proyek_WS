@@ -99,6 +99,8 @@ function addCart(req, res) {
                     return [4 /*yield*/, Product_1.default.fetchById(developer.username, data.product_id)];
                 case 5:
                     product = _a.sent();
+                    if (!product || product.status === 0)
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: "Product inactive or not registered" })];
                     return [4 /*yield*/, Cart_1.default.checkBefore(data.product_id, developer.developer_id)];
                 case 6:
                     checkOwner = _a.sent();
@@ -144,8 +146,11 @@ function fetchCart(req, res) {
                     return [4 /*yield*/, Cart_1.default.getUserCart(customer_id, developer)];
                 case 1:
                     user_cart = _a.sent();
-                    if (user_cart === ' ')
-                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).send({ message: "Cart not found" })];
+                    if (user_cart === 'x')
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).send({ message: "User not found" })
+                            // if (!user_cart) return res.status(StatusCode.NOT_FOUND).send({ message: `User not found` })
+                        ];
+                    // if (!user_cart) return res.status(StatusCode.NOT_FOUND).send({ message: `User not found` })
                     res.status(StatusCode_1.StatusCode.OK).send(user_cart);
                     return [2 /*return*/];
             }
@@ -194,7 +199,7 @@ function updateCart(req, res) {
                             product_name: product === null || product === void 0 ? void 0 : product.name,
                             quantity: newQuantity
                         })];
-                case 8: return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).send({ message: "".concat(product === null || product === void 0 ? void 0 : product.name, " is not in user's cart!") })];
+                case 8: return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).send({ message: "".concat(data.product_id, " is not in user's cart!") })];
                 case 9: return [3 /*break*/, 11];
                 case 10:
                     res.status(StatusCode_1.StatusCode.FORBIDDEN).send({ message: "".concat(data.product_id, " is not your product!") });
@@ -207,12 +212,11 @@ function updateCart(req, res) {
 exports.updateCart = updateCart;
 function deleteCart(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, product_id, customer_id, data, validation, tempDeveloper, developer, user, check, product, checkOwner;
+        var _a, product_id, customer_id, validation, tempDeveloper, developer, user, check, product, checkOwner;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
                     _a = req.params, product_id = _a.product_id, customer_id = _a.customer_id;
-                    data = req.body;
                     return [4 /*yield*/, (0, Validator_1.default)(deleteCartSchema, { product_id: product_id, customer_id: customer_id })];
                 case 1:
                     validation = _b.sent();
@@ -246,10 +250,10 @@ function deleteCart(req, res) {
                             product_name: product === null || product === void 0 ? void 0 : product.name,
                             message: "Product has been removed from cart"
                         })];
-                case 8: return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).send({ message: "".concat(product === null || product === void 0 ? void 0 : product.name, " is not in user's cart!") })];
+                case 8: return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).send({ message: "".concat(product_id, " is not in user's cart!") })];
                 case 9: return [3 /*break*/, 11];
                 case 10:
-                    res.status(StatusCode_1.StatusCode.FORBIDDEN).send({ message: "".concat(data.product_id, " is not your product!") });
+                    res.status(StatusCode_1.StatusCode.FORBIDDEN).send({ message: "".concat(product_id, " is not your product!") });
                     _b.label = 11;
                 case 11: return [2 /*return*/];
             }

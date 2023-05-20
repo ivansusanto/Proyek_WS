@@ -49,7 +49,7 @@ var addUserSchema = {
     customer_id: joi_1.default.string().required()
 };
 var updateUserSchema = {
-    status: joi_1.default.number().required()
+    status: joi_1.default.number().required().min(0).max(1)
 };
 function addUser(req, res) {
     return __awaiter(this, void 0, void 0, function () {

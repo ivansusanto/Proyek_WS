@@ -165,13 +165,18 @@ function updateProduct(req, res) {
                     return [4 /*yield*/, Product_1.default.fetchById(data.developer, data.product_id)];
                 case 2:
                     tempProduct = _a.sent();
-                    if (tempProduct)
-                        fs_1.default.unlinkSync('./uploads/' + tempProduct.image);
                     return [4 /*yield*/, Product_1.default.update(req.body, data.developer, data.product_id)];
                 case 3:
                     updatedProduct = _a.sent();
                     if (!updatedProduct)
                         return [2 /*return*/, res.status(StatusCode_1.StatusCode.FORBIDDEN).json({ message: 'Forbidden' })];
+                    try {
+                        if ((data.image && tempProduct) || updatedProduct.image == '')
+                            fs_1.default.unlinkSync('./uploads/' + tempProduct.image);
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
                     updatedProduct.image = (0, env_config_1.default)('PREFIX_URL') + '/api/assets/' + updatedProduct.image;
                     return [2 /*return*/, res.status(StatusCode_1.StatusCode.OK).json({
                             message: 'Success update product',

@@ -53,8 +53,9 @@ export async function checkoutOrder(req : Request, res : Response) {
     let listCheckout: any[] = []
     let qty: number[] = []
     let total: number = 0
+    let tempInv = '-';
 
-    // try {
+    try {
         for(let i = 0; i < data.products_id.length; i++) {
             const product = await Product.fetchById(req.body.developer, data.products_id[i])
             if(!product) return res.status(StatusCode.BAD_REQUEST).json({ message: `${data.products_id[i]} is not registered`})
@@ -72,12 +73,24 @@ export async function checkoutOrder(req : Request, res : Response) {
             } as {name: string, quantity: number, subtotal: number}
 
             qty.push(cart.quantity)
-
             
             total += cart.quantity * product.price
         }
-    
-        const Invoice = await Order.create(user.user_id, total, data.products_id, qty, data.bank)
+
+        for(let i = 0; i < data.products_id.length; i++){
+            const cart = await Cart.checkDuplicateEntry(user.user_id, data.products_id[i])
+
+            if(cart){
+                // SUBTRACT STOCK
+                await Product.subtractStock(data.products_id[i], cart.quantity)
+        
+                //DELETE CART
+                await Cart.delete(user.user_id, data.products_id[i])
+            }
+        }
+
+        const Invoice = await Order.create(user.user_id, total, data.products_id, qty, data.bank);
+        tempInv = Invoice;
         const order = await Order.getOrderByInvoice(Invoice)
 
         const options = {
@@ -119,28 +132,15 @@ export async function checkoutOrder(req : Request, res : Response) {
                 va_number: va_number,
                 transaction_status: "pending"
             })
-        }).catch(async err => {
-            await Order.delete(Invoice);
-            return res.status(StatusCode.INTERNAL_SERVER).json(err.message)
+        }).catch(err => {
+            return res.status(StatusCode.INTERNAL_SERVER).json({ message: err.message })
         })
-
-        for(let i = 0; i < data.products_id.length; i++){
-            const cart = await Cart.checkDuplicateEntry(user.user_id, data.products_id[i])
-
-            if(cart){
-                // SUBTRACT STOCK
-                await Product.subtractStock(data.products_id[i], cart.quantity)
-        
-                //DELETE CART
-                await Cart.delete(user.user_id, data.products_id[i])
-            }
-        }
-    // } catch (error: any) {
-    //     console.log(error.message);
-    //     return res.status(StatusCode.INTERNAL_SERVER).json({
-    //         message: "Internal server error"
-    //     })
-    // }
+    } catch (error: any) {
+        console.log(error.message);
+        return res.status(StatusCode.INTERNAL_SERVER).json({
+            message: "Internal server error"
+        })
+    }
 }
 
 export async function paymentOrder(req : Request, res : Response) {
@@ -170,7 +170,8 @@ export async function paymentOrder(req : Request, res : Response) {
         axios.request(options).then(async response => {
             return res.status(StatusCode.OK).json({
                 invoice: data.invoice,
-                transaction_status: response.data.transaction_status
+                transaction_status: response.data.transaction_status,
+                va_number: order[0].va_number
             })
         }).catch(err => {
             return res.status(StatusCode.INTERNAL_SERVER).json(err.message)
@@ -220,6 +221,9 @@ export async function syncOrderStatus(req : Request, res : Response) {
         transaction_status,
         order_id
     } = req.body;
+
+    console.log(transaction_status);
+    console.log(order_id);
 
     if (!transaction_status || !order_id) return res.status(403).json({ message: `Forbidden` });
 

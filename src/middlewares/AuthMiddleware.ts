@@ -21,16 +21,17 @@ export const AuthMiddleware = async (req: Request, res: Response, next: NextFunc
         const decodedToken = jwt.verify(token, env('SECRET_KEY')) as Users;
         const username = decodedToken.username;
         const email = decodedToken.email;
-
-        const developer:IDeveloper|null = await prisma.developers.findFirst({
+        
+        const developer:IDeveloper = await prisma.developers.findFirst({
             where: {
                 OR: [
-                    { email },
-                    { username },
-                ]
+                    { username: username },
+                    { email: email }
+                ],
+                status: 1
             }
-        }); 
-
+        });
+        
         if (developer) {
             req.body.developer = developer.username;
             next();

@@ -80,10 +80,14 @@ export async function updateProduct(req : Request, res : Response) {
     if (data.status) req.body.status = parseInt(data.status);
 
     const tempProduct = await Product.fetchById(data.developer, data.product_id);
-    if (tempProduct) fs.unlinkSync('./uploads/' + tempProduct.image);
-
     const updatedProduct = await Product.update(req.body, data.developer, data.product_id);
     if (!updatedProduct) return res.status(StatusCode.FORBIDDEN).json({ message: 'Forbidden' });
+    
+    try {
+        if ((data.image && tempProduct) || updatedProduct.image == '') fs.unlinkSync('./uploads/' + tempProduct.image);
+    } catch (err) {
+        console.log(err);
+    }
 
     updatedProduct.image = env('PREFIX_URL') + '/api/assets/' + updatedProduct.image;
     return res.status(StatusCode.OK).json({

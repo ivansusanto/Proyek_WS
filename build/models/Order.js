@@ -310,12 +310,19 @@ exports.default = new (/** @class */ (function () {
                     case 0: return [4 /*yield*/, this.getOrderByInvoice(invoice)];
                     case 1:
                         order = _a.sent();
-                        return [4 /*yield*/, prisma.orders.delete({
+                        return [4 /*yield*/, prisma.order_items.deleteMany({
                                 where: {
                                     order_id: order.order_id
                                 }
                             })];
                     case 2:
+                        _a.sent();
+                        return [4 /*yield*/, prisma.orders.delete({
+                                where: {
+                                    order_id: order.order_id
+                                }
+                            })];
+                    case 3:
                         _a.sent();
                         return [2 /*return*/];
                 }

@@ -11,7 +11,7 @@ const addUserSchema = {
 }
 
 const updateUserSchema = {
-    status: Joi.number().required()
+    status: Joi.number().required().min(0).max(1)
 }
 
 export async function addUser(req : Request, res : Response) {
