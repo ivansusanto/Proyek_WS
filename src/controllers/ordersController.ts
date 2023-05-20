@@ -46,14 +46,15 @@ export async function checkoutOrder(req : Request, res : Response) {
     }
 
     const developer: IDeveloper = await Developer.fetchByUsername(data.developer) as IDeveloper
-    try {
-        const user: any = await User.checkCustomerID(data.customer_id, developer.developer_id)
-        if(user == " ") return res.status(StatusCode.BAD_REQUEST).json({ message: "User id is not registered"})
-    
-        let listCheckout: any[] = []
-        let qty: number[] = []
-        let total: number = 0
-    
+
+    const user: any = await User.checkCustomerID(data.customer_id, developer.developer_id)
+    if (user == " ") return res.status(StatusCode.BAD_REQUEST).json({ message: "User id is not registered"})
+
+    let listCheckout: any[] = []
+    let qty: number[] = []
+    let total: number = 0
+
+    // try {
         for(let i = 0; i < data.products_id.length; i++) {
             const product = await Product.fetchById(req.body.developer, data.products_id[i])
             if(!product) return res.status(StatusCode.BAD_REQUEST).json({ message: `${data.products_id[i]} is not registered`})
@@ -73,18 +74,7 @@ export async function checkoutOrder(req : Request, res : Response) {
             qty.push(cart.quantity)
 
             
-            total += cart.quantity*product.price
-        }
-        for(let i = 0; i < data.products_id.length; i++){
-            const cart = await Cart.checkDuplicateEntry(user.user_id, data.products_id[i])
-
-            if(cart){
-                // SUBTRACT STOCK
-                await Product.subtractStock(data.products_id[i], cart.quantity)
-        
-                //DELETE CART
-                await Cart.delete(user.user_id, data.products_id[i])
-            }
+            total += cart.quantity * product.price
         }
     
         const Invoice = await Order.create(user.user_id, total, data.products_id, qty, data.bank)
@@ -129,14 +119,28 @@ export async function checkoutOrder(req : Request, res : Response) {
                 va_number: va_number,
                 transaction_status: "pending"
             })
-        }).catch(err => {
+        }).catch(async err => {
+            await Order.delete(Invoice);
             return res.status(StatusCode.INTERNAL_SERVER).json(err.message)
         })
-    } catch (error: any) {
-        return res.status(StatusCode.INTERNAL_SERVER).json({
-            message: "Internal server error"
-        })
-    }
+
+        for(let i = 0; i < data.products_id.length; i++){
+            const cart = await Cart.checkDuplicateEntry(user.user_id, data.products_id[i])
+
+            if(cart){
+                // SUBTRACT STOCK
+                await Product.subtractStock(data.products_id[i], cart.quantity)
+        
+                //DELETE CART
+                await Cart.delete(user.user_id, data.products_id[i])
+            }
+        }
+    // } catch (error: any) {
+    //     console.log(error.message);
+    //     return res.status(StatusCode.INTERNAL_SERVER).json({
+    //         message: "Internal server error"
+    //     })
+    // }
 }
 
 export async function paymentOrder(req : Request, res : Response) {
@@ -164,17 +168,13 @@ export async function paymentOrder(req : Request, res : Response) {
         };
 
         axios.request(options).then(async response => {
-            // if (response.data.transaction_status === 'settlement' && order[0].status == 3) {
-            //     await Order.changeStatusOrder(data.invoice);
-            //     await Developer.updateBalance(developer.developer_id, order[0].total * 0.9); // Sudah dipotong 10% bussiness model
-            // }
             return res.status(StatusCode.OK).json({
                 invoice: data.invoice,
                 transaction_status: response.data.transaction_status
             })
         }).catch(err => {
             return res.status(StatusCode.INTERNAL_SERVER).json(err.message)
-        })        
+        })
     } catch (error) {
         return res.status(StatusCode.INTERNAL_SERVER).json({
             message: "Internal Server Error"

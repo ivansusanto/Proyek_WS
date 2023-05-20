@@ -32,7 +32,6 @@ export default new (class Cart {
     }
 
     async create(cart: Prisma.cartsCreateInput, user_id:string, product_id: string) {
-        // const cart_id: string = generateId('K', await prisma.carts.count());
         const cart_id = await this.generateCartId()
         const data:ICart = {
             cart_id: cart_id,

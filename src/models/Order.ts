@@ -212,4 +212,13 @@ export default new(class Order{
             }
         })
     }
+
+    async delete(invoice: string) {
+        const order = await this.getOrderByInvoice(invoice);
+        await prisma.orders.delete({
+            where: {
+                order_id: order.order_id
+            }
+        });
+    }
 })
