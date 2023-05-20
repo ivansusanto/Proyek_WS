@@ -32,7 +32,8 @@ export default new (class Developer {
     async fetchByUsername(username: string): Promise<IDeveloper|null>{
         const developer:IDeveloper|null = await prisma.developers.findFirst({
             where: {
-                username: username
+                username: username,
+                status: 1
             }
         });
         if (developer) return developer;
@@ -46,6 +47,7 @@ export default new (class Developer {
                     { email: email },
                     { username: username },
                 ],
+                status: 1
             },
         });
         if (developer) return developer;

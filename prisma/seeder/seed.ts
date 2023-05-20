@@ -166,7 +166,7 @@ async function main() {
         create: {
             user_id: "U0001",
             status: 1,
-            customer_id: "C0001",
+            customer_id: "hehe1",
             developer_id: "D0001"
         },
     })
@@ -176,7 +176,7 @@ async function main() {
         create: {
             user_id: "U0002",
             status: 1,
-            customer_id: "C0002",
+            customer_id: "hehe2",
             developer_id: "D0001"
         },
     })
@@ -186,7 +186,7 @@ async function main() {
         create: {
             user_id: "U0003",
             status: 1,
-            customer_id: "C0001",
+            customer_id: "wkwk1",
             developer_id: "D0002"
         },
     })
@@ -196,7 +196,7 @@ async function main() {
         create: {
             user_id: "U0004",
             status: 1,
-            customer_id: "C0001",
+            customer_id: "wkwk2",
             developer_id: "D0002"
         },
     })
@@ -206,7 +206,7 @@ async function main() {
         create: {
             user_id: "U0005",
             status: 1,
-            customer_id: "C0002",
+            customer_id: "wkwk3",
             developer_id: "D0002"
         },
     })
@@ -216,7 +216,7 @@ async function main() {
         create: {
             user_id: "U0006",
             status: 1,
-            customer_id: "C0003",
+            customer_id: "wkwk4",
             developer_id: "D0002"
         },
     })
@@ -226,7 +226,7 @@ async function main() {
         create: {
             user_id: "U0007",
             status: 1,
-            customer_id: "C0001",
+            customer_id: "lmao1",
             developer_id: "D0003"
         },
     })
@@ -236,7 +236,7 @@ async function main() {
         create: {
             user_id: "U0008",
             status: 1,
-            customer_id: "C0002",
+            customer_id: "lmao2",
             developer_id: "D0003"
         },
     })
@@ -405,7 +405,7 @@ async function main() {
 
     //ORDER
 
-
+    
     //ORDER_ITEM
 
 

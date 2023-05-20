@@ -23,7 +23,10 @@ export async function registerDeveloper(req : Request, res : Response) {
     const data:IDeveloper = req.body;
     const validation = await validator(addDeveloperSchema, data)
     if (validation.message) return res.status(StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") });
-    
+
+    const developer = await Developer.fetchByUsernameOrEmail(data.username, data.email);
+    if (developer) return res.status(400).json({ message: `User is already registered` });
+
     const token = generateToken({ 
         email: data.email || undefined,
         username: data.username || undefined, 
