@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request } from 'express';
 import multer, { FileFilterCallback } from 'multer';
 
 type DestinationCallback = (error: Error | null, destination: string) => void;

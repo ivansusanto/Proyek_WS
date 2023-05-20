@@ -5,7 +5,7 @@ import Developer, { IDeveloper } from '../models/Developer';
 import env from '../config/env.config';
 import Joi from 'joi';
 import fs from 'fs';
-import { StatusCode } from '../helpers/statusCode';
+import { StatusCode } from '../utils/statusCode';
 
 const addProductSchema = {
     name: Joi.string().required(),

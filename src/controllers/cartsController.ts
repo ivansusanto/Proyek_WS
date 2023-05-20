@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import validator from '../validations/Validator';
-import Cart, { ICart } from '../models/Cart';
+import Cart from '../models/Cart';
 import User from '../models/User';
 import Product from '../models/Product';
 import Joi from 'joi';
-import { StatusCode } from '../helpers/statusCode';
+import { StatusCode } from '../utils/statusCode';
 import Developer, { IDeveloper } from '../models/Developer';
 
 const addCartSchema = {

@@ -1,5 +1,4 @@
 import { PrismaClient, Prisma } from '../../build/prisma/prisma-client';
-import { generateId } from '../utils/GenerateId';
 import User from './User';
 import Developer, { IDeveloper } from './Developer';
 

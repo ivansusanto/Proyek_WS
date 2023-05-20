@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Joi from 'joi';
 import validator from '../validations/Validator';
-import { StatusCode } from '../helpers/statusCode';
+import { StatusCode } from '../utils/statusCode';
 import User from '../models/User';
 import Product from "../models/Product";
 import Cart from '../models/Cart';
