@@ -353,18 +353,19 @@ function syncOrderStatus(req, res) {
             switch (_b.label) {
                 case 0:
                     _a = req.body, transaction_status = _a.transaction_status, order_id = _a.order_id;
-                    console.log(transaction_status);
-                    console.log(order_id);
                     if (!transaction_status || !order_id)
                         return [2 /*return*/, res.status(403).json({ message: "Forbidden" })];
                     status = transaction_status === 'settlement' ? 1 : transaction_status === 'pending' ? 3 : 2;
                     return [4 /*yield*/, Order_1.default.getOrderByInvoice(order_id)];
                 case 1:
                     order = _b.sent();
+                    console.log(order);
                     if (!(order.status === 3 && status === 1)) return [3 /*break*/, 4];
                     return [4 /*yield*/, Developer_1.default.fetchByUsername(req.body.developer)];
                 case 2:
                     developer = _b.sent();
+                    console.log(req.body.developer);
+                    console.log(developer);
                     return [4 /*yield*/, Developer_1.default.updateBalance(developer.developer_id, order.total * 0.9)];
                 case 3:
                     _b.sent(); // bussiness moidel 10% tax

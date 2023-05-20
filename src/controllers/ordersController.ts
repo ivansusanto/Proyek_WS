@@ -222,16 +222,19 @@ export async function syncOrderStatus(req : Request, res : Response) {
         order_id
     } = req.body;
 
-    console.log(transaction_status);
-    console.log(order_id);
-
     if (!transaction_status || !order_id) return res.status(403).json({ message: `Forbidden` });
 
     let status = transaction_status === 'settlement' ? 1 : transaction_status === 'pending' ? 3 : 2;
     const order = await Order.getOrderByInvoice(order_id);
 
+    console.log(order);
+
     if (order.status === 3 && status === 1) {
         const developer = await Developer.fetchByUsername(req.body.developer);
+
+        console.log(req.body.developer);
+        console.log(developer);
+
         await Developer.updateBalance(developer.developer_id, order.total * 0.9); // bussiness moidel 10% tax
         status = 0;
     }
