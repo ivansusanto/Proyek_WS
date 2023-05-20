@@ -164,10 +164,10 @@ export async function paymentOrder(req : Request, res : Response) {
         };
 
         axios.request(options).then(async response => {
-            if (response.data.transaction_status === 'settlement' && order[0].status == 3) {
-                await Order.changeStatusOrder(data.invoice);
-                await Developer.updateBalance(developer.developer_id, order[0].total * 0.9); // Sudah dipotong 10% bussiness model
-            }
+            // if (response.data.transaction_status === 'settlement' && order[0].status == 3) {
+            //     await Order.changeStatusOrder(data.invoice);
+            //     await Developer.updateBalance(developer.developer_id, order[0].total * 0.9); // Sudah dipotong 10% bussiness model
+            // }
             return res.status(StatusCode.OK).json({
                 invoice: data.invoice,
                 transaction_status: response.data.transaction_status
@@ -216,6 +216,30 @@ export async function fetchUserOrder(req : Request, res : Response) {
 }
 
 export async function syncOrderStatus(req : Request, res : Response) {
-    console.log(req.body);
-    return res.status(200).send("OK");
+    const {
+        transaction_status,
+        order_id
+    } = req.body;
+
+    if (!transaction_status || !order_id) return res.status(403).json({ message: `Forbidden` });
+
+    let status = transaction_status === 'settlement' ? 1 : transaction_status === 'pending' ? 3 : 2;
+    const order = await Order.getOrderByInvoice(order_id);
+
+    if (order.status === 3 && status === 1) {
+        const developer = await Developer.fetchByUsername(req.body.developer);
+        await Developer.updateBalance(developer.developer_id, order.total * 0.9); // bussiness moidel 10% tax
+        status = 0;
+    }
+
+    await Order.changeStatusOrder(order_id, status);
+
+    return res.status(200).json({ message: `Ok` });
 }
+
+/*   
+    {
+        transaction_status: 'settlement',
+        order_id: 'INV190520230004'
+    }
+*/

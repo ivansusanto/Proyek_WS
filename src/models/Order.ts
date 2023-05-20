@@ -3,9 +3,12 @@ import { generateId } from '../utils/GenerateId';
 
 const prisma = new PrismaClient();
 
-//ORDER STATUS
-//0 = blm dibayar
-//1 = berhasil dibayar
+/* 
+    Status 0 = Success dan sudah masuk ke saldo developer
+    Status 1 = Success
+    Status 2 = Canceled
+    Status 3 = Pending / Not Paid
+*/
 
 export interface IOrder {
     order_id: string;
@@ -100,13 +103,13 @@ export default new(class Order{
         return null
     }
 
-    async changeStatusOrder(invoice_number: string){
+    async changeStatusOrder(invoice_number: string, status: number) {
         await prisma.orders.updateMany({
             where: {
                 invoice: invoice_number
             },
             data: {
-                status: 1
+                status: status
             }
         })
     }
