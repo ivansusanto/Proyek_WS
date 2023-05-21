@@ -230,7 +230,7 @@ export async function syncOrderStatus(req : Request, res : Response) {
     if (order.status === 3 && status === 1) {
         const developer_id = await User.getDeveloperIdByUserId(order.user_id);
 
-        await Developer.updateBalance(developer_id, order.total * 0.9); // bussiness moidel 10% tax
+        await Developer.updateBalance(developer_id, parseInt((order.total * 0.9).toString())); // bussiness moidel 10% tax
         status = 0;
     }
 

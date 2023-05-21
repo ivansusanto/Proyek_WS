@@ -363,7 +363,7 @@ function syncOrderStatus(req, res) {
                     return [4 /*yield*/, User_1.default.getDeveloperIdByUserId(order.user_id)];
                 case 2:
                     developer_id = _b.sent();
-                    return [4 /*yield*/, Developer_1.default.updateBalance(developer_id, order.total * 0.9)];
+                    return [4 /*yield*/, Developer_1.default.updateBalance(developer_id, parseInt((order.total * 0.9).toString()))];
                 case 3:
                     _b.sent(); // bussiness moidel 10% tax
                     status = 0;
