@@ -227,15 +227,10 @@ export async function syncOrderStatus(req : Request, res : Response) {
     let status = transaction_status === 'settlement' ? 1 : transaction_status === 'pending' ? 3 : 2;
     const order = await Order.getOrderByInvoice(order_id);
 
-    console.log(order);
-
     if (order.status === 3 && status === 1) {
-        const developer = await Developer.fetchByUsername(req.body.developer);
+        const developer_id = await User.getDeveloperIdByUserId(order.user_id);
 
-        console.log(req.body.developer);
-        console.log(developer);
-
-        await Developer.updateBalance(developer.developer_id, order.total * 0.9); // bussiness moidel 10% tax
+        await Developer.updateBalance(developer_id, order.total * 0.9); // bussiness moidel 10% tax
         status = 0;
     }
 

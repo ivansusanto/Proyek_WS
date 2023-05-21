@@ -348,7 +348,7 @@ function fetchUserOrder(req, res) {
 exports.fetchUserOrder = fetchUserOrder;
 function syncOrderStatus(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var _a, transaction_status, order_id, status, order, developer;
+        var _a, transaction_status, order_id, status, order, developer_id;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -359,14 +359,11 @@ function syncOrderStatus(req, res) {
                     return [4 /*yield*/, Order_1.default.getOrderByInvoice(order_id)];
                 case 1:
                     order = _b.sent();
-                    console.log(order);
                     if (!(order.status === 3 && status === 1)) return [3 /*break*/, 4];
-                    return [4 /*yield*/, Developer_1.default.fetchByUsername(req.body.developer)];
+                    return [4 /*yield*/, User_1.default.getDeveloperIdByUserId(order.user_id)];
                 case 2:
-                    developer = _b.sent();
-                    console.log(req.body.developer);
-                    console.log(developer);
-                    return [4 /*yield*/, Developer_1.default.updateBalance(developer.developer_id, order.total * 0.9)];
+                    developer_id = _b.sent();
+                    return [4 /*yield*/, Developer_1.default.updateBalance(developer_id, order.total * 0.9)];
                 case 3:
                     _b.sent(); // bussiness moidel 10% tax
                     status = 0;
