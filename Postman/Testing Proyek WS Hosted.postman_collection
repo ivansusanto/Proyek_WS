@@ -1,0 +1,988 @@
+{
+	"info": {
+		"_postman_id": "dba5d922-cda2-4b9d-bb3f-14a63d86e402",
+		"name": "Testing Proyek WS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25484891"
+	},
+	"item": [
+		{
+			"name": "Developers",
+			"item": [
+				{
+					"name": "Dev Register",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "bru",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "baru@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "full_name",
+									"value": "baru saja",
+									"type": "default"
+								},
+								{
+									"key": "display_name",
+									"value": "baru",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/developers/register",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"developers",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dev Login",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "ivan@gmail.com",
+									"type": "default",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "van",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/developers/login",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"developers",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dev Withdrawal",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "amount",
+									"value": "10000",
+									"type": "text"
+								},
+								{
+									"key": "account_number",
+									"value": "6534728",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/developers/withdrawal",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"developers",
+								"withdrawal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Add Users",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "customer_id",
+									"value": "orangbaru",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/users",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Status Users",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "status",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/users/:customer_id",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"users",
+								":customer_id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "orangbaru"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Add Products",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "barangbaru",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "-",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "10000",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "100",
+									"type": "default"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/Foto/Waifu/Kanna.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/products",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/products",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail Products",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/products/:product_id",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"products",
+								":product_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "P0009"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Products",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "gantibaru",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "ganti",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "5000",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "50",
+									"type": "default"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/Foto/Waifu/Kanna.jpg"
+								},
+								{
+									"key": "status",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/products/:product_id",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"products",
+								":product_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": "P0009"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Add Carts",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "customer_id",
+									"value": "lmao2",
+									"type": "default"
+								},
+								{
+									"key": "product_id",
+									"value": "P0006",
+									"type": "default"
+								},
+								{
+									"key": "quantity",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/carts",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"carts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Carts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/carts/:customer_id",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"carts",
+								":customer_id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "lmao2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Carts",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "quantity",
+									"value": "12",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/carts/:customer_id/:product:id",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"carts",
+								":customer_id",
+								":product:id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "lmao2"
+								},
+								{
+									"key": "product:id",
+									"value": "P0006"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Cart",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/carts/:customer_id/:product_id",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"carts",
+								":customer_id",
+								":product_id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "lmao2"
+								},
+								{
+									"key": "product_id",
+									"value": "P0006"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Checkout",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer_id\": \"wkwk4\",\r\n    \"products_id\": [\r\n        \"P0004\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"van\",\r\n    \"customer_email\": \"ivan@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/orders/checkout",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"orders",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Payment",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "invoice",
+									"value": "INV200520230003",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/orders/payment",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"orders",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Orders",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/orders",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail Order",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/orders/:invoice/details",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"orders",
+								":invoice",
+								"details"
+							],
+							"variable": [
+								{
+									"key": "invoice",
+									"value": "INV210520230006"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Order User",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://crawling-berry-air.glitch.me/api/orders/:customer_id",
+							"protocol": "https",
+							"host": [
+								"crawling-berry-air",
+								"glitch",
+								"me"
+							],
+							"path": [
+								"api",
+								"orders",
+								":customer_id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "lmao2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost:3000"
+		}
+	]
+}

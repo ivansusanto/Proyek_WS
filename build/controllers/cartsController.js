@@ -56,6 +56,7 @@ var Cart_1 = __importDefault(require("../models/Cart"));
 var User_1 = __importDefault(require("../models/User"));
 var Product_1 = __importDefault(require("../models/Product"));
 var joi_1 = __importDefault(require("joi"));
+var env_config_1 = __importDefault(require("../config/env.config"));
 var StatusCode_1 = require("../utils/StatusCode");
 var Developer_1 = __importDefault(require("../models/Developer"));
 var addCartSchema = {
@@ -137,7 +138,7 @@ function addCart(req, res) {
 exports.addCart = addCart;
 function fetchCart(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var customer_id, developer, user_cart;
+        var customer_id, developer, user_cart, i;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -147,10 +148,10 @@ function fetchCart(req, res) {
                 case 1:
                     user_cart = _a.sent();
                     if (user_cart === 'x')
-                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).send({ message: "User not found" })
-                            // if (!user_cart) return res.status(StatusCode.NOT_FOUND).send({ message: `User not found` })
-                        ];
-                    // if (!user_cart) return res.status(StatusCode.NOT_FOUND).send({ message: `User not found` })
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).send({ message: "User not found" })];
+                    for (i = 0; i < user_cart.length; i++) {
+                        user_cart[i].products.image = (0, env_config_1.default)('PREFIX_URL') + '/api/assets/' + user_cart[i].products.image;
+                    }
                     res.status(StatusCode_1.StatusCode.OK).send(user_cart);
                     return [2 /*return*/];
             }

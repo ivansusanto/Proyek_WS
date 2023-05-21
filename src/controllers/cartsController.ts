@@ -4,6 +4,7 @@ import Cart from '../models/Cart';
 import User from '../models/User';
 import Product from '../models/Product';
 import Joi from 'joi';
+import env from '../config/env.config';
 import { StatusCode } from '../utils/StatusCode';
 import Developer, { IDeveloper } from '../models/Developer';
 
@@ -68,7 +69,11 @@ export async function fetchCart(req : Request, res : Response) {
     const developer = req.body.developer;
     const user_cart = await Cart.getUserCart(customer_id, developer);
     if (user_cart === 'x') return res.status(StatusCode.NOT_FOUND).send({ message: `User not found` })
-    // if (!user_cart) return res.status(StatusCode.NOT_FOUND).send({ message: `User not found` })
+    
+    for (let i = 0; i < user_cart.length; i++) {
+        user_cart[i].products.image = env('PREFIX_URL') + '/api/assets/' + user_cart[i].products.image;
+    }
+
     res.status(StatusCode.OK).send(user_cart)
 }
 
