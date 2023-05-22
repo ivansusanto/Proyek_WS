@@ -64,18 +64,18 @@ export async function updateStatus(req : Request, res : Response) {
     
         if(await User.checkCustomerID(customer_id, developer.developer_id) == " "){
             return res.status(StatusCode.BAD_REQUEST).json({
-                message: "User id is not registered"
+                message: "customer_id is not registered"
             });
         }
           
         const validation = await validator(updateUserSchema, data);
-        if (validation.message) return res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") });
+        if (validation.message) return res.status(StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") });
         
         const status : number = parseInt(data.status)
         
         await User.update(customer_id, developer.developer_id, status)
     
-        return res.status(StatusCode.CREATED).json({
+        return res.status(StatusCode.OK).json({
             customer_id,
             status: status
         });

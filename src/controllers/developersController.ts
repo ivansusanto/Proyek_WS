@@ -25,7 +25,7 @@ export async function registerDeveloper(req : Request, res : Response) {
     if (validation.message) return res.status(StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") });
 
     const developer = await Developer.fetchByUsernameOrEmail(data.username, data.email);
-    if (developer) return res.status(400).json({ message: `User is already registered` });
+    if (developer) return res.status(StatusCode.BAD_REQUEST).json({ message: `User is already registered` });
 
     const token = generateToken({ 
         email: data.email || undefined,
@@ -54,7 +54,7 @@ export async function loginDeveloper(req : Request, res : Response) {
         }
     } catch (error: any) {
         if (error.message === 'Developer not found') {
-            res.status(StatusCode.BAD_REQUEST).send({message:'Developer not found'});
+            res.status(StatusCode.NOT_FOUND).send({message:'Developer not found'});
         } else {
             res.status(StatusCode.INTERNAL_SERVER).send({message:'Internal server error'});
         }

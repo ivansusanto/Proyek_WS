@@ -59,9 +59,10 @@ export async function addCart(req : Request, res : Response) {
                 quantity: data.quantity
             });
         }
-    } else {
-        res.status(StatusCode.FORBIDDEN).send({ message: `${data.product_id} is not your product!`})
-    }
+    } 
+    // else {
+    //     res.status(StatusCode.FORBIDDEN).send({ message: `${data.product_id} is not your product!`})
+    // }
 }   
 
 export async function fetchCart(req : Request, res : Response) {
@@ -87,7 +88,7 @@ export async function updateCart(req : Request, res : Response) {
 
     const tempDeveloper = req.body.developer
     const developer:IDeveloper = await Developer.fetchByUsername(tempDeveloper) as IDeveloper
-
+    
     const user = await User.checkCustomerID(data.customer_id, developer.developer_id);
     if (user === ' ') return res.status(StatusCode.NOT_FOUND).send({message:'User not found!'});
 
