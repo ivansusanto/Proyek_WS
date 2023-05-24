@@ -48,7 +48,7 @@ export async function checkoutOrder(req : Request, res : Response) {
     const developer: IDeveloper = await Developer.fetchByUsername(data.developer) as IDeveloper
 
     const user: any = await User.checkCustomerID(data.customer_id, developer.developer_id)
-    if (user == " ") return res.status(StatusCode.BAD_REQUEST).json({ message: "User id is not registered"})
+    if (user == " ") return res.status(StatusCode.NOT_FOUND).json({ message: "User id is not registered"})
 
     let listCheckout: any[] = []
     let qty: number[] = []

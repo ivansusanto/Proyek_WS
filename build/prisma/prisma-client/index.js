@@ -161,7 +161,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\Felicia Pangestu\\OneDrive\\Documents\\Informatika Semester 4\\Web Service\\Proyek_WS\\build\\prisma\\prisma-client",
+      "value": "C:\\Users\\cingk\\OneDrive\\Documents\\Febrian\\SMT 4\\Web Service\\Proyek_WS\\build\\prisma\\prisma-client",
       "fromEnvVar": null
     },
     "config": {

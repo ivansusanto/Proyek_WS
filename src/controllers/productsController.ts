@@ -78,7 +78,7 @@ export async function updateProduct(req : Request, res : Response) {
     if (data.price) req.body.price = parseInt(data.price);
     if (data.stock) req.body.stock = parseInt(data.stock);
     if (data.status) req.body.status = parseInt(data.status);
-
+    
     const tempProduct = await Product.fetchById(data.developer, data.product_id);
     const updatedProduct = await Product.update(req.body, data.developer, data.product_id);
     if (!updatedProduct) return res.status(StatusCode.FORBIDDEN).json({ message: 'Forbidden' });

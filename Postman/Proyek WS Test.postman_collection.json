@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a9778d58-f7c3-4f82-a0b4-2666cad2ddff",
+		"_postman_id": "6b89bcf6-f6a2-432c-a46c-a1a95266250c",
 		"name": "Proyek WS Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27556407"
+		"_exporter_id": "27454200"
 	},
 	"item": [
 		{
@@ -421,6 +421,161 @@
 									"path": [
 										"developers",
 										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Withdrawal",
+					"item": [
+						{
+							"name": "Withdrawal Success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 200 value', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should return object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('message');\r",
+											"    pm.expect(responseJson).to.ownProperty('full_name');\r",
+											"    pm.expect(responseJson).to.ownProperty('username');\r",
+											"    pm.expect(responseJson).to.ownProperty('display_name');\r",
+											"    pm.expect(responseJson).to.ownProperty('balance');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/developers/withdrawal",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"withdrawal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Withdrawal Error Validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 400 value', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should have message \\'must be a number\\'', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson.message).to.include(\"must be a number\");\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/developers/withdrawal",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"withdrawal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Withdrawal Insufficient Balance",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 400 value', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should be \\'Insufficient balance\\'', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('message');\r",
+											"    pm.expect(responseJson.message).to.equals('Insufficient balance');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/developers/withdrawal",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"withdrawal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Withdrawal Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 401 value', () => {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should be \\'Unauthorized\\'', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('message');\r",
+											"    pm.expect(responseJson.message).to.equals('Unauthorized');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/developers/withdrawal",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"withdrawal"
 									]
 								}
 							},
@@ -1530,32 +1685,37 @@
 								"method": "PUT",
 								"header": [],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
+									"mode": "formdata",
+									"formdata": [
 										{
 											"key": "name",
 											"value": "",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "description",
 											"value": "",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "price",
 											"value": "",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "stock",
 											"value": "",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "status",
 											"value": "",
-											"type": "default"
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
 										}
 									]
 								},
@@ -1614,32 +1774,37 @@
 								"method": "PUT",
 								"header": [],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
+									"mode": "formdata",
+									"formdata": [
 										{
 											"key": "name",
 											"value": "Nasi goreng",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "description",
 											"value": "uenak",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "price",
 											"value": "25000",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "stock",
 											"value": "12",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "status",
 											"value": "1",
-											"type": "default"
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/cingk/OneDrive/Documents/Febrian/SMT 4/Web Service/Proyek_WS/uploads/1684061886348-571905485.png"
 										}
 									]
 								},
@@ -1696,32 +1861,37 @@
 								"method": "PUT",
 								"header": [],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
+									"mode": "formdata",
+									"formdata": [
 										{
 											"key": "name",
 											"value": "",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "description",
 											"value": "",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "price",
 											"value": "",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "stock",
 											"value": "",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "status",
 											"value": "",
-											"type": "default"
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
 										}
 									]
 								},
@@ -1779,32 +1949,37 @@
 								"method": "PUT",
 								"header": [],
 								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
+									"mode": "formdata",
+									"formdata": [
 										{
 											"key": "name",
 											"value": "nasi goreng",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "description",
 											"value": "enak sekali",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "price",
 											"value": "25000",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "stock",
 											"value": "5",
-											"type": "default"
+											"type": "text"
 										},
 										{
 											"key": "status",
 											"value": "1",
-											"type": "default"
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/cingk/OneDrive/Documents/Febrian/SMT 4/Web Service/Proyek_WS/uploads/1684061894223-14073555.png"
 										}
 									]
 								},
@@ -2898,53 +3073,6 @@
 					"name": "Delete",
 					"item": [
 						{
-							"name": "Delete Cart",
-							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "headerPrefix",
-											"value": "Bearer",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										}
-									]
-								},
-								"method": "DELETE",
-								"header": [],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": []
-								},
-								"url": {
-									"raw": "{{host}}/:customer_id/:product:id",
-									"host": [
-										"{{host}}"
-									],
-									"path": [
-										":customer_id",
-										":product:id"
-									],
-									"variable": [
-										{
-											"key": "customer_id",
-											"value": ""
-										},
-										{
-											"key": "product:id",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Delete Cart Unauthorized",
 							"event": [
 								{
@@ -3262,6 +3390,833 @@
 			"name": "Orders",
 			"item": [
 				{
+					"name": "Checkout",
+					"item": [
+						{
+							"name": "Checkout Success",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 201 value', () => {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should return object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('invoice');\r",
+											"    pm.expect(responseJson).to.ownProperty('bank');\r",
+											"    pm.expect(responseJson).to.ownProperty('va_number');\r",
+											"    pm.expect(responseJson).to.ownProperty('transaction_status');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Checkout User Not Found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 404 value', () => {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should have message \\'User id is not registered\\'', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('message');\r",
+											"    pm.expect(responseJson.message).to.equals('User id is not registered');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Checkout Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 401 value', () => {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should be \\'Unauthorized\\'', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('message');\r",
+											"    pm.expect(responseJson.message).to.equals('Unauthorized');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Checkout Error Validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 400 value', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should not have empty fields', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson.message).to.include(\"is not allowed to be empty\");\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Checkout Invalid Bank",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 400 value', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should be \\'Invalid bank name\\'', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('message');\r",
+											"    pm.expect(responseJson.message).to.equals('Invalid bank name');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Checkout Invalid Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 400 value', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should have message \\'is not registered\\' ', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson.message).to.include(\"is not registered\");\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Checkout Unavailable Product",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 400 value', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should have message \\'is not available\\' ', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson.message).to.include(\"is not available\");\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Checkout Not in Cart",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 400 value', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should have message \\'is not in user\\'s cart\\' ', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson.message).to.include(\"is not in user's cart\");\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Checkout Insufficient Stock",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 400 value', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should have message \\'Insufficient Stock\\' ', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson.message).to.include(\"Insufficient Stock\");\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Payment",
+					"item": [
+						{
+							"name": "Payment",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 200 value', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test('response body should return object', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('invoice');\r",
+											"    pm.expect(responseJson).to.ownProperty('transaction_status');\r",
+											"    pm.expect(responseJson).to.ownProperty('va_number');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "checkout_id",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "payment",
+											"value": "",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/orders/payment",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"payment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Payment Invalid Invoice",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 400 value', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should be \\'Invalid invoice number\\'', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('message');\r",
+											"    pm.expect(responseJson.message).to.equals('Invalid invoice number');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "checkout_id",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "payment",
+											"value": "",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/orders/payment",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"payment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Payment Error Validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 400 value', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should be \\'invoice is not allowed to be empty\\'', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('message');\r",
+											"    pm.expect(responseJson.message).to.equals('invoice is not allowed to be empty');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "checkout_id",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "payment",
+											"value": "",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/orders/payment",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"payment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Payment Unauthorized",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 401 value', () => {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should be \\'Unauthorized\\'', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('message');\r",
+											"    pm.expect(responseJson.message).to.equals('Unauthorized');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "headerPrefix",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "checkout_id",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "payment",
+											"value": "",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3000/api/orders/payment",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"orders",
+										"payment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "getAllOrder",
 					"item": [
 						{
@@ -3275,10 +4230,10 @@
 											"    pm.response.to.have.status(200);\r",
 											"});\r",
 											"\r",
-											"pm.test('Response should not have empty fields', () => {\r",
-											"    const responseJson = pm.response.json();\r",
-											"    pm.expect(responseJson)!=0\r",
-											"})"
+											"// pm.test('Response should not have empty fields', () => {\r",
+											"//     const responseJson = pm.response.json();\r",
+											"//     pm.expect(responseJson)!=0\r",
+											"// })"
 										],
 										"type": "text/javascript"
 									}
@@ -3349,231 +4304,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/api/orders",
+									"raw": "{{host}}/orders",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
 										"orders"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Checkout",
-					"item": [
-						{
-							"name": "Checkout",
-							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "headerPrefix",
-											"value": "Bearer",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"customer_id\": \"\",\r\n    \"product_id\": [\r\n        \"\",\r\n        \"\"\r\n    ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/api/orders/checkout",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"orders",
-										"checkout"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Checkout Unauthorized",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test('response status code should have 401 value', () => {\r",
-											"    pm.response.to.have.status(401);\r",
-											"});\r",
-											"\r",
-											"pm.test('Response should be \\'Unauthorized\\'', () => {\r",
-											"    const responseJson = pm.response.json();\r",
-											"    pm.expect(responseJson).to.ownProperty('message');\r",
-											"    pm.expect(responseJson.message).to.equals('Unauthorized');\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "headerPrefix",
-											"value": "Bearer",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"customer_id\": \"\",\r\n    \"product_id\": [\r\n        \"\",\r\n        \"\"\r\n    ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/api/orders/checkout",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"orders",
-										"checkout"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Payment",
-					"item": [
-						{
-							"name": "Payment",
-							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "headerPrefix",
-											"value": "Bearer",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "checkout_id",
-											"value": "",
-											"type": "default"
-										},
-										{
-											"key": "payment",
-											"value": "",
-											"type": "default"
-										}
-									]
-								},
-								"url": {
-									"raw": "localhost:3000/api/orders/payment",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"orders",
-										"payment"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Payment Unauthorized",
-							"request": {
-								"auth": {
-									"type": "oauth2",
-									"oauth2": [
-										{
-											"key": "headerPrefix",
-											"value": "Bearer",
-											"type": "string"
-										},
-										{
-											"key": "addTokenTo",
-											"value": "header",
-											"type": "string"
-										}
-									]
-								},
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "urlencoded",
-									"urlencoded": [
-										{
-											"key": "checkout_id",
-											"value": "",
-											"type": "default"
-										},
-										{
-											"key": "payment",
-											"value": "",
-											"type": "default"
-										}
-									]
-								},
-								"url": {
-									"raw": "localhost:3000/api/orders/payment",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"api",
-										"orders",
-										"payment"
 									]
 								}
 							},
@@ -3586,17 +4322,71 @@
 					"item": [
 						{
 							"name": "Get Detail Order",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 200 value', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/api/orders/:order_id",
+									"raw": "{{host}}/orders/:order_id",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
+										"orders",
+										":order_id"
+									],
+									"variable": [
+										{
+											"key": "order_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Detail Order Invalid Invoice",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 400 value', () => {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should be \\'Invalid invoice number\\'', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('message');\r",
+											"    pm.expect(responseJson.message).to.equals('Invalid invoice number');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/orders/:order_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
 										"orders",
 										":order_id"
 									],
@@ -3635,13 +4425,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/api/orders/:order_id",
+									"raw": "{{host}}/orders/:order_id",
 									"host": [
-										"localhost"
+										"{{host}}"
 									],
-									"port": "3000",
 									"path": [
-										"api",
 										"orders",
 										":order_id"
 									],
@@ -3662,6 +4450,19 @@
 					"item": [
 						{
 							"name": "Get All Order User",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 200 value', () => {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -3701,6 +4502,51 @@
 											"    const responseJson = pm.response.json();\r",
 											"    pm.expect(responseJson).to.ownProperty('message');\r",
 											"    pm.expect(responseJson.message).to.equals('Unauthorized');\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/api/orders/:customer_id",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"orders",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Order User Not Found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test('response status code should have 404 value', () => {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"pm.test('Response should be \\'User not found!\\'', () => {\r",
+											"    const responseJson = pm.response.json();\r",
+											"    pm.expect(responseJson).to.ownProperty('message');\r",
+											"    pm.expect(responseJson.message).to.equals('User not found!');\r",
 											"});"
 										],
 										"type": "text/javascript"

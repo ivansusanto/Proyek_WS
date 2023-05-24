@@ -1,0 +1,4384 @@
+{
+	"info": {
+		"_postman_id": "365ff4dd-3537-4484-a49f-67b08d80b2f4",
+		"name": "Proyek WS Documentation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27454200"
+	},
+	"item": [
+		{
+			"name": "Developers",
+			"item": [
+				{
+					"name": "Dev Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "test123",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "default"
+								},
+								{
+									"key": "email",
+									"value": "test123@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "full_name",
+									"value": "test_123",
+									"type": "default"
+								},
+								{
+									"key": "display_name",
+									"value": "test123",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/developers/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"developers",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Dev Register Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "test123",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "123",
+											"type": "default"
+										},
+										{
+											"key": "email",
+											"value": "test123@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "full_name",
+											"value": "test_123",
+											"type": "default"
+										},
+										{
+											"key": "display_name",
+											"value": "test123",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/developers/register",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0Nzg5Mjk4LCJleHAiOjE2ODQ3OTI4OTh9.WEHerV25z2IoH3wlFGt5waQl7CYGB79z2c8gBB1A6qQ\"\r\n}"
+						},
+						{
+							"name": "Dev Register Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "123",
+											"type": "default"
+										},
+										{
+											"key": "email",
+											"value": "test123@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "full_name",
+											"value": "test_123",
+											"type": "default"
+										},
+										{
+											"key": "display_name",
+											"value": "test123",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/developers/register",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"username is not allowed to be empty\"\r\n}"
+						},
+						{
+							"name": "Dev Register Duplicate Entry",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "test123",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "123",
+											"type": "default"
+										},
+										{
+											"key": "email",
+											"value": "test123@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "full_name",
+											"value": "test_123",
+											"type": "default"
+										},
+										{
+											"key": "display_name",
+											"value": "test123",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/developers/register",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"User is already registered\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Dev Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test123@gmail.com",
+									"type": "default"
+								},
+								{
+									"key": "username",
+									"value": "test123",
+									"type": "default"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/developers/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"developers",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Dev Login Username",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "test123@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "username",
+											"value": "test123",
+											"type": "default",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "123",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/developers/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwiaWF0IjoxNjg0Nzg5MzA1LCJleHAiOjE2ODQ3OTI5MDV9.kHYmWq8WcZfU9MNzV81gAi-K1h74p4aKy9BFdTPyWv8\"\r\n}"
+						},
+						{
+							"name": "Dev Login Email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "test123@gmail.com",
+											"type": "default",
+											"disabled": true
+										},
+										{
+											"key": "username",
+											"value": "test123",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "123",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/developers/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3QxMjMiLCJpYXQiOjE2ODQ3ODkzMjksImV4cCI6MTY4NDc5MjkyOX0.XVxeki3vy_k9mx3LYHqFWOMFKaH29qDz_GXMyHTY8vk\"\r\n}"
+						},
+						{
+							"name": "Dev Login Username Email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "test123@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "username",
+											"value": "test123",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "123",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/developers/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0Nzg5MzU4LCJleHAiOjE2ODQ3OTI5NTh9.9KEbuDOrQbzf4ZAJ1-iLp1CqRaoPPP5Mx0eijPJZiyY\"\r\n}"
+						},
+						{
+							"name": "Dev Login Wrong Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "test123@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "username",
+											"value": "test123",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "wrong_password",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/developers/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Invalid password\"\r\n}"
+						},
+						{
+							"name": "Dev Login Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "test12@gmail.com",
+											"type": "default"
+										},
+										{
+											"key": "username",
+											"value": "test12",
+											"type": "default"
+										},
+										{
+											"key": "password",
+											"value": "123",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/developers/login",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Developer not found\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Dev Withdrawal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "amount",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "account_number",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/developers/withdrawal",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"developers",
+								"withdrawal"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Dev Withdrawal Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTY1ODYxLCJleHAiOjE2ODQ5Njk0NjF9.B4aknG3TwdE7_rmy9jPXS4ewM31ANo2EW5mfOz-etBc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "amount",
+											"value": "100",
+											"type": "text"
+										},
+										{
+											"key": "account_number",
+											"value": "514531123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/developers/withdrawal",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"withdrawal"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"The balance 100 will be disbursed at 514531123, wait for verification\",\r\n    \"full_name\": \"test_123\",\r\n    \"username\": \"test123\",\r\n    \"email\": \"test123@gmail.com\",\r\n    \"balance\": 49900\r\n}"
+						},
+						{
+							"name": "Dev Withdrawal Error Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTY1ODYxLCJleHAiOjE2ODQ5Njk0NjF9.B4aknG3TwdE7_rmy9jPXS4ewM31ANo2EW5mfOz-etBc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "amount",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "account_number",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/developers/withdrawal",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"withdrawal"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"amount must be a number\"\r\n}"
+						},
+						{
+							"name": "Dev Withdrawal Insufficient balance",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTY1ODYxLCJleHAiOjE2ODQ5Njk0NjF9.B4aknG3TwdE7_rmy9jPXS4ewM31ANo2EW5mfOz-etBc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "amount",
+											"value": "99999999",
+											"type": "text"
+										},
+										{
+											"key": "account_number",
+											"value": "514531123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/developers/withdrawal",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"withdrawal"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Insufficient balance\"\r\n}"
+						},
+						{
+							"name": "Dev Withdrawal Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "amount",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "account_number",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/developers/withdrawal",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"developers",
+										"withdrawal"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Add Users",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "customer_id",
+									"value": "C0003",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Users Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0Nzg5MzU4LCJleHAiOjE2ODQ3OTI5NTh9.9KEbuDOrQbzf4ZAJ1-iLp1CqRaoPPP5Mx0eijPJZiyY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "customer_id",
+											"value": "C0001",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"status\": 1\r\n}"
+						},
+						{
+							"name": "Add Users Duplicate Entry",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0Nzg5MzU4LCJleHAiOjE2ODQ3OTI5NTh9.9KEbuDOrQbzf4ZAJ1-iLp1CqRaoPPP5Mx0eijPJZiyY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "customer_id",
+											"value": "C0001",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"customer_id already registered\"\r\n}"
+						},
+						{
+							"name": "Add Users Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0Nzg5MzU4LCJleHAiOjE2ODQ3OTI5NTh9.9KEbuDOrQbzf4ZAJ1-iLp1CqRaoPPP5Mx0eijPJZiyY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "customer_id",
+											"value": "",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"customer_id is not allowed to be empty\"\r\n}"
+						},
+						{
+							"name": "Add Users Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "customer_id",
+											"value": "C0001",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						},
+						{
+							"name": "Add Users Expired Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0Nzg5MzU4LCJleHAiOjE2ODQ3OTI5NTh9.9KEbuDOrQbzf4ZAJ1-iLp1CqRaoPPP5Mx0eijPJZiyY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "customer_id",
+											"value": "C0001",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/users",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Invalid Token\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit Status Users",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "status",
+									"value": "2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/users/:customer_id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"users",
+								":customer_id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit Status Users Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0Nzg5MzU4LCJleHAiOjE2ODQ3OTI5NTh9.9KEbuDOrQbzf4ZAJ1-iLp1CqRaoPPP5Mx0eijPJZiyY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "status",
+											"value": "0",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/users/:customer_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"status\": 0\r\n}"
+						},
+						{
+							"name": "Edit Status Users Validation Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0Nzg5MzU4LCJleHAiOjE2ODQ3OTI5NTh9.9KEbuDOrQbzf4ZAJ1-iLp1CqRaoPPP5Mx0eijPJZiyY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "status",
+											"value": "abc",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/users/:customer_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"status must be a number\"\r\n}"
+						},
+						{
+							"name": "Edit Status Users Not Registered",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0Nzg5MzU4LCJleHAiOjE2ODQ3OTI5NTh9.9KEbuDOrQbzf4ZAJ1-iLp1CqRaoPPP5Mx0eijPJZiyY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "status",
+											"value": "0",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/users/:customer_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0002"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"customer_id is not registered\"\r\n}"
+						},
+						{
+							"name": "Edit Status Users Unauthorized",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "status",
+											"value": "0",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/users/:customer_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0002"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						},
+						{
+							"name": "Edit Status Users Expired Token",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0Nzg5MzU4LCJleHAiOjE2ODQ3OTI5NTh9.9KEbuDOrQbzf4ZAJ1-iLp1CqRaoPPP5Mx0eijPJZiyY",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "status",
+											"value": "0",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/users/:customer_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"users",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0002"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Invalid Token\"\r\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Add Products",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Produk 1",
+									"type": "default"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "stock",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/products",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Products Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "description",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "price",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "stock",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						},
+						{
+							"name": "Add Products Expired Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0ODE1NzkxLCJleHAiOjE2ODQ4MTkzOTF9.35qcag32zrrS058hc2Jcau5lPGJe83ktEnDsKiNV01Q",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "description",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "price",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "stock",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Invalid Token\"\r\n}"
+						},
+						{
+							"name": "Add Products Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0ODE1NzkxLCJleHAiOjE2ODQ4MTkzOTF9.35qcag32zrrS058hc2Jcau5lPGJe83ktEnDsKiNV01Q",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "description",
+											"value": "desc123",
+											"type": "default"
+										},
+										{
+											"key": "price",
+											"value": "123",
+											"type": "default"
+										},
+										{
+											"key": "stock",
+											"value": "123",
+											"type": "default"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"name is not allowed to be empty\"\r\n}"
+						},
+						{
+							"name": "Add Products Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0ODE1NzkxLCJleHAiOjE2ODQ4MTkzOTF9.35qcag32zrrS058hc2Jcau5lPGJe83ktEnDsKiNV01Q",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "prod1",
+											"type": "default"
+										},
+										{
+											"key": "description",
+											"value": "desc123",
+											"type": "default"
+										},
+										{
+											"key": "price",
+											"value": "123",
+											"type": "default"
+										},
+										{
+											"key": "stock",
+											"value": "123",
+											"type": "default"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/cingk/OneDrive/Documents/Febrian/SMT 4/Web Service/Proyek_WS/uploads/1684061868483-165153553.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Success add product\",\r\n    \"data\": {\r\n        \"product_id\": \"P0012\",\r\n        \"name\": \"prod1\",\r\n        \"description\": \"desc123\",\r\n        \"price\": 123,\r\n        \"stock\": 123,\r\n        \"status\": 1,\r\n        \"developer_id\": \"D0004\",\r\n        \"image\": \"localhost:3000/api/assets/1684816726627-845509346.png\"\r\n    }\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/products",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Products",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0ODE1NzkxLCJleHAiOjE2ODQ4MTkzOTF9.35qcag32zrrS058hc2Jcau5lPGJe83ktEnDsKiNV01Q",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"OK\",\r\n    \"data\": [\r\n        {\r\n            \"product_id\": \"P0009\",\r\n            \"name\": \"prod1\",\r\n            \"description\": \"desc123\",\r\n            \"price\": 123,\r\n            \"stock\": 123,\r\n            \"status\": 1,\r\n            \"image\": \"localhost:3000/api/assets/1684816592877-63408969.png\"\r\n        },\r\n        {\r\n            \"product_id\": \"P0010\",\r\n            \"name\": \"prod2\",\r\n            \"description\": \"desc123\",\r\n            \"price\": 123,\r\n            \"stock\": 123,\r\n            \"status\": 1,\r\n            \"image\": \"localhost:3000/api/assets/1684817253543-35902098.png\"\r\n        }\r\n    ]\r\n}"
+						},
+						{
+							"name": "Get All Products Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/products",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Detail Products",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/products/:product_id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products",
+								":product_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Detail Products Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0ODE1NzkxLCJleHAiOjE2ODQ4MTkzOTF9.35qcag32zrrS058hc2Jcau5lPGJe83ktEnDsKiNV01Q",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/products/:product_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										":product_id"
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "P0009"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"OK\",\r\n    \"data\": {\r\n        \"product_id\": \"P0009\",\r\n        \"name\": \"prod1\",\r\n        \"description\": \"desc123\",\r\n        \"price\": 123,\r\n        \"stock\": 123,\r\n        \"status\": 1,\r\n        \"image\": \"localhost:3000/api/assets/1684816592877-63408969.png\"\r\n    }\r\n}"
+						},
+						{
+							"name": "Get Detail Products Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0ODE1NzkxLCJleHAiOjE2ODQ4MTkzOTF9.35qcag32zrrS058hc2Jcau5lPGJe83ktEnDsKiNV01Q",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/products/:product_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										":product_id"
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "P0009"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						},
+						{
+							"name": "Get Detail Products Forbidden",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0ODE1NzkxLCJleHAiOjE2ODQ4MTkzOTF9.35qcag32zrrS058hc2Jcau5lPGJe83ktEnDsKiNV01Q",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/products/:product_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										":product_id"
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "P0001"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Forbidden\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit Products",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/products/:product_id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"products",
+								":product_id"
+							],
+							"variable": [
+								{
+									"key": "product_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit Products Validation Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0ODY5MjUxLCJleHAiOjE2ODQ4NzI4NTF9.LeVj6B1hrzRrfSBVwjqZsWKigkEDKjc_RY3p2wzda7s",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/products/:product_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										":product_id"
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "P0009"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"name is not allowed to be empty\"\r\n}"
+						},
+						{
+							"name": "Edit Products Success 1",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0ODY5MjUxLCJleHAiOjE2ODQ4NzI4NTF9.LeVj6B1hrzRrfSBVwjqZsWKigkEDKjc_RY3p2wzda7s",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "new_name",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "price",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "stock",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": [],
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/products/:product_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										":product_id"
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "P0009"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Success update product\",\r\n    \"data\": {\r\n        \"product_id\": \"P0009\",\r\n        \"name\": \"new_name\",\r\n        \"description\": \"desc123\",\r\n        \"price\": 123,\r\n        \"stock\": 123,\r\n        \"status\": 1,\r\n        \"developer_id\": \"D0004\",\r\n        \"image\": \"localhost:3000/api/assets/1684816592877-63408969.png\"\r\n    }\r\n}"
+						},
+						{
+							"name": "Edit Products Success 2",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0ODY5MjUxLCJleHAiOjE2ODQ4NzI4NTF9.LeVj6B1hrzRrfSBVwjqZsWKigkEDKjc_RY3p2wzda7s",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "new_name",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "new_desc",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "500",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "200",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "0",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "/C:/Users/cingk/OneDrive/Documents/Febrian/SMT 4/Web Service/Proyek_WS/uploads/1684061876135-860218727.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/products/:product_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										":product_id"
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "P0009"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Success update product\",\r\n    \"data\": {\r\n        \"product_id\": \"P0009\",\r\n        \"name\": \"new_name\",\r\n        \"description\": \"new_desc\",\r\n        \"price\": 500,\r\n        \"stock\": 200,\r\n        \"status\": 0,\r\n        \"developer_id\": \"D0004\",\r\n        \"image\": \"localhost:3000/api/assets/1684816592877-63408969.png\"\r\n    }\r\n}"
+						},
+						{
+							"name": "Edit Products Unauthorized",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0ODY5MjUxLCJleHAiOjE2ODQ4NzI4NTF9.LeVj6B1hrzRrfSBVwjqZsWKigkEDKjc_RY3p2wzda7s",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/products/:product_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										":product_id"
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "P0009"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						},
+						{
+							"name": "Edit Products Forbidden",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0ODY5MjUxLCJleHAiOjE2ODQ4NzI4NTF9.LeVj6B1hrzRrfSBVwjqZsWKigkEDKjc_RY3p2wzda7s",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "stock",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/products/:product_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"products",
+										":product_id"
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "P0001"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Forbidden\"\r\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Add Carts",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "customer_id",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "product_id",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "quantity",
+									"value": "",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/carts",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"carts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add Carts Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "customer_id",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "product_id",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "quantity",
+											"value": "",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/carts",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						},
+						{
+							"name": "Add Carts User Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "customer_id",
+											"value": "C9999",
+											"type": "default"
+										},
+										{
+											"key": "product_id",
+											"value": "P0009",
+											"type": "default"
+										},
+										{
+											"key": "quantity",
+											"value": "1",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/carts",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"User not found!\"\r\n}"
+						},
+						{
+							"name": "Add Carts Duplicate",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "customer_id",
+											"value": "C0001",
+											"type": "default"
+										},
+										{
+											"key": "product_id",
+											"value": "P0009",
+											"type": "default"
+										},
+										{
+											"key": "quantity",
+											"value": "1",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/carts",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"cart_id\": \"K0017\",\r\n    \"product_name\": \"new_name\",\r\n    \"quantity\": 2\r\n}"
+						},
+						{
+							"name": "Add Carts Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "customer_id",
+											"value": "C0001",
+											"type": "default"
+										},
+										{
+											"key": "product_id",
+											"value": "P0009",
+											"type": "default"
+										},
+										{
+											"key": "quantity",
+											"value": "1",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/carts",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"cart_id\": \"K0017\",\r\n    \"product_name\": \"new_name\",\r\n    \"quantity\": \"1\"\r\n}"
+						},
+						{
+							"name": "Add Carts Invalid",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "customer_id",
+											"value": "C0001",
+											"type": "default"
+										},
+										{
+											"key": "product_id",
+											"value": "P9999",
+											"type": "default"
+										},
+										{
+											"key": "quantity",
+											"value": "1",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/carts",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Product inactive or not registered\"\r\n}"
+						},
+						{
+							"name": "Add Carts Validation Qty",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "customer_id",
+											"value": "C0001",
+											"type": "default"
+										},
+										{
+											"key": "product_id",
+											"value": "P0009",
+											"type": "default"
+										},
+										{
+											"key": "quantity",
+											"value": "0",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/carts",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"quantity must be greater than or equal to 1\"\r\n}"
+						},
+						{
+							"name": "Add Carts Empty Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "customer_id",
+											"value": "C0001",
+											"type": "default"
+										},
+										{
+											"key": "product_id",
+											"value": "",
+											"type": "default"
+										},
+										{
+											"key": "quantity",
+											"value": "1",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/carts",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"product_id is not allowed to be empty\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Carts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/carts/:customer_id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"carts",
+								":customer_id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Carts Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"quantity\": 2,\r\n        \"products\": {\r\n            \"name\": \"new_name\",\r\n            \"price\": 500,\r\n            \"description\": \"new_desc\",\r\n            \"image\": \"localhost:3000/api/assets/1684816592877-63408969.png\",\r\n            \"stock\": 200\r\n        }\r\n    }\r\n]"
+						},
+						{
+							"name": "Get Carts Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						},
+						{
+							"name": "Get Carts User Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C9999"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"User not found\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit Carts",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "quantity",
+									"value": "",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/carts/:customer_id/:product:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"carts",
+								":customer_id",
+								":product:id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": ""
+								},
+								{
+									"key": "product:id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Edit Carts Success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "quantity",
+											"value": "5",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id/:product:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id",
+										":product:id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										},
+										{
+											"key": "product:id",
+											"value": "P0009"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"cart_id\": \"K0017\",\r\n    \"product_name\": \"new_name\",\r\n    \"quantity\": 5\r\n}"
+						},
+						{
+							"name": "Edit Carts User Not Found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "quantity",
+											"value": "5",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id/:product:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id",
+										":product:id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C9999"
+										},
+										{
+											"key": "product:id",
+											"value": "P0009"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"User not found!\"\r\n}"
+						},
+						{
+							"name": "Edit Carts Forbidden",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "quantity",
+											"value": "5",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id/:product:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id",
+										":product:id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										},
+										{
+											"key": "product:id",
+											"value": "P0001"
+										}
+									]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"P0001 is not your product!\"\r\n}"
+						},
+						{
+							"name": "Edit Carts Validation Error",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "quantity",
+											"value": "0",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id/:product:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id",
+										":product:id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										},
+										{
+											"key": "product:id",
+											"value": "P0009"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"quantity must be greater than or equal to 1\"\r\n}"
+						},
+						{
+							"name": "Edit Carts Unauthorized",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "quantity",
+											"value": "5",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id/:product:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id",
+										":product:id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										},
+										{
+											"key": "product:id",
+											"value": "P0009"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Cart",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{host}}/carts/:customer_id/:product:id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"carts",
+								":customer_id",
+								":product:id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": ""
+								},
+								{
+									"key": "product:id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Cart Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id/:product:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id",
+										":product:id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										},
+										{
+											"key": "product:id",
+											"value": "P0009"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"cart_id\": \"K0017\",\r\n    \"product_name\": \"new_name\",\r\n    \"message\": \"Product has been removed from cart\"\r\n}"
+						},
+						{
+							"name": "Delete Cart Failed",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id/:product:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id",
+										":product:id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										},
+										{
+											"key": "product:id",
+											"value": "P0010"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"P0010 is not in user's cart!\"\r\n}"
+						},
+						{
+							"name": "Delete Cart Forbidden",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id/:product:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id",
+										":product:id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										},
+										{
+											"key": "product:id",
+											"value": "P0001"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"P0001 is not your product!\"\r\n}"
+						},
+						{
+							"name": "Delete Cart Validation Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id/:product:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id",
+										":product:id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										},
+										{
+											"key": "product:id",
+											"value": "P009"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"product_id length must be 5 characters long\"\r\n}"
+						},
+						{
+							"name": "Delete Cart Unauthorized",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{host}}/carts/:customer_id/:product:id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"carts",
+										":customer_id",
+										":product:id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										},
+										{
+											"key": "product:id",
+											"value": "P0009"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Checkout",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/orders/checkout",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders",
+								"checkout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Checkout Success Permata",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0009\"\r\n    ],\r\n    \"bank\": \"permata\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"invoice\": \"INV250520230001\",\r\n    \"bank\": \"permata\",\r\n    \"va_number\": \"7130095076303328\",\r\n    \"transaction_status\": \"pending\"\r\n}"
+						},
+						{
+							"name": "Checkout Success BCA",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0009\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"invoice\": \"INV250520230002\",\r\n    \"bank\": \"bca\",\r\n    \"va_number\": \"71316036884\",\r\n    \"transaction_status\": \"pending\"\r\n}"
+						},
+						{
+							"name": "Checkout Success BNI",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0009\"\r\n    ],\r\n    \"bank\": \"bni\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"invoice\": \"INV250520230003\",\r\n    \"bank\": \"bni\",\r\n    \"va_number\": \"9887131678678970\",\r\n    \"transaction_status\": \"pending\"\r\n}"
+						},
+						{
+							"name": "Checkout Success BRI",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0009\"\r\n    ],\r\n    \"bank\": \"bri\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"invoice\": \"INV250520230004\",\r\n    \"bank\": \"bri\",\r\n    \"va_number\": \"713167002488622958\",\r\n    \"transaction_status\": \"pending\"\r\n}"
+						},
+						{
+							"name": "Checkout Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						},
+						{
+							"name": "Checkout User Not Found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C9999\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"User id is not registered\"\r\n}"
+						},
+						{
+							"name": "Checkout Error Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"products_id must contain at least 1 items\"\r\n}"
+						},
+						{
+							"name": "Checkout Invalid Bank",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTU3OTg4LCJleHAiOjE2ODQ5NjE1ODh9.PfvOA5PSzym5qIzJOC2MxsbWEwXiTjBDmQc-VMHPXeI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0009\"\r\n    ],\r\n    \"bank\": \"test\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Invalid bank name\"\r\n}"
+						},
+						{
+							"name": "Checkout Invalid product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P9999\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"P9999 is not registered\"\r\n}"
+						},
+						{
+							"name": "Checkout Unavailable product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0009\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"new_name is not available\"\r\n}"
+						},
+						{
+							"name": "Checkout Not in Cart",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0010\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"prod2 is not in user's cart\"\r\n}"
+						},
+						{
+							"name": "Checkout Insufficient Stock",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0009\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/orders/checkout",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"checkout"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Insufficient Stock on product new_name. Checkout cancelled\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Payment",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "invoice",
+									"value": "INV180520230001",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/orders/payment",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders",
+								"payment"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Payment Pending",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "invoice",
+											"value": "INV250520230001",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/orders/payment",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"payment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"invoice\": \"INV250520230001\",\r\n    \"transaction_status\": \"pending\",\r\n    \"va_number\": \"7130095076303328\"\r\n}"
+						},
+						{
+							"name": "Payment Settlement",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "invoice",
+											"value": "INV250520230001",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/orders/payment",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"payment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"invoice\": \"INV250520230001\",\r\n    \"transaction_status\": \"settlement\",\r\n    \"va_number\": \"7130095076303328\"\r\n}"
+						},
+						{
+							"name": "Payment Invalid Invoice",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "invoice",
+											"value": "INV000000000000",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/orders/payment",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"payment"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Invalid invoice number\"\r\n}"
+						},
+						{
+							"name": "Payment Error Validation",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "invoice",
+											"value": "",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/orders/payment",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"payment"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"invoice is not allowed to be empty\"\r\n}"
+						},
+						{
+							"name": "Payment Unauthorized",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "invoice",
+											"value": "",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}/orders/payment",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										"payment"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Orders",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/orders",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Orders",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/orders",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"invoice\": \"INV250520230001\",\r\n        \"date\": \"2023-05-24T21:28:17.000Z\",\r\n        \"total\": 500,\r\n        \"status\": 1,\r\n        \"users\": {\r\n            \"customer_id\": \"C0001\"\r\n        }\r\n    },\r\n    {\r\n        \"invoice\": \"INV250520230002\",\r\n        \"date\": \"2023-05-24T21:30:04.000Z\",\r\n        \"total\": 500,\r\n        \"status\": 3,\r\n        \"users\": {\r\n            \"customer_id\": \"C0001\"\r\n        }\r\n    },\r\n    {\r\n        \"invoice\": \"INV250520230003\",\r\n        \"date\": \"2023-05-24T21:30:18.000Z\",\r\n        \"total\": 500,\r\n        \"status\": 3,\r\n        \"users\": {\r\n            \"customer_id\": \"C0001\"\r\n        }\r\n    },\r\n    {\r\n        \"invoice\": \"INV250520230004\",\r\n        \"date\": \"2023-05-24T21:30:38.000Z\",\r\n        \"total\": 500,\r\n        \"status\": 3,\r\n        \"users\": {\r\n            \"customer_id\": \"C0001\"\r\n        }\r\n    }\r\n]"
+						},
+						{
+							"name": "Get All Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/orders",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Detail Order",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/orders/:invoice/details",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders",
+								":invoice",
+								"details"
+							],
+							"variable": [
+								{
+									"key": "invoice",
+									"value": "INV180520230001"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Detail Order",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/orders/:invoice/details",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":invoice",
+										"details"
+									],
+									"variable": [
+										{
+											"key": "invoice",
+											"value": "INV250520230001"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"invoice\": \"INV250520230001\",\r\n        \"date\": \"2023-05-24T21:28:17.000Z\",\r\n        \"total\": 500,\r\n        \"status\": 1,\r\n        \"bank\": \"permata\",\r\n        \"va_number\": \"7130095076303328\",\r\n        \"users\": {\r\n            \"customer_id\": \"C0001\"\r\n        },\r\n        \"order_items\": [\r\n            {\r\n                \"products\": {\r\n                    \"name\": \"new_name\",\r\n                    \"price\": 500\r\n                },\r\n                \"quantity\": 1\r\n            }\r\n        ]\r\n    }\r\n]"
+						},
+						{
+							"name": "Get Detail Order Invalid Invoice",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTYyMTk3LCJleHAiOjE2ODQ5NjU3OTd9.60H_i30qU8tZSJdELKHvnB0Eqck9Pu08HsemuIZp7IU",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/orders/:invoice/details",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":invoice",
+										"details"
+									],
+									"variable": [
+										{
+											"key": "invoice",
+											"value": "INV000000000000"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Invalid invoice number\"\r\n}"
+						},
+						{
+							"name": "Get Detail Order Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/orders/:invoice/details",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":invoice",
+										"details"
+									],
+									"variable": [
+										{
+											"key": "invoice",
+											"value": "INV250520230001"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Order User",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/orders/:customer_id",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"orders",
+								":customer_id"
+							],
+							"variable": [
+								{
+									"key": "customer_id",
+									"value": "C0001"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Order User",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTY1ODYxLCJleHAiOjE2ODQ5Njk0NjF9.B4aknG3TwdE7_rmy9jPXS4ewM31ANo2EW5mfOz-etBc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/orders/:customer_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "[\r\n    {\r\n        \"invoice\": \"INV250520230001\",\r\n        \"date\": \"2023-05-24T21:28:17.000Z\",\r\n        \"total\": 500,\r\n        \"status\": 1,\r\n        \"bank\": \"permata\",\r\n        \"va_number\": \"7130095076303328\"\r\n    },\r\n    {\r\n        \"invoice\": \"INV250520230002\",\r\n        \"date\": \"2023-05-24T21:30:04.000Z\",\r\n        \"total\": 500,\r\n        \"status\": 3,\r\n        \"bank\": \"bca\",\r\n        \"va_number\": \"71316036884\"\r\n    },\r\n    {\r\n        \"invoice\": \"INV250520230003\",\r\n        \"date\": \"2023-05-24T21:30:18.000Z\",\r\n        \"total\": 500,\r\n        \"status\": 3,\r\n        \"bank\": \"bni\",\r\n        \"va_number\": \"9887131678678970\"\r\n    },\r\n    {\r\n        \"invoice\": \"INV250520230004\",\r\n        \"date\": \"2023-05-24T21:30:38.000Z\",\r\n        \"total\": 500,\r\n        \"status\": 3,\r\n        \"bank\": \"bri\",\r\n        \"va_number\": \"713167002488622958\"\r\n    }\r\n]"
+						},
+						{
+							"name": "Get All Order User Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QxMjNAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ0ZXN0MTIzIiwiaWF0IjoxNjg0OTY1ODYxLCJleHAiOjE2ODQ5Njk0NjF9.B4aknG3TwdE7_rmy9jPXS4ewM31ANo2EW5mfOz-etBc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/orders/:customer_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C9999"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"User not found!\"\r\n}"
+						},
+						{
+							"name": "Get All Order User Unauthorized",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/orders/:customer_id",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"orders",
+										":customer_id"
+									],
+									"variable": [
+										{
+											"key": "customer_id",
+											"value": "C0001"
+										}
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\r\n    \"message\": \"Unauthorized\"\r\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
