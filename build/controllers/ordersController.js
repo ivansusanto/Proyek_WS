@@ -94,7 +94,7 @@ function checkoutOrder(req, res) {
                 case 3:
                     user = _a.sent();
                     if (user == " ")
-                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: "User id is not registered" })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.NOT_FOUND).json({ message: "User id is not registered" })];
                     listCheckout = [];
                     qty = [];
                     total = 0;
@@ -262,8 +262,9 @@ function paymentOrder(req, res) {
                         return __generator(this, function (_a) {
                             return [2 /*return*/, res.status(StatusCode_1.StatusCode.OK).json({
                                     invoice: data.invoice,
+                                    bank: order_1[0].bank,
+                                    va_number: order_1[0].va_number,
                                     transaction_status: response.data.transaction_status,
-                                    va_number: order_1[0].va_number
                                 })];
                         });
                     }); }).catch(function (err) {

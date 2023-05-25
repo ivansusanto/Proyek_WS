@@ -84,7 +84,7 @@ function registerDeveloper(req, res) {
                 case 2:
                     developer = _a.sent();
                     if (developer)
-                        return [2 /*return*/, res.status(400).json({ message: "User is already registered" })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: "User is already registered" })];
                     token = (0, JWT_1.generateToken)({
                         email: data.email || undefined,
                         username: data.username || undefined,
@@ -126,7 +126,7 @@ function loginDeveloper(req, res) {
                 case 3:
                     error_1 = _b.sent();
                     if (error_1.message === 'Developer not found') {
-                        res.status(StatusCode_1.StatusCode.BAD_REQUEST).send({ message: 'Developer not found' });
+                        res.status(StatusCode_1.StatusCode.NOT_FOUND).send({ message: 'Developer not found' });
                     }
                     else {
                         res.status(StatusCode_1.StatusCode.INTERNAL_SERVER).send({ message: 'Internal server error' });

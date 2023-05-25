@@ -121,19 +121,19 @@ function updateStatus(req, res) {
                 case 3:
                     if ((_a.sent()) == " ") {
                         return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({
-                                message: "User id is not registered"
+                                message: "customer_id is not registered"
                             })];
                     }
                     return [4 /*yield*/, (0, Validator_1.default)(updateUserSchema, data)];
                 case 4:
                     validation = _a.sent();
                     if (validation.message)
-                        return [2 /*return*/, res.status(400).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
+                        return [2 /*return*/, res.status(StatusCode_1.StatusCode.BAD_REQUEST).json({ message: validation.message.replace("\"", "").replace("\"", "") })];
                     status_1 = parseInt(data.status);
                     return [4 /*yield*/, User_1.default.update(customer_id, developer.developer_id, status_1)];
                 case 5:
                     _a.sent();
-                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.CREATED).json({
+                    return [2 /*return*/, res.status(StatusCode_1.StatusCode.OK).json({
                             customer_id: customer_id,
                             status: status_1
                         })];
