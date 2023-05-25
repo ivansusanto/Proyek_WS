@@ -456,8 +456,33 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "amount",
+											"value": "1000",
+											"type": "text"
+										},
+										{
+											"key": "account_number",
+											"value": "2385389",
+											"type": "text"
+										}
+									]
+								},
 								"url": {
 									"raw": "{{host}}/developers/withdrawal",
 									"host": [
@@ -492,8 +517,33 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "amount",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "account_number",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
 								"url": {
 									"raw": "{{host}}/developers/withdrawal",
 									"host": [
@@ -529,8 +579,33 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "amount",
+											"value": "99999999999",
+											"type": "text"
+										},
+										{
+											"key": "account_number",
+											"value": "2385389",
+											"type": "text"
+										}
+									]
+								},
 								"url": {
 									"raw": "{{host}}/developers/withdrawal",
 									"host": [
@@ -566,8 +641,33 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "amount",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "account_number",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
 								"url": {
 									"raw": "{{host}}/developers/withdrawal",
 									"host": [
@@ -3496,7 +3596,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"raw": "{\r\n    \"customer_id\": \"C9999\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3617,7 +3717,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3678,7 +3778,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"test\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3738,7 +3838,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P9999\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3798,7 +3898,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0002\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3858,7 +3958,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0001\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
+									"raw": "{\r\n    \"customer_id\": \"C0001\",\r\n    \"products_id\": [\r\n        \"P0002\"\r\n    ],\r\n    \"bank\": \"bca\",\r\n    \"customer_name\": \"fp\",\r\n    \"customer_email\": \"fp@gmail.com\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -3957,8 +4057,9 @@
 											"pm.test('response body should return object', () => {\r",
 											"    const responseJson = pm.response.json();\r",
 											"    pm.expect(responseJson).to.ownProperty('invoice');\r",
-											"    pm.expect(responseJson).to.ownProperty('transaction_status');\r",
+											"    pm.expect(responseJson).to.ownProperty('bank');\r",
 											"    pm.expect(responseJson).to.ownProperty('va_number');\r",
+											"    pm.expect(responseJson).to.ownProperty('transaction_status');\r",
 											"});"
 										],
 										"type": "text/javascript"
@@ -3987,13 +4088,8 @@
 									"mode": "urlencoded",
 									"urlencoded": [
 										{
-											"key": "checkout_id",
-											"value": "",
-											"type": "default"
-										},
-										{
-											"key": "payment",
-											"value": "",
+											"key": "invoice",
+											"value": "INV200520230001",
 											"type": "default"
 										}
 									]
@@ -4054,13 +4150,8 @@
 									"mode": "urlencoded",
 									"urlencoded": [
 										{
-											"key": "checkout_id",
-											"value": "",
-											"type": "default"
-										},
-										{
-											"key": "payment",
-											"value": "",
+											"key": "invoice",
+											"value": "INV000000000000",
 											"type": "default"
 										}
 									]
@@ -4121,12 +4212,7 @@
 									"mode": "urlencoded",
 									"urlencoded": [
 										{
-											"key": "checkout_id",
-											"value": "",
-											"type": "default"
-										},
-										{
-											"key": "payment",
+											"key": "invoice",
 											"value": "",
 											"type": "default"
 										}
@@ -4188,13 +4274,8 @@
 									"mode": "urlencoded",
 									"urlencoded": [
 										{
-											"key": "checkout_id",
-											"value": "",
-											"type": "default"
-										},
-										{
-											"key": "payment",
-											"value": "",
+											"key": "invoice",
+											"value": "INV200520230001",
 											"type": "default"
 										}
 									]
@@ -4336,21 +4417,32 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/orders/:order_id",
+									"raw": "{{host}}/orders/:invoice/details",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"orders",
-										":order_id"
+										":invoice",
+										"details"
 									],
 									"variable": [
 										{
-											"key": "order_id",
-											"value": ""
+											"key": "invoice",
+											"value": "INV200520230001"
 										}
 									]
 								}
@@ -4379,21 +4471,32 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/orders/:order_id",
+									"raw": "{{host}}/orders/:invoice/details",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"orders",
-										":order_id"
+										":invoice",
+										"details"
 									],
 									"variable": [
 										{
-											"key": "order_id",
-											"value": ""
+											"key": "invoice",
+											"value": "INV000000000000"
 										}
 									]
 								}
@@ -4422,21 +4525,32 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/orders/:order_id",
+									"raw": "{{host}}/orders/:invoice/details",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
 										"orders",
-										":order_id"
+										":invoice",
+										"details"
 									],
 									"variable": [
 										{
-											"key": "order_id",
-											"value": ""
+											"key": "invoice",
+											"value": null
 										}
 									]
 								}
@@ -4464,6 +4578,16 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -4480,7 +4604,7 @@
 									"variable": [
 										{
 											"key": "customer_id",
-											"value": ""
+											"value": "C0001"
 										}
 									]
 								}
@@ -4509,6 +4633,16 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -4554,6 +4688,16 @@
 								}
 							],
 							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
 								"header": [],
 								"url": {
@@ -4570,7 +4714,7 @@
 									"variable": [
 										{
 											"key": "customer_id",
-											"value": ""
+											"value": "C9999"
 										}
 									]
 								}

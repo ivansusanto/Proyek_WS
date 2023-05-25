@@ -3835,7 +3835,7 @@
 							"_postman_previewlanguage": null,
 							"header": null,
 							"cookie": [],
-							"body": "{\r\n    \"invoice\": \"INV250520230001\",\r\n    \"transaction_status\": \"pending\",\r\n    \"va_number\": \"7130095076303328\"\r\n}"
+							"body": "{\r\n    \"invoice\": \"INV250520230001\",\r\n    \"bank\": \"permata\",\r\n    \"va_number\": \"7130095076303328\",\r\n    \"transaction_status\": \"pending\"\r\n}"
 						},
 						{
 							"name": "Payment Settlement",
@@ -3874,7 +3874,7 @@
 							"_postman_previewlanguage": null,
 							"header": null,
 							"cookie": [],
-							"body": "{\r\n    \"invoice\": \"INV250520230001\",\r\n    \"transaction_status\": \"settlement\",\r\n    \"va_number\": \"7130095076303328\"\r\n}"
+							"body": "{\r\n    \"invoice\": \"INV250520230001\",\r\n    \"bank\": \"permata\",\r\n    \"va_number\": \"7130095076303328\",\r\n    \"transaction_status\": \"settlement\"\r\n}"
 						},
 						{
 							"name": "Payment Invalid Invoice",

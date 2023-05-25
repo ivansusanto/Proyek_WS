@@ -170,8 +170,9 @@ export async function paymentOrder(req : Request, res : Response) {
         axios.request(options).then(async response => {
             return res.status(StatusCode.OK).json({
                 invoice: data.invoice,
+                bank: order[0].bank,
+                va_number: order[0].va_number,
                 transaction_status: response.data.transaction_status,
-                va_number: order[0].va_number
             })
         }).catch(err => {
             return res.status(StatusCode.INTERNAL_SERVER).json(err.message)
