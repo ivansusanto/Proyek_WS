@@ -105,7 +105,7 @@ function addCart(req, res) {
                     return [4 /*yield*/, Cart_1.default.checkBefore(data.product_id, developer.developer_id)];
                 case 6:
                     checkOwner = _a.sent();
-                    if (!checkOwner) return [3 /*break*/, 11];
+                    if (!checkOwner) return [3 /*break*/, 10];
                     if (!check) return [3 /*break*/, 8];
                     newQuantity = check.quantity + parseInt(data.quantity);
                     return [4 /*yield*/, Cart_1.default.update(user.user_id, data.product_id, newQuantity)];
@@ -126,11 +126,7 @@ function addCart(req, res) {
                         quantity: data.quantity
                     });
                     _a.label = 10;
-                case 10: return [3 /*break*/, 12];
-                case 11:
-                    res.status(StatusCode_1.StatusCode.FORBIDDEN).send({ message: "".concat(data.product_id, " is not your product!") });
-                    _a.label = 12;
-                case 12: return [2 /*return*/];
+                case 10: return [2 /*return*/];
             }
         });
     });
