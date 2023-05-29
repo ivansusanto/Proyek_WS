@@ -1637,7 +1637,7 @@
 							"response": []
 						},
 						{
-							"name": "Get Detail Products",
+							"name": "Get Detail Products Success",
 							"event": [
 								{
 									"listen": "test",
@@ -1671,12 +1671,19 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{host}}/products",
+									"raw": "{{host}}/products/:product_id",
 									"host": [
 										"{{host}}"
 									],
 									"path": [
-										"products"
+										"products",
+										":product_id"
+									],
+									"variable": [
+										{
+											"key": "product_id",
+											"value": "P0010"
+										}
 									]
 								}
 							},
